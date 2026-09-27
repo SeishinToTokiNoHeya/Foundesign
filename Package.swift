@@ -13,6 +13,12 @@ let package = Package(
   targets: [
     .target(
       name: "Foundesign",
+      dependencies: [
+        "FoundesignFoundation"
+      ]
+    ),
+    .target(
+      name: "FoundesignFoundation",
     ),
   ]
 )
