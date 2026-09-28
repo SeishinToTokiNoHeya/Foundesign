@@ -4,6 +4,10 @@ import PackageDescription
 
 let package = Package(
   name: "Foundesign",
+  platforms: [
+    .iOS(.v16),
+    .macOS(.v13)
+  ],
   products: [
     .library(
       name: "Foundesign",
