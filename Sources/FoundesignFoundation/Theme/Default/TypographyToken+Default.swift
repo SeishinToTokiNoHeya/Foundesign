@@ -12,7 +12,7 @@ extension TypographyToken {
       medium: .init(font: .title.weight(.bold)),
       small: .init(font: .title2.weight(.semibold))
     ),
-    Label: .init(
+    label: .init(
       large: .init(font: .headline.weight(.semibold)),
       medium: .init(font: .subheadline.weight(.medium)),
       small: .init(font: .caption.weight(.medium))
