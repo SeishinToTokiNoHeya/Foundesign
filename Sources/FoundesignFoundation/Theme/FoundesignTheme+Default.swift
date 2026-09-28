@@ -16,35 +16,55 @@ extension ColorToken {
 
 extension ColorToken.Action {
   public static let `default` = ColorToken.Action(
-    primary: .init(normal: .wip, pressed: .wip, focused: .wip, disabled: .wip),
-    secondary: .init(normal: .wip, pressed: .wip, focused: .wip, disabled: .wip),
-    neutral: .init(normal: .wip, pressed: .wip, focused: .wip, disabled: .wip),
-    destructive: .init(normal: .wip, pressed: .wip, focused: .wip, disabled: .wip)
+    primary: .init(
+      normal: .adaptive(light: 0x217CF9, dark: 0x41A2F9),
+      pressed: .adaptive(light: 0x135FCD, dark: 0x83BCF9),
+      focused: .adaptive(light: 0x217CF9, dark: 0x41A2F9),
+      disabled: .adaptive(light: 0xF3F4F5, dark: 0x1D2025)
+    ),
+    secondary: .init(
+      normal: .adaptive(light: 0xEFF6FF, dark: 0x202742),
+      pressed: .adaptive(light: 0xE2EDFC, dark: 0x1E3352),
+      focused: .adaptive(light: 0xEFF6FF, dark: 0x202742),
+      disabled: .adaptive(light: 0xF3F4F5, dark: 0x1D2025)
+    ),
+    neutral: .init(
+      normal: .adaptive(light: 0x1A1C20, dark: 0xF3F4F5),
+      pressed: .adaptive(light: 0x2A3038, dark: 0xE9EAEC),
+      focused: .adaptive(light: 0x1A1C20, dark: 0xF3F4F5),
+      disabled: .adaptive(light: 0xF3F4F5, dark: 0x1D2025)
+    ),
+    destructive: .init(
+      normal: .adaptive(light: 0xFA342C, dark: 0xFF6E60),
+      pressed: .adaptive(light: 0xCA1D13, dark: 0xFFA299),
+      focused: .adaptive(light: 0xFA342C, dark: 0xFF6E60),
+      disabled: .adaptive(light: 0xF3F4F5, dark: 0x1D2025)
+    )
   )
 }
 
 extension ColorToken.Background {
   public static let `default` = ColorToken.Background(
-    base: .wip,
-    subtle: .wip,
-    elevated: .wip,
-    overlay: .wip,
-    inverse: .wip
+    base: .adaptive(light: 0xFFFFFF, dark: 0x16171B),
+    subtle: .adaptive(light: 0xF3F4F5, dark: 0x000000),
+    elevated: .adaptive(light: 0xFFFFFF, dark: 0x1D2025),
+    overlay: .adaptive(
+      light: 0x000000,
+      dark: 0x000000,
+      lightOpacity: 116.0 / 255.0
+    ),
+    inverse: .adaptive(light: 0x2A3038, dark: 0xE9EAEC)
   )
 }
 
 extension ColorToken.Text {
   public static let `default` = ColorToken.Text(
-    primary: .wip,
-    secondary: .wip,
-    tertiary: .wip,
-    disabled: .wip,
-    inverse: .wip,
-    link: .wip,
-    destructive: .wip
+    primary: .adaptive(light: 0x1A1C20, dark: 0xF3F4F5),
+    secondary: .adaptive(light: 0x555D6D, dark: 0xDCDEE3),
+    tertiary: .adaptive(light: 0x868B94, dark: 0xB0B3BA),
+    disabled: .adaptive(light: 0xD1D3D8, dark: 0x5B606A),
+    inverse: .adaptive(light: 0xFFFFFF, dark: 0x16171B),
+    link: .adaptive(light: 0x217CF9, dark: 0x41A2F9),
+    destructive: .adaptive(light: 0xFA342C, dark: 0xFF6E60)
   )
-}
-
-extension Color {
-  static let wip = Color.clear
 }
