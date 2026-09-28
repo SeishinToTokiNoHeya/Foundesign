@@ -53,7 +53,7 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
     case .neutral:
       return theme.color.text.inverse
 
-    case .critial:
+    case .critical:
       return theme.color.text.inverse
     }
   }
@@ -104,7 +104,7 @@ fileprivate extension ColorToken {
       switch property.tone {
       case .brand: return action.primary.disabled
       case .neutral: return action.neutral.disabled
-      case .critial: return action.destructive.disabled
+      case .critical: return action.destructive.disabled
       }
     }
 
@@ -112,14 +112,14 @@ fileprivate extension ColorToken {
       switch property.tone {
       case .brand: return action.primary.pressed
       case .neutral: return action.neutral.pressed
-      case .critial: return action.destructive.pressed
+      case .critical: return action.destructive.pressed
       }
     }
 
     switch property.tone {
     case .brand: return action.primary.normal
     case .neutral: return action.neutral.normal
-    case .critial: return action.destructive.normal
+    case .critical: return action.destructive.normal
     }
   }
 }
