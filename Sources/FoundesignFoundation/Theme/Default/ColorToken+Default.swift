@@ -4,6 +4,7 @@ extension ColorToken {
   public static let `default` = ColorToken(
     action: .default,
     background: .default,
+    border: .default,
     text: .default
   )
 }
@@ -48,6 +49,27 @@ extension ColorToken.Background {
       lightOpacity: 116.0 / 255.0
     ),
     inverse: .adaptive(light: 0x2A3038, dark: 0xE9EAEC)
+  )
+}
+
+extension ColorToken.Border {
+  public static let `default` = ColorToken.Border(
+    base: .adaptive(light: 0xDCDEE3, dark: 0x393D46),
+    subtle: .adaptive(
+      light: 0x000000,
+      dark: 0xFFFFFF,
+      lightOpacity: 12.0 / 255.0,
+      darkOpacity: 13.0 / 255.0
+    ),
+    strong: .adaptive(light: 0x555D6D, dark: 0xDCDEE3),
+    focus: .adaptive(light: 0x5E98FE, dark: 0x1E82EB),
+    disabled: .adaptive(
+      light: 0x000000,
+      dark: 0xFFFFFF,
+      lightOpacity: 16.0 / 255.0,
+      darkOpacity: 23.0 / 255.0
+    ),
+    destructive: .adaptive(light: 0xFA342C, dark: 0xFF6E60)
   )
 }
 

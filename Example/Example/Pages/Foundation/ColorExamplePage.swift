@@ -17,6 +17,10 @@ struct ColorExamplePage: View {
         background(theme.color.background)
       }
 
+      Section("Border") {
+        border(theme.color.border)
+      }
+
       Section("Text") {
         text(theme.color.text)
       }
@@ -51,6 +55,22 @@ struct ColorExamplePage: View {
     }
   }
 
+  private func border(_ token: ColorToken.Border) -> some View {
+    VStack(alignment: .leading, spacing: theme.spacing.medium) {
+      HStack(spacing: theme.spacing.medium) {
+        borderCell("base", token.base)
+        borderCell("subtle", token.subtle)
+        borderCell("strong", token.strong)
+      }
+
+      HStack(spacing: theme.spacing.medium) {
+        borderCell("focus", token.focus)
+        borderCell("disabled", token.disabled)
+        borderCell("destructive", token.destructive)
+      }
+    }
+  }
+
   private func text(_ token: ColorToken.Text) -> some View {
     VStack(alignment: .leading, spacing: theme.spacing.medium) {
       HStack(spacing: theme.spacing.medium) {
@@ -74,7 +94,25 @@ struct ColorExamplePage: View {
         .fill(color)
         .overlay {
           RoundedRectangle(cornerRadius: theme.radius.large)
-            .stroke(theme.color.text.primary.opacity(0.1), lineWidth: 1)
+            .stroke(theme.color.border.base, lineWidth: 1)
+        }
+        .frame(width: 45, height: 45)
+
+      Text(title)
+        .typography(theme.typography.body.small)
+        .foregroundStyle(theme.color.text.primary)
+        .lineLimit(1)
+    }
+    .minimumScaleFactor(0.5)
+  }
+
+  private func borderCell(_ title: String, _ color: Color) -> some View {
+    VStack(spacing: theme.spacing.small) {
+      RoundedRectangle(cornerRadius: theme.radius.large)
+        .fill(theme.color.background.base)
+        .overlay {
+          RoundedRectangle(cornerRadius: theme.radius.large)
+            .stroke(color, lineWidth: 2)
         }
         .frame(width: 45, height: 45)
 
