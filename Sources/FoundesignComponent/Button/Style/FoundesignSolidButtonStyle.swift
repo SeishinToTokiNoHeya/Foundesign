@@ -14,7 +14,7 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
   public func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .typography(typography)
-      .foregroundStyle(foregroundColor(isPressed: configuration.isPressed))
+      .foregroundStyle(foregroundColor)
       .padding(.vertical, verticalPadding)
       .padding(.horizontal, horizontalPadding)
       .background(backgroundColor(isPressed: configuration.isPressed), in: shape)
@@ -42,19 +42,14 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
     }
   }
 
-  private func foregroundColor(isPressed: Bool) -> Color {
+  private var foregroundColor: Color {
     guard isEnabled else {
       return theme.color.text.disabled
     }
     switch property.tone {
-    case .brand:
-      return theme.color.text.inverse
-
-    case .neutral:
-      return theme.color.text.inverse
-
-    case .critical:
-      return theme.color.text.inverse
+    case .brand: return theme.color.text.inverse
+    case .neutral: return theme.color.text.inverse
+    case .critical: return theme.color.text.inverse
     }
   }
 

@@ -43,15 +43,21 @@ public struct FoundesignWeakButtonStyle: ButtonStyle {
   }
 
   private func foregroundColor(isPressed: Bool) -> Color {
-    guard isEnabled else { return theme.color.text.disabled }
+    guard isEnabled else {
+      return theme.color.text.disabled
+    }
+    if isPressed {
+      switch property.tone {
+      case .brand: return theme.color.action.primary.pressed
+      case .neutral: return theme.color.text.primary
+      case .critical: return theme.color.action.destructive.pressed
+      }
+    }
 
     switch property.tone {
-    case .brand:
-      return isPressed ? theme.color.action.primary.pressed : theme.color.action.primary.normal
-    case .neutral:
-      return theme.color.text.primary
-    case .critical:
-      return isPressed ? theme.color.action.destructive.pressed : theme.color.text.destructive
+    case .brand: return theme.color.action.primary.normal
+    case .neutral: return theme.color.text.primary
+    case .critical: return theme.color.text.destructive
     }
   }
 
