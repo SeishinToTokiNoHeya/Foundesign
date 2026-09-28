@@ -12,8 +12,5 @@ private struct TypographyModifier: ViewModifier {
   func body(content: Content) -> some View {
     content
       .font(typography.font)
-      .lineSpacing(typography.lineSpacing)
-      .baselineOffset(typography.baselineOffset)
-      .tracking(typography.tracking)
   }
 }

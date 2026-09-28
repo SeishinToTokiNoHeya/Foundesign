@@ -1,11 +1,5 @@
 import SwiftUI
 
-extension FoundesignTheme {
-  public static let `default` = FoundesignTheme(
-    color: .default
-  )
-}
-
 extension ColorToken {
   public static let `default` = ColorToken(
     action: .default,
