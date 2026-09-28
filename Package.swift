@@ -18,6 +18,13 @@ let package = Package(
     .target(
       name: "Foundesign",
       dependencies: [
+        "FoundesignComponent",
+        "FoundesignFoundation"
+      ]
+    ),
+    .target(
+      name: "FoundesignComponent",
+      dependencies: [
         "FoundesignFoundation"
       ]
     ),
