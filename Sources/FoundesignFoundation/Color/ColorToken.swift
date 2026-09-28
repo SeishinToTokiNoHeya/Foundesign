@@ -1,7 +1,17 @@
 import Foundation
 
 public struct ColorToken: Hashable, Sendable {
-  // TODO: - 컬러 토큰 추가
+  public var action: Action
+  public var background: Background
+  public var text: Text
 
-  public init() {}
+  public init(
+    action: Action,
+    background: Background,
+    text: Text
+  ) {
+    self.action = action
+    self.background = background
+    self.text = text
+  }
 }
