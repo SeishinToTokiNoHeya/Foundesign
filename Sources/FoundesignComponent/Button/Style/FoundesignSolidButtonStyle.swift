@@ -35,10 +35,10 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
 
   private var typography: Typography {
     switch property.size {
-    case .xsmall: theme.typography.label.small
-    case .small: theme.typography.body.small
-    case .medium: theme.typography.body.medium
-    case .large: theme.typography.body.large
+    case .xsmall: theme.typography.body.small
+    case .small: theme.typography.body.medium
+    case .medium: theme.typography.body.large
+    case .large: theme.typography.title.small
     }
   }
 
@@ -75,7 +75,7 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
     case .xsmall: theme.spacing.xSmall
     case .small: theme.spacing.small
     case .medium: theme.spacing.medium
-    case .large: theme.spacing.medium
+    case .large: theme.spacing.large
     }
   }
 
