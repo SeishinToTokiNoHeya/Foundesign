@@ -1,14 +1,12 @@
 import Foundation
 import FoundesignFoundation
 
-extension FoundesignAccordionProperty {
-  public enum Size: CaseIterable, Hashable, Sendable {
-    case medium
-    case large
-  }
+public enum FoundesignAccordionSize: CaseIterable, Hashable, Sendable {
+  case medium
+  case large
 }
 
-extension FoundesignAccordionProperty.Size: CustomStringConvertible {
+extension FoundesignAccordionSize: CustomStringConvertible {
   public var description: String {
     switch self {
     case .medium: "Medium"
@@ -17,7 +15,7 @@ extension FoundesignAccordionProperty.Size: CustomStringConvertible {
   }
 }
 
-extension FoundesignAccordionProperty.Size {
+extension FoundesignAccordionSize {
   func description(_ token: TypographyToken) -> Typography {
     switch self {
     case .medium: token.body.small

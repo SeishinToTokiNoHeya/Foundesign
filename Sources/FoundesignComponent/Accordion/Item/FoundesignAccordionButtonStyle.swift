@@ -5,10 +5,10 @@ struct FoundesignAccordionButtonStyle: ButtonStyle {
   @Environment(\.theme) private var theme
   @Environment(\.isEnabled) private var isEnabled
 
-  private let property: FoundesignAccordionProperty
+  private let size: FoundesignAccordionSize
 
-  init(_ property: FoundesignAccordionProperty) {
-    self.property = property
+  init(_ size: FoundesignAccordionSize) {
+    self.size = size
   }
 
   func makeBody(configuration: Configuration) -> some View {
@@ -30,11 +30,11 @@ struct FoundesignAccordionButtonStyle: ButtonStyle {
   }
 
   private var shape: RoundedRectangle {
-    .rect(cornerRadius: property.size.radius(theme.radius))
+    .rect(cornerRadius: size.radius(theme.radius))
   }
 
   private var typography: Typography {
-    switch property.size {
+    switch size {
     case .medium: theme.typography.body.medium
     case .large: theme.typography.body.large
     }
@@ -48,14 +48,14 @@ struct FoundesignAccordionButtonStyle: ButtonStyle {
   }
 
   private var verticalPadding: CGFloat {
-    switch property.size {
+    switch size {
     case .medium: theme.spacing.medium
     case .large: theme.spacing.medium
     }
   }
 
   private var horizontalPadding: CGFloat {
-    switch property.size {
+    switch size {
     case .medium: theme.spacing.medium
     case .large: theme.spacing.medium
     }

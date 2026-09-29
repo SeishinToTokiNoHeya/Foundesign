@@ -3,25 +3,24 @@ import SwiftUI
 
 public struct FoundesignAccordionInlineItem<Icon>: View where Icon: View {
   @Environment(\.theme) private var theme
+  @Environment(\.accordionSize) private var size
   @Environment(\.isEnabled) private var isEnabled
 
   @Binding private var isExpanded: Bool
-  private let property: FoundesignAccordionProperty
   private let title: String
   private let description: String
   private let action: () -> Void
   private let icon: Icon?
+  private var isDisabled = false
 
   public init(
     isExpanded: Binding<Bool>,
-    property: FoundesignAccordionProperty,
     title: String,
     description: String,
     action: @escaping () -> Void,
     icon: (() -> Icon)?
   ) {
     self._isExpanded = isExpanded
-    self.property = property
     self.title = title
     self.description = description
     self.action = action
@@ -30,13 +29,11 @@ public struct FoundesignAccordionInlineItem<Icon>: View where Icon: View {
 
   public init(
     isExpanded: Binding<Bool>,
-    property: FoundesignAccordionProperty,
     title: String,
     description: String,
     action: @escaping () -> Void
   ) where Icon == EmptyView {
     self._isExpanded = isExpanded
-    self.property = property
     self.title = title
     self.description = description
     self.action = action
@@ -47,7 +44,7 @@ public struct FoundesignAccordionInlineItem<Icon>: View where Icon: View {
     VStack(alignment: .leading, spacing: theme.spacing.zero) {
       Button(action: action) {
         HStack(
-          spacing: property.size.horizontalPadding(theme.spacing)
+          spacing: size.horizontalPadding(theme.spacing)
         ) {
           if let icon {
             icon
@@ -64,22 +61,32 @@ public struct FoundesignAccordionInlineItem<Icon>: View where Icon: View {
             .rotationEffect(isExpanded ? .radians(.pi) : .zero)
         }
       }
-      .buttonStyle(FoundesignAccordionButtonStyle(property))
-      .disabled(!isEnabled)
+      .buttonStyle(FoundesignAccordionButtonStyle(size))
 
       if isExpanded {
         Text(description)
-          .typography(property.size.description(theme.typography))
+          .typography(size.description(theme.typography))
           .foregroundStyle(
-            isEnabled ? theme.color.text.secondary : theme.color.text.disabled
+            isItemEnabled ? theme.color.text.secondary : theme.color.text.disabled
           )
           .frame(maxWidth: .infinity, alignment: .leading)
           .multilineTextAlignment(.leading)
-          .padding(.vertical, property.size.descriptionVerticalPadding(theme.spacing))
-          .padding(.horizontal, property.size.descriptionHorizontalPadding(theme.spacing))
+          .padding(.vertical, size.descriptionVerticalPadding(theme.spacing))
+          .padding(.horizontal, size.descriptionHorizontalPadding(theme.spacing))
           .transition(.opacity.combined(with: .move(edge: .top)))
       }
     }
     .animation(.easeInOut(duration: 0.25), value: isExpanded)
+    .disabled(isDisabled)
+  }
+  
+  public func disabled(_ disabled: Bool) -> Self {
+    var item = self
+    item.isDisabled = disabled
+    return item
+  }
+
+  private var isItemEnabled: Bool {
+    isEnabled && !isDisabled
   }
 }
