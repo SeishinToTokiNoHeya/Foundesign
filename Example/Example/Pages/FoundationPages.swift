@@ -6,6 +6,7 @@ enum FoundationPages: CaseIterable, Hashable, Identifiable, Sendable {
 }
 
 enum ComponentPages: CaseIterable, Hashable, Identifiable, Sendable {
+  case accordion
   case buttonStyle
 }
 
@@ -25,6 +26,7 @@ extension ComponentPages {
 
   var title: String {
     switch self {
+    case .accordion: "아코디언"
     case .buttonStyle: "버튼"
     }
   }
@@ -43,6 +45,7 @@ extension View {
   func navigationComponentPages() -> some View {
     navigationDestination(for: ComponentPages.self) { page in
       switch page {
+      case .accordion: AccordionExamplePage()
       case .buttonStyle: ButtonStyleExamplePage()
       }
     }
