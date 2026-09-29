@@ -1,9 +1,10 @@
 import FoundesignFoundation
 import SwiftUI
 
-public struct FoundesignAccordionSeparatedItem<Icon>: View where Icon: View {
+public struct FoundesignAccordionItem<Icon>: View where Icon: View {
   @Environment(\.theme) private var theme
   @Environment(\.accordionSize) private var size
+  @Environment(\.accordionStyle) private var style
   @Environment(\.isEnabled) private var isEnabled
 
   @Binding private var isExpanded: Bool
@@ -77,7 +78,10 @@ public struct FoundesignAccordionSeparatedItem<Icon>: View where Icon: View {
       }
     }
     .overlay {
-      shape.strokeBorder(borderColor, lineWidth: 1)
+      if style == .separated {
+        RoundedRectangle(cornerRadius: size.radius(theme.radius))
+          .strokeBorder(borderColor, lineWidth: 1)
+      }
     }
     .animation(.easeInOut(duration: 0.25), value: isExpanded)
     .disabled(isDisabled)
@@ -89,19 +93,11 @@ public struct FoundesignAccordionSeparatedItem<Icon>: View where Icon: View {
     return item
   }
 
-  private var shape: RoundedRectangle {
-    .rect(cornerRadius: size.radius(theme.radius))
+  private var isItemEnabled: Bool {
+    isEnabled && !isDisabled
   }
 
   private var borderColor: Color {
-    if isItemEnabled {
-      return theme.color.border.base
-    } else {
-      return theme.color.border.disabled
-    }
-  }
-
-  private var isItemEnabled: Bool {
-    isEnabled && !isDisabled
+    isItemEnabled ? theme.color.border.base : theme.color.border.disabled
   }
 }
