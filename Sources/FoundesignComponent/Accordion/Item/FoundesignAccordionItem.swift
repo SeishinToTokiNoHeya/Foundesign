@@ -43,7 +43,11 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
 
   public var body: some View {
     VStack(alignment: .leading, spacing: theme.spacing.zero) {
-      Button(action: action) {
+      Button {
+        withAnimation(expansionAnimation) {
+          action()
+        }
+      } label: {
         HStack(
           spacing: size.horizontalPadding(theme.spacing)
         ) {
@@ -74,16 +78,17 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
           .multilineTextAlignment(.leading)
           .padding(.vertical, size.descriptionVerticalPadding(theme.spacing))
           .padding(.horizontal, size.descriptionHorizontalPadding(theme.spacing))
-          .transition(.opacity.combined(with: .move(edge: .top)))
+          .transition(.opacity)
       }
     }
+    .clipped()
     .overlay {
       if style == .separated {
         RoundedRectangle(cornerRadius: size.radius(theme.radius))
           .strokeBorder(borderColor, lineWidth: 1)
       }
     }
-    .animation(.easeInOut(duration: 0.25), value: isExpanded)
+    .animation(expansionAnimation, value: isExpanded)
     .disabled(isDisabled)
   }
 
@@ -99,5 +104,9 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
 
   private var borderColor: Color {
     isItemEnabled ? theme.color.border.base : theme.color.border.disabled
+  }
+
+  private var expansionAnimation: Animation {
+    .easeInOut(duration: 0.28)
   }
 }
