@@ -11,8 +11,15 @@ struct ContentView: View {
             NavigationLink(page.title, value: page)
           }
         }
+
+        Section("Component") {
+          ForEach(ComponentPages.allCases) { page in
+            NavigationLink(page.title, value: page)
+          }
+        }
       }
       .navigationFoundationPages()
+      .navigationComponentPages()
     }
   }
 }
