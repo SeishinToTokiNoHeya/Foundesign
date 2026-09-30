@@ -51,14 +51,13 @@ final class AlertDialogAppKitCoordinator {
       }
       self.updateScheduled = false
       let isReady = self.anchor?.attachedWindow != nil
-      if !isReady, self.presentation.phase != .idle {
-        self.presentation.invalidate()
-      } else {
-        self.presentation.update(
-          isPresented: self.binding,
-          onDismiss: self.onDismiss,
-          isReady: isReady
-        )
+      self.presentation.update(
+        isPresented: self.binding,
+        onDismiss: self.onDismiss,
+        isReady: isReady
+      )
+      if !isReady {
+        self.presentation.requestDismissal()
       }
     }
   }

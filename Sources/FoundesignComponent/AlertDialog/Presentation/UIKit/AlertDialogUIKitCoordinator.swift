@@ -55,14 +55,13 @@ final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioning
       guard let self else { return }
       self.updateScheduled = false
       let isReady = self.anchor?.viewIfLoaded?.window != nil
-      if !isReady, self.presentation.phase != .idle {
-        self.presentation.invalidate()
-      } else {
-        self.presentation.update(
-          isPresented: self.binding,
-          onDismiss: self.onDismiss,
-          isReady: isReady
-        )
+      self.presentation.update(
+        isPresented: self.binding,
+        onDismiss: self.onDismiss,
+        isReady: isReady
+      )
+      if !isReady {
+        self.presentation.requestDismissal()
       }
     }
   }
