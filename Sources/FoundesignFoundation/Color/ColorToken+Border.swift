@@ -7,7 +7,11 @@ extension ColorToken {
     public var strong: Color
     public var focus: Color
     public var disabled: Color
-    public var destructive: Color
+    public var brand: Role
+    public var informative: Role
+    public var positive: Role
+    public var warning: Role
+    public var critical: Role
 
     public init(
       base: Color,
@@ -15,14 +19,37 @@ extension ColorToken {
       strong: Color,
       focus: Color,
       disabled: Color,
-      destructive: Color
+      brand: Role,
+      informative: Role,
+      positive: Role,
+      warning: Role,
+      critical: Role
     ) {
       self.base = base
       self.subtle = subtle
       self.strong = strong
       self.focus = focus
       self.disabled = disabled
-      self.destructive = destructive
+      self.brand = brand
+      self.informative = informative
+      self.positive = positive
+      self.warning = warning
+      self.critical = critical
+    }
+  }
+}
+
+extension ColorToken.Border {
+  public struct Role: Hashable, Sendable {
+    public var weak: Color
+    public var solid: Color
+
+    public init(
+      weak: Color,
+      solid: Color
+    ) {
+      self.weak = weak
+      self.solid = solid
     }
   }
 }

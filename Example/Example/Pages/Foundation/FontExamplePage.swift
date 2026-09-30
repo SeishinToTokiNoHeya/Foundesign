@@ -36,16 +36,16 @@ struct FontExamplePage: View {
     VStack(alignment: .leading, spacing: theme.spacing.medium) {
       Text(title)
         .typography(theme.typography.body.large)
-        .foregroundStyle(theme.color.action.primary.normal)
+        .foregroundStyle(theme.color.foreground.brand.normal)
 
       Text("안녕하세요.")
         .typography(typography)
-        .foregroundStyle(theme.color.text.primary)
+        .foregroundStyle(theme.color.foreground.primary)
         .multilineTextAlignment(.leading)
 
       Text("안녕하세요. 정말 안녕하십니까? 안녕!! 안녀어어어어어어어어!")
         .typography(typography)
-        .foregroundStyle(theme.color.text.primary)
+        .foregroundStyle(theme.color.foreground.primary)
         .multilineTextAlignment(.leading)
     }
   }

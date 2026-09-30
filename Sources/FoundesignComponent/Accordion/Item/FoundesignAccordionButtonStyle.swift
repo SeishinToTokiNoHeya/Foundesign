@@ -42,9 +42,9 @@ struct FoundesignAccordionButtonStyle: ButtonStyle {
 
   private var foregroundColor: Color {
     guard isEnabled else {
-      return theme.color.text.disabled
+      return theme.color.foreground.disabled
     }
-    return theme.color.text.primary
+    return theme.color.foreground.primary
   }
 
   private var verticalPadding: CGFloat {
@@ -62,10 +62,8 @@ struct FoundesignAccordionButtonStyle: ButtonStyle {
   }
 
   private func backgroundColor(isPressed: Bool) -> Color {
-    if isPressed {
-      return theme.color.action.neutral.pressed.opacity(0.08)
-    } else {
-      return .clear
-    }
+    let state = theme.color.background.transparent
+    guard isEnabled else { return state.disabled }
+    return isPressed ? state.pressed : state.normal
   }
 }

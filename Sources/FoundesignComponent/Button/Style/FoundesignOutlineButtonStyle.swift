@@ -14,7 +14,7 @@ public struct FoundesignOutlineButtonStyle: ButtonStyle {
   public func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .typography(typography)
-      .foregroundStyle(foregroundColor(isPressed: configuration.isPressed))
+      .foregroundStyle(foregroundColor)
       .padding(.vertical, verticalPadding)
       .padding(.horizontal, horizontalPadding)
       .background(backgroundColor(isPressed: configuration.isPressed), in: shape)
@@ -46,22 +46,15 @@ public struct FoundesignOutlineButtonStyle: ButtonStyle {
     }
   }
 
-  private func foregroundColor(isPressed: Bool) -> Color {
+  private var foregroundColor: Color {
     guard isEnabled else {
-      return theme.color.text.disabled
-    }
-    if isPressed {
-      switch property.tone {
-      case .brand: return theme.color.action.primary.pressed
-      case .neutral: return theme.color.text.primary
-      case .critical: return theme.color.action.destructive.pressed
-      }
+      return theme.color.foreground.disabled
     }
 
     switch property.tone {
-    case .brand: return theme.color.action.primary.normal
-    case .neutral: return theme.color.text.primary
-    case .critical: return theme.color.text.destructive
+    case .brand: return theme.color.foreground.brand.normal
+    case .neutral: return theme.color.foreground.primary
+    case .critical: return theme.color.foreground.critical.normal
     }
   }
 
@@ -74,15 +67,9 @@ public struct FoundesignOutlineButtonStyle: ButtonStyle {
   }
 
   private func backgroundColor(isPressed: Bool) -> Color {
-    guard isEnabled, isPressed else {
-      return .clear
-    }
-
-    switch property.tone {
-    case .brand: return theme.color.action.primary.normal.opacity(0.08)
-    case .neutral: return theme.color.action.neutral.normal.opacity(0.08)
-    case .critical: return theme.color.action.destructive.normal.opacity(0.08)
-    }
+    let state = theme.color.background.transparent
+    guard isEnabled else { return state.disabled }
+    return isPressed ? state.pressed : state.normal
   }
 
   private var horizontalPadding: CGFloat {

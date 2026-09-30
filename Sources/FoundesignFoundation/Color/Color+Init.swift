@@ -6,33 +6,55 @@ import AppKit
 #endif
 
 extension Color {
-  static func adaptive(
+  public static func adaptive(
     light: UInt,
     dark: UInt,
     lightOpacity: Double = 1,
     darkOpacity: Double? = nil
-  ) -> Self {
+  ) -> Color {
     let resolvedDarkOpacity = darkOpacity ?? lightOpacity
 
 #if canImport(UIKit)
-    return Self(uiColor: UIColor { traitCollection in
+    return Color(uiColor: UIColor { traitCollection in
       traitCollection.userInterfaceStyle == .dark
       ? .color(hex: dark, opacity: resolvedDarkOpacity)
       : .color(hex: light, opacity: lightOpacity)
     })
 #elseif canImport(AppKit)
-    return Self(nsColor: NSColor(name: nil) { appearance in
+    return Color(nsColor: NSColor(name: nil) { appearance in
       appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
       ? .color(hex: dark, opacity: resolvedDarkOpacity)
       : .color(hex: light, opacity: lightOpacity)
     })
 #else
-    return Self(
+    return Color(
       red: Double((light >> 16) & 0xFF) / 255,
       green: Double((light >> 8) & 0xFF) / 255,
       blue: Double(light & 0xFF) / 255,
       opacity: lightOpacity
     )
+#endif
+  }
+
+  public static func adaptive(light: Color, dark: Color) -> Color {
+#if canImport(UIKit)
+    return Color(uiColor: UIColor { traitCollection in
+      let color = traitCollection.userInterfaceStyle == .dark ? dark : light
+      return UIColor(color).resolvedColor(with: traitCollection)
+    })
+#elseif canImport(AppKit)
+    return Color(nsColor: NSColor(name: nil) { appearance in
+      let color = NSColor(
+        appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua ? dark : light
+      )
+      var resolved = color
+      appearance.performAsCurrentDrawingAppearance {
+        resolved = color.usingColorSpace(.sRGB) ?? color
+      }
+      return resolved
+    })
+#else
+    return light
 #endif
   }
 }

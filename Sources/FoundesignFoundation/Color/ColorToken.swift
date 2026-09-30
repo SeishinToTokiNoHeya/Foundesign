@@ -1,20 +1,17 @@
 import Foundation
 
 public struct ColorToken: Hashable, Sendable {
-  public var action: Action
+  public var foreground: Foreground
   public var background: Background
   public var border: Border
-  public var text: Text
 
   public init(
-    action: Action,
+    foreground: Foreground,
     background: Background,
-    border: Border,
-    text: Text
+    border: Border
   ) {
-    self.action = action
+    self.foreground = foreground
     self.background = background
     self.border = border
-    self.text = text
   }
 }

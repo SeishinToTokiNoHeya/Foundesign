@@ -30,8 +30,8 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
   }
 
   private var shape: RoundedRectangle {
-     .rect(cornerRadius: radius)
-   }
+    .rect(cornerRadius: radius)
+  }
 
   private var typography: Typography {
     switch property.size {
@@ -44,21 +44,23 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
 
   private var foregroundColor: Color {
     guard isEnabled else {
-      return theme.color.text.disabled
+      return theme.color.foreground.disabled
     }
     switch property.tone {
-    case .brand: return theme.color.text.inverse
-    case .neutral: return theme.color.text.inverse
-    case .critical: return theme.color.text.inverse
+    case .brand: return theme.color.foreground.brand.solid
+    case .neutral: return theme.color.foreground.inverse
+    case .critical: return theme.color.foreground.critical.solid
     }
   }
 
   private func backgroundColor(isPressed: Bool) -> Color {
-    return theme.color.backgroundColor(
-      property,
-      isEnabled: isEnabled,
-      isPressed: isPressed
-    )
+    let state: ColorToken.State = switch property.tone {
+    case .brand: theme.color.background.brand.solid
+    case .neutral: theme.color.background.neutral.solid
+    case .critical: theme.color.background.critical.solid
+    }
+    guard isEnabled else { return state.disabled }
+    return isPressed ? state.pressed : state.normal
   }
 
   private var horizontalPadding: CGFloat {
@@ -85,36 +87,6 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
     case .small: theme.radius.large
     case .medium: theme.radius.xLarge
     case .large: theme.radius.xLarge
-    }
-  }
-}
-
-fileprivate extension ColorToken {
-  func backgroundColor(
-    _ property: FoundesignButtonProperty,
-    isEnabled: Bool,
-    isPressed: Bool
-  ) -> Color {
-    if !isEnabled {
-      switch property.tone {
-      case .brand: return action.primary.disabled
-      case .neutral: return action.neutral.disabled
-      case .critical: return action.destructive.disabled
-      }
-    }
-
-    if isPressed {
-      switch property.tone {
-      case .brand: return action.primary.pressed
-      case .neutral: return action.neutral.pressed
-      case .critical: return action.destructive.pressed
-      }
-    }
-
-    switch property.tone {
-    case .brand: return action.primary.normal
-    case .neutral: return action.neutral.normal
-    case .critical: return action.destructive.normal
     }
   }
 }

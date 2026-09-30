@@ -14,7 +14,7 @@ public struct FoundesignWeakButtonStyle: ButtonStyle {
   public func makeBody(configuration: Configuration) -> some View {
     configuration.label
       .typography(typography)
-      .foregroundStyle(foregroundColor(isPressed: configuration.isPressed))
+      .foregroundStyle(foregroundColor)
       .padding(.vertical, verticalPadding)
       .padding(.horizontal, horizontalPadding)
       .background(backgroundColor(isPressed: configuration.isPressed), in: shape)
@@ -42,38 +42,26 @@ public struct FoundesignWeakButtonStyle: ButtonStyle {
     }
   }
 
-  private func foregroundColor(isPressed: Bool) -> Color {
+  private var foregroundColor: Color {
     guard isEnabled else {
-      return theme.color.text.disabled
-    }
-    if isPressed {
-      switch property.tone {
-      case .brand: return theme.color.action.primary.pressed
-      case .neutral: return theme.color.text.primary
-      case .critical: return theme.color.action.destructive.pressed
-      }
+      return theme.color.foreground.disabled
     }
 
     switch property.tone {
-    case .brand: return theme.color.action.primary.normal
-    case .neutral: return theme.color.text.primary
-    case .critical: return theme.color.text.destructive
+    case .brand: return theme.color.foreground.brand.strong
+    case .neutral: return theme.color.foreground.primary
+    case .critical: return theme.color.foreground.critical.strong
     }
   }
 
   private func backgroundColor(isPressed: Bool) -> Color {
-    guard isEnabled else { return theme.color.action.secondary.disabled }
-
-    switch property.tone {
-    case .brand:
-      return isPressed ? theme.color.action.secondary.pressed : theme.color.action.secondary.normal
-    case .neutral:
-      return isPressed
-        ? theme.color.action.neutral.normal.opacity(0.12)
-        : theme.color.background.subtle
-    case .critical:
-      return theme.color.action.destructive.normal.opacity(isPressed ? 0.16 : 0.08)
+    let state: ColorToken.State = switch property.tone {
+    case .brand: theme.color.background.brand.weak
+    case .neutral: theme.color.background.neutral.weak
+    case .critical: theme.color.background.critical.weak
     }
+    guard isEnabled else { return state.disabled }
+    return isPressed ? state.pressed : state.normal
   }
 
   private var horizontalPadding: CGFloat {
