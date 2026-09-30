@@ -12,7 +12,7 @@ public struct AlertDialogTitleItem: View {
   public var body: some View {
     Text(title)
       .typography(theme.typography.title.medium)
-      .foregroundStyle(theme.color.text.primary)
+      .foregroundStyle(theme.color.foreground.primary)
       .frame(maxWidth: .infinity, alignment: .leading)
       .multilineTextAlignment(.leading)
   }

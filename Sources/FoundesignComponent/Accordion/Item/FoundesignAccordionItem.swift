@@ -61,7 +61,9 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
 
           Image(systemName: "chevron.down")
             .renderingMode(.template)
-            .opacity(0.5)
+            .foregroundStyle(
+              isItemEnabled ? theme.color.foreground.secondary : theme.color.foreground.disabled
+            )
             .scaleEffect(0.8)
             .rotationEffect(isExpanded ? .radians(.pi) : .zero)
         }
@@ -72,7 +74,7 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
         Text(description)
           .typography(size.description(theme.typography))
           .foregroundStyle(
-            isItemEnabled ? theme.color.text.secondary : theme.color.text.disabled
+            isItemEnabled ? theme.color.foreground.secondary : theme.color.foreground.disabled
           )
           .frame(maxWidth: .infinity, alignment: .leading)
           .multilineTextAlignment(.leading)

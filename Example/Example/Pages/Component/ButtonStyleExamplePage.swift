@@ -25,7 +25,7 @@ struct ButtonStyleExamplePage: View {
       ForEach(FoundesignButtonProperty.Tone.allCases, id: \.hashValue) { tone in
         Text(tone.description)
           .typography(theme.typography.title.small)
-          .foregroundStyle(theme.color.text.primary)
+          .foregroundStyle(theme.color.foreground.primary)
 
         ForEach(FoundesignButtonProperty.Size.allCases, id: \.hashValue) { size in
           HStack {
@@ -46,7 +46,7 @@ struct ButtonStyleExamplePage: View {
       ForEach(FoundesignButtonProperty.Tone.allCases, id: \.hashValue) { tone in
         Text(tone.description)
           .typography(theme.typography.title.small)
-          .foregroundStyle(theme.color.text.primary)
+          .foregroundStyle(theme.color.foreground.primary)
 
         ForEach(FoundesignButtonProperty.Size.allCases, id: \.hashValue) { size in
           HStack {
@@ -67,7 +67,7 @@ struct ButtonStyleExamplePage: View {
       ForEach(FoundesignButtonProperty.Tone.allCases, id: \.hashValue) { tone in
         Text(tone.description)
           .typography(theme.typography.title.small)
-          .foregroundStyle(theme.color.text.primary)
+          .foregroundStyle(theme.color.foreground.primary)
 
         ForEach(FoundesignButtonProperty.Size.allCases, id: \.hashValue) { size in
           HStack {
