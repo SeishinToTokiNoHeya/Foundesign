@@ -2,6 +2,7 @@ import FoundesignFoundation
 import SwiftUI
 
 public struct AlertDialogButtonItem<Style>: View where Style: ButtonStyle {
+  @Environment(\.alertDialogPresentation) private var presentation
   private var isDisabled = false
   private let style: Style
   private let label: String
@@ -34,9 +35,10 @@ public struct AlertDialogButtonItem<Style>: View where Style: ButtonStyle {
   }
 
   public var body: some View {
-    Button(action: action) {
+    Button(action: buttonTapped) {
       Text(label)
         .frame(maxWidth: .infinity)
+        .multilineTextAlignment(.center)
     }
     .buttonStyle(style)
     .disabled(isDisabled)
@@ -46,5 +48,13 @@ public struct AlertDialogButtonItem<Style>: View where Style: ButtonStyle {
     var item = self
     item.isDisabled = disabled
     return item
+  }
+
+  private func buttonTapped() {
+    if let presentation {
+      presentation.performAction(action)
+    } else {
+      action()
+    }
   }
 }
