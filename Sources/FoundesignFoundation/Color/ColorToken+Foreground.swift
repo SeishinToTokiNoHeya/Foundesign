@@ -1,15 +1,14 @@
 import SwiftUI
 
 extension ColorToken {
-  public struct Background: Hashable, Sendable {
-    public var base: Color
-    public var subtle: Color
-    public var elevated: Color
-    public var overlay: Color
+  public struct Foreground: Hashable, Sendable {
+    public var primary: Color
+    public var secondary: Color
+    public var tertiary: Color
     public var inverse: Color
     public var disabled: Color
-    public var transparent: ColorToken.State
-    public var neutral: Role
+    public var placeholder: Color
+    public var link: Color
     public var brand: Role
     public var informative: Role
     public var positive: Role
@@ -17,28 +16,26 @@ extension ColorToken {
     public var critical: Role
 
     public init(
-      base: Color,
-      subtle: Color,
-      elevated: Color,
-      overlay: Color,
+      primary: Color,
+      secondary: Color,
+      tertiary: Color,
       inverse: Color,
       disabled: Color,
-      transparent: ColorToken.State,
-      neutral: Role,
+      placeholder: Color,
+      link: Color,
       brand: Role,
       informative: Role,
       positive: Role,
       warning: Role,
       critical: Role
     ) {
-      self.base = base
-      self.subtle = subtle
-      self.elevated = elevated
-      self.overlay = overlay
+      self.primary = primary
+      self.secondary = secondary
+      self.tertiary = tertiary
       self.inverse = inverse
       self.disabled = disabled
-      self.transparent = transparent
-      self.neutral = neutral
+      self.placeholder = placeholder
+      self.link = link
       self.brand = brand
       self.informative = informative
       self.positive = positive
@@ -48,17 +45,20 @@ extension ColorToken {
   }
 }
 
-extension ColorToken.Background {
+extension ColorToken.Foreground {
   public struct Role: Hashable, Sendable {
-    public var solid: ColorToken.State
-    public var weak: ColorToken.State
+    public var normal: Color
+    public var strong: Color
+    public var solid: Color
 
     public init(
-      solid: ColorToken.State,
-      weak: ColorToken.State
+      normal: Color,
+      strong: Color,
+      solid: Color
     ) {
+      self.normal = normal
+      self.strong = strong
       self.solid = solid
-      self.weak = weak
     }
   }
 }
