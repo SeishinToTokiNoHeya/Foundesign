@@ -6,6 +6,7 @@ import SwiftUI
 /// Footer에는 primary, secondary 순서로 버튼을 선언합니다.
 /// Secondary 버튼을 생략하면 primary 버튼만 표시하고,
 /// 두 버튼을 선언하면 `AdaptiveButtonGroup`으로 배치합니다.
+/// 주어진 높이보다 내용이 길면 제목과 본문만 스크롤되고, footer는 하단에 고정됩니다.
 ///
 /// ```swift
 /// AlertDialogContainer(
@@ -83,16 +84,34 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
       alignment: .leading,
       spacing: theme.spacing.medium
     ) {
-      header
-      content
+      ViewThatFits(in: .vertical) {
+        headerAndContent
+          .fixedSize(horizontal: false, vertical: true)
+        ScrollView {
+          headerAndContent
+            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+      }
       footer
+        .fixedSize(horizontal: false, vertical: true)
         .padding(.top, theme.spacing.medium)
+        .padding(.horizontal, theme.spacing.xLarge)
+        .padding(.bottom, theme.spacing.xLarge)
+        .layoutPriority(1)
     }
-    .padding(.vertical, theme.spacing.xLarge)
-    .padding(.horizontal, theme.spacing.xLarge)
     .background {
       RoundedRectangle(cornerRadius: theme.radius.xLarge)
         .fill(theme.color.background.base)
     }
+  }
+
+  private var headerAndContent: some View {
+    VStack(alignment: .leading, spacing: theme.spacing.medium) {
+      header
+      content
+    }
+    .padding(.top, theme.spacing.xLarge)
+    .padding(.horizontal, theme.spacing.xLarge)
   }
 }
