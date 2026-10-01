@@ -9,6 +9,7 @@ enum ComponentPages: CaseIterable, Hashable, Identifiable, Sendable {
   case accordion
   case alertDialog
   case buttonStyle
+  case wheelPicker
 }
 
 extension FoundationPages {
@@ -16,8 +17,8 @@ extension FoundationPages {
 
   var title: String {
     switch self {
-    case .color: "색상"
-    case .font: "폰트"
+    case .color: "Color"
+    case .font: "Font"
     }
   }
 }
@@ -27,9 +28,10 @@ extension ComponentPages {
 
   var title: String {
     switch self {
-    case .accordion: "아코디언"
-    case .alertDialog: "다이얼로그"
-    case .buttonStyle: "버튼"
+    case .accordion: "Accordion"
+    case .alertDialog: "Alert Dialog"
+    case .buttonStyle: "Button Style"
+    case .wheelPicker: "Wheel Picker"
     }
   }
 }
@@ -50,6 +52,7 @@ extension View {
       case .accordion: AccordionExamplePage()
       case .alertDialog: AlertDialogExamplePage()
       case .buttonStyle: ButtonStyleExamplePage()
+      case .wheelPicker: WheelPickerExamplePage()
       }
     }
   }
