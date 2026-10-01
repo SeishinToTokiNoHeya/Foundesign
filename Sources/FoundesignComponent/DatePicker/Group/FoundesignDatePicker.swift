@@ -66,7 +66,7 @@ public struct FoundesignDatePicker: View {
 
   private func normalizeSelection() {
     let date = FoundesignDatePickerDate.normalized(selection, calendar: calendar, years: years)
-    if !calendar.isDate(selection, inSameDayAs: date) {
+    if selection != date {
       selection = date
     }
   }
