@@ -20,16 +20,19 @@ let package = Package(
       dependencies: [
         "FoundesignComponent",
         "FoundesignFoundation"
-      ]
+      ],
+      exclude: ["AGENTS.md"]
     ),
     .target(
       name: "FoundesignComponent",
       dependencies: [
         "FoundesignFoundation"
-      ]
+      ],
+      exclude: ["AGENTS.md"]
     ),
     .target(
       name: "FoundesignFoundation",
+      exclude: ["AGENTS.md"]
     ),
   ]
 )
