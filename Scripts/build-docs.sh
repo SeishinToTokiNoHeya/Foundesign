@@ -4,12 +4,11 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$repo_root"
-graph_dir="$repo_root/.build/out/symbolgraph"
 output_dir="$repo_root/.build/documentation"
-mkdir -p "$graph_dir" "$output_dir"
+mkdir -p "$output_dir"
 
-# Only discard generated graphs so removed or renamed symbols cannot linger.
-rm -f "$graph_dir/"*.symbols.json
+# 빌드 방식에 따른 출력 경로에서 이전 그래프만 지워 삭제·변경된 심볼이 남지 않게 합니다.
+rm -f "$repo_root"/.build/*/symbolgraph/*.symbols.json
 swift package dump-symbol-graph --minimum-access-level public --skip-synthesized-members
 
 staging_dir="$(mktemp -d "${TMPDIR:-/tmp}/foundesign-docc.XXXXXX")"
@@ -19,7 +18,8 @@ for module in FoundesignFoundation FoundesignComponent Foundesign; do
   module_graphs="$staging_dir/$module"
   mkdir -p "$module_graphs"
   # Include this module's extensions to SwiftUI without importing other modules' graphs.
-  for graph in "$graph_dir/$module.symbols.json" "$graph_dir/$module@"*.symbols.json; do
+  for graph in "$repo_root"/.build/*/symbolgraph/"$module.symbols.json" \
+    "$repo_root"/.build/*/symbolgraph/"$module@"*.symbols.json; do
     if [ -f "$graph" ]; then
       cp "$graph" "$module_graphs/"
     fi
