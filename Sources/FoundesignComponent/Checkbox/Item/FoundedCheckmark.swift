@@ -11,6 +11,10 @@ public struct FoundedCheckmark: View {
   private let state: FoundesignCheckboxState
   private let property: FoundesignCheckboxProperty?
 
+  /// 선택 상태를 시각적으로 표시하는 체크마크를 만듭니다.
+  /// - Parameters:
+  ///   - state: 표시할 상태입니다. 기본값은 `.unselected`입니다.
+  ///   - property: 명시적 속성입니다. `nil`이면 환경 속성을 상속합니다.
   public init(
     state: FoundesignCheckboxState = .unselected,
     property: FoundesignCheckboxProperty? = nil

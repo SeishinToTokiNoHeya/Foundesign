@@ -1,12 +1,17 @@
 import FoundesignFoundation
 import SwiftUI
 
+/// 의미별 톤의 테두리로 버튼을 표현하는 스타일입니다.
+///
+/// 테마와 비활성 상태를 환경에서 읽습니다. 사용 예제는 <doc:Buttons>를 참고하세요.
 public struct FoundesignOutlineButtonStyle: ButtonStyle {
   @Environment(\.theme) private var theme
   @Environment(\.isEnabled) private var isEnabled
 
   private let property: FoundesignButtonProperty
 
+  /// 버튼 속성으로 테두리 스타일을 만듭니다.
+  /// - Parameter property: 적용할 톤과 크기입니다.
   public init(_ property: FoundesignButtonProperty) {
     self.property = property
   }

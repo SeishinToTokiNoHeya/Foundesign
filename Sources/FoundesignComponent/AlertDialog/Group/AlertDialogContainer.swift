@@ -7,6 +7,7 @@ import SwiftUI
 /// Secondary 버튼을 생략하면 primary 버튼만 표시하고,
 /// 두 버튼을 선언하면 `AdaptiveButtonGroup`으로 배치합니다.
 /// 주어진 높이보다 내용이 길면 제목과 본문만 스크롤되고, footer는 하단에 고정됩니다.
+/// 컨테이너는 레이아웃만 제공합니다. 표시·닫힘 전환은 `alertDialog` modifier로 연결합니다.
 ///
 /// ```swift
 /// AlertDialogContainer(
@@ -39,6 +40,11 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
   private let content: Content
   private let footer: Footer
 
+  /// 사용자 정의 헤더·본문·버튼 영역으로 컨테이너를 만듭니다.
+  /// - Parameters:
+  ///   - header: 상단 제목 영역입니다.
+  ///   - content: 본문 영역입니다.
+  ///   - footer: primary 하나 또는 primary·secondary 순서의 버튼 두 개입니다.
   public init(
     header: () -> Header,
     content: () -> Content,
@@ -49,6 +55,11 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
     self.footer = footer()
   }
 
+  /// 문자열 제목과 사용자 정의 본문으로 컨테이너를 만듭니다.
+  /// - Parameters:
+  ///   - title: 상단 제목입니다.
+  ///   - content: 본문 영역입니다.
+  ///   - footer: primary 하나 또는 primary·secondary 순서의 버튼 두 개입니다.
   public init(
     title: String,
     content: () -> Content,
@@ -59,6 +70,11 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
     self.footer = footer()
   }
 
+  /// 사용자 정의 헤더와 문자열 설명으로 컨테이너를 만듭니다.
+  /// - Parameters:
+  ///   - description: 본문 설명입니다.
+  ///   - header: 상단 제목 영역입니다.
+  ///   - footer: primary 하나 또는 primary·secondary 순서의 버튼 두 개입니다.
   public init(
     description: String,
     header: () -> Header,
@@ -69,6 +85,11 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
     self.footer = footer()
   }
 
+  /// 문자열 제목과 설명으로 컨테이너를 만듭니다.
+  /// - Parameters:
+  ///   - title: 상단 제목입니다.
+  ///   - description: 본문 설명입니다.
+  ///   - footer: primary 하나 또는 primary·secondary 순서의 버튼 두 개입니다.
   public init(
     title: String,
     description: String,

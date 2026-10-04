@@ -19,6 +19,10 @@ public struct FoundesignCheckboxGroup<Content, Header>: View where Content: View
   private let content: Content
   private let header: Header?
 
+  /// 헤더와 들여쓴 하위 항목으로 그룹을 만듭니다.
+  /// - Parameters:
+  ///   - content: 그룹 안에 배치할 항목입니다.
+  ///   - header: 강조할 헤더입니다. 전체 선택을 사용하려면 별도의 바인딩을 연결합니다.
   public init(
     @ViewBuilder content: () -> Content,
     @ViewBuilder header: () -> Header
@@ -27,6 +31,8 @@ public struct FoundesignCheckboxGroup<Content, Header>: View where Content: View
     self.header = header()
   }
 
+  /// 헤더 없이 항목을 세로로 배치하는 그룹을 만듭니다.
+  /// - Parameter content: 그룹 안에 배치할 항목입니다.
   public init(@ViewBuilder content: () -> Content) where Header == EmptyView {
     self.content = content()
     self.header = nil
