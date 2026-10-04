@@ -5,7 +5,7 @@ import SwiftUI
 ///
 /// `selection`에는 `values`에 포함된 값을 전달합니다.
 /// 포함되지 않은 값이면 첫 행을 표시하고, 사용자가 선택하기 전까지 바인딩을 변경하지 않습니다.
-/// 목록이 비어 있으면 선택할 수 없습니다. `FoundesignWheelPickerContainer` 안에서 사용합니다.
+/// 목록이 비어 있으면 선택할 수 없습니다. ``FoundesignWheelPickerContainer`` 안에서 사용합니다.
 public struct FoundesignWheelPickerColumn<Value, Label>: View where Value: Hashable, Label: View {
   @Environment(\.theme) private var theme
   @Environment(\.foundesignWheelPickerSize) private var size
@@ -19,6 +19,13 @@ public struct FoundesignWheelPickerColumn<Value, Label>: View where Value: Hasha
   private let values: [Value]
   private let label: (Value) -> Label
 
+  /// 고유한 값 목록과 선택 바인딩으로 피커 열을 만듭니다.
+  ///
+  /// - Parameters:
+  ///   - values: 표시할 값입니다. 각 값은 서로 달라야 하며 순서대로 행에 배치됩니다.
+  ///   - selection: 스크롤이 멈춘 뒤 선택값을 기록할 바인딩입니다.
+  ///     목록 밖 값이면 첫 행을 표시하되 사용자가 선택하기 전에는 바인딩을 변경하지 않습니다.
+  ///   - label: 각 값의 라벨을 만드는 클로저입니다.
   public init(
     _ values: some RandomAccessCollection<Value>,
     selection: Binding<Value>,

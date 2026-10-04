@@ -24,8 +24,11 @@ import SwiftUI
 ///   }
 /// ```
 public struct ContentFog: View {
+  /// 그라디언트가 투명해지는 방향입니다.
   public enum Direction: Hashable, Sendable {
+    /// 아래쪽 배경색에서 위쪽으로 갈수록 투명해집니다.
     case up
+    /// 위쪽 배경색에서 아래쪽으로 갈수록 투명해집니다.
     case down
   }
 
@@ -33,6 +36,8 @@ public struct ContentFog: View {
 
   private let direction: Direction
 
+  /// 지정한 방향으로 투명해지는 배경색 그라디언트를 만듭니다.
+  /// - Parameter direction: 투명해지는 방향입니다. 기본값은 `.up`입니다.
   public init(direction: Direction = .up) {
     self.direction = direction
   }
