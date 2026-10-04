@@ -1,6 +1,11 @@
 import SwiftUI
 
 extension ColorToken {
+  /// 팔레트의 색상 단계로 의미별 색상과 상태별 색상을 생성합니다.
+  ///
+  /// - Parameters:
+  ///   - palette: 원시 색상 팔레트입니다. 기본값은 ``ColorPalette/default``입니다.
+  ///   - brand: 브랜드 스케일입니다. 생략하면 `palette.blue`를 사용합니다.
   public init(
     palette: ColorPalette = .default,
     brand: ColorPalette.Scale? = nil
