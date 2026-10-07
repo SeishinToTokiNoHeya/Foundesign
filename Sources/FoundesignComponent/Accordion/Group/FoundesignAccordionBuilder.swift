@@ -3,24 +3,26 @@ import SwiftUI
 
 /// Accordion 항목 사이에 스타일에 맞는 구분을 삽입하는 결과 빌더입니다.
 ///
-/// 하나 이상의 ``FoundesignAccordionItem``을 순서대로 선언하는 구성을 지원합니다.
+/// 하나 이상의 뷰를 순서대로 선언하며, 각 표현식 사이에 구분을 삽입합니다.
+/// ``FoundesignAccordionItem``에 일반 View modifier를 붙인 결과도 사용할 수 있습니다.
+/// 여러 항목을 하나의 컨테이너로 묶으면 그 컨테이너를 하나의 구획으로 처리합니다.
 @MainActor
 @resultBuilder
 public enum FoundesignAccordionBuilder {
-  public static func buildPartialBlock<Icon: View>(
-    first: FoundesignAccordionItem<Icon>
-  ) -> _FoundesignAccordionContent<FoundesignAccordionItem<Icon>> {
+  public static func buildPartialBlock<First: View>(
+    first: First
+  ) -> _FoundesignAccordionContent<First> {
     .init(content: first)
   }
 
-  public static func buildPartialBlock<Accumulated: View, Icon: View>(
+  public static func buildPartialBlock<Accumulated: View, Next: View>(
     accumulated: _FoundesignAccordionContent<Accumulated>,
-    next: FoundesignAccordionItem<Icon>
+    next: Next
   ) -> _FoundesignAccordionContent<
     TupleView<(
       _FoundesignAccordionContent<Accumulated>,
       FoundesignAccordionSeparator,
-      FoundesignAccordionItem<Icon>
+      Next
     )>
   > {
     .init(
