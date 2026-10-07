@@ -3,6 +3,7 @@ import SwiftUI
 
 /// 짧은 분류나 상태를 표시하는 정적인 정보 라벨입니다.
 ///
+/// 크기·톤·표현 방식은 환경에서 상속하며, 가까운 스타일 modifier가 우선합니다.
 /// 환경의 테마와 비활성 상태를 반영합니다. 라벨은 한 줄로 표시하며,
 /// 부모가 제공하는 폭이 부족하면 끝을 말줄임합니다. 자체 최대 폭은 지정하지 않습니다.
 /// 빈 문자열도 여백과 배경을 유지합니다. 동작이 필요하면 별도의 버튼을 사용하세요.
@@ -10,24 +11,21 @@ import SwiftUI
 public struct FoundesignBadge: View {
   @Environment(\.theme) private var theme
   @Environment(\.isEnabled) private var isEnabled
+  @Environment(\.badgeProperty) private var property
 
   private let title: String
   private let systemImage: String?
-  private let property: FoundesignBadgeProperty
 
   /// 문자열과 선택적인 SF Symbol로 뱃지를 만듭니다.
   /// - Parameters:
   ///   - title: 표시할 짧은 문자열입니다.
   ///   - systemImage: 앞에 표시할 SF Symbol 이름입니다. `nil`이면 텍스트만 표시합니다.
-  ///   - property: 크기·톤·표현 방식입니다. 기본값은 중간 크기·중립 톤·약한 배경입니다.
   public init(
     title: String,
-    systemImage: String? = nil,
-    property: FoundesignBadgeProperty = .init()
+    systemImage: String? = nil
   ) {
     self.title = title
     self.systemImage = systemImage
-    self.property = property
   }
 
   public var body: some View {

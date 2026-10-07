@@ -13,8 +13,7 @@ struct BadgeExamplePage: View {
       Section("미리보기") {
         FoundesignBadge(
           title: title,
-          systemImage: showsIcon ? "checkmark.circle.fill" : nil,
-          property: property
+          systemImage: showsIcon ? "checkmark.circle.fill" : nil
         )
         .disabled(isDisabled)
       }
@@ -40,20 +39,29 @@ struct BadgeExamplePage: View {
         Toggle("비활성", isOn: $isDisabled)
       }
 
+      Section("Environment Overrides") {
+        HStack(spacing: theme.spacing.small) {
+          FoundesignBadge(title: "상위 속성 상속")
+          FoundesignBadge(title: "크기만 변경")
+            .badgeSize(.large)
+        }
+        FoundesignBadge(title: "전체 속성 교체")
+          .badgeProperty(.init(tone: .critical, variant: .outline))
+      }
+
       Section("의미별 톤") {
         ForEach(FoundesignBadgeProperty.Tone.allCases, id: \.self) { tone in
           FoundesignBadge(
-            title: tone.description,
-            property: .init(size: property.size, tone: tone, variant: property.variant)
+            title: tone.description
           )
+          .badgeTone(tone)
         }
       }
 
       Section("긴 라벨과 좁은 폭") {
         FoundesignBadge(
           title: "확인이 필요한 새로운 업데이트가 있습니다",
-          systemImage: showsIcon ? "info.circle.fill" : nil,
-          property: property
+          systemImage: showsIcon ? "info.circle.fill" : nil
         )
         .frame(width: 140, alignment: .leading)
       }
@@ -63,12 +71,13 @@ struct BadgeExamplePage: View {
           Text("주문 내역")
           FoundesignBadge(
             title: "배송 완료",
-            systemImage: "checkmark",
-            property: .init(tone: .positive)
+            systemImage: "checkmark"
           )
+          .badgeProperty(.init(tone: .positive))
         }
       }
     }
+    .badgeProperty(property)
     .navigationTitle("Badge")
   }
 }
