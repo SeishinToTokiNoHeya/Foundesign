@@ -19,6 +19,12 @@ Foundesign의 테마를 사용하는 SwiftUI 컴포넌트입니다.
 - ``FoundesignButtonProperty``
 - ``FoundesignAdaptiveButtonGroup``
 
+### 정보 표시
+
+- <doc:Badge>
+- ``FoundesignBadge``
+- ``FoundesignBadgeProperty``
+
 ### 펼침과 선택
 
 - <doc:Accordion>
