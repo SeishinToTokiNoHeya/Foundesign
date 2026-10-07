@@ -40,12 +40,16 @@ struct WheelPickerExamplePage: View {
         Button("2025년 1월 31일") {
           selectDate(year: 2025, month: 1, day: 31)
         }
-        .buttonStyle(.weak(tone: .brand, size: .xsmall))
+        .buttonStyle(.weak)
+        .buttonTone(.brand)
+        .buttonSize(.xsmall)
 
         Button("2024년 2월 29일") {
           selectDate(year: 2024, month: 2, day: 29)
         }
-        .buttonStyle(.weak(tone: .brand, size: .xsmall))
+        .buttonStyle(.weak)
+        .buttonTone(.brand)
+        .buttonSize(.xsmall)
       }
     }
   }

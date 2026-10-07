@@ -7,17 +7,19 @@ import SwiftUI
 /// Secondary 버튼을 생략하면 primary 버튼만 표시하고,
 /// 두 버튼을 선언하면 `FoundesignAdaptiveButtonGroup`으로 배치합니다.
 /// 주어진 높이보다 내용이 길면 제목과 본문만 스크롤되고, footer는 하단에 고정됩니다.
-/// 컨테이너는 레이아웃만 제공합니다. 표시·닫힘 전환은 `alertDialog` modifier로 연결합니다.
+/// 컨테이너는 배치와 기본 외형을 제공합니다. 표시·닫힘 전환은 `alertDialog` modifier로 연결합니다.
+/// 버튼 톤·크기를 지정하지 않으면 `.neutral`·`.large`를 사용합니다. 상위 또는 항목의 설정이 우선합니다.
 ///
 /// ```swift
 /// FoundesignAlertDialogContainer(
 ///   title: "삭제할까요?",
 ///   description: "삭제한 항목은 복구할 수 없습니다."
 /// ) {
-///   FoundesignAlertDialogButtonItem(primary: .critical, label: "삭제") {
+///   FoundesignAlertDialogButtonItem(label: "삭제") {
 ///     deleteItem()
 ///   }
-///   FoundesignAlertDialogButtonItem(secondary: .neutral, label: "취소") {
+///   .buttonTone(.critical)
+///   FoundesignAlertDialogButtonItem(label: "취소") {
 ///     dismiss()
 ///   }
 /// }
@@ -28,7 +30,7 @@ import SwiftUI
 ///   title: "버튼 하나도 가능",
 ///   description: "Primary 버튼 하나도 가능합니다."
 /// ) {
-///   FoundesignAlertDialogButtonItem(primary: .neutral, label: "확인") {
+///   FoundesignAlertDialogButtonItem(label: "확인") {
 ///     confirm()
 ///   }
 /// }
@@ -115,6 +117,8 @@ public struct FoundesignAlertDialogContainer<Header, Content, Footer>: View wher
         }
       }
       footer
+        .transformEnvironment(\.buttonTone) { $0 = $0 ?? .neutral }
+        .transformEnvironment(\.buttonSize) { $0 = $0 ?? .large }
         .fixedSize(horizontal: false, vertical: true)
         .padding(.top, theme.spacing.medium)
         .padding(.horizontal, theme.spacing.xLarge)
