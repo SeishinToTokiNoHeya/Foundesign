@@ -1,8 +1,5 @@
 # Foundation·토큰 개발 규칙
 
-[현재 개발 정책](development-policy.md)에 따라 접근성 전용 작업과 테스트 코드 작성은
-후속 일괄 작업으로 유예합니다.
-
 - 토큰은 `Color`, `Font`, `Radius`, `Spacing`에, 기본 구성은 `Theme/Default`에 둡니다.
 - `ColorPalette`는 원시 색상 단계이고 `ColorToken`은 foreground·background·border의 의미별 색상입니다.
 - 컴포넌트가 사용할 의미를 먼저 정하고, 같은 의미의 기존 토큰이 있으면 재사용합니다.
