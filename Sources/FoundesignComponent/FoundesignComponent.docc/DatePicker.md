@@ -26,6 +26,7 @@ struct DateExample: View {
 ```
 
 입력 범위와 기본값은 ``FoundesignDatePicker/init(selection:years:)``에서 확인합니다.
+크기는 WheelPicker와 같은 `.wheelPickerSize(.large)` modifier로 설정하며 상위 설정을 상속합니다.
 
 ## 날짜 보정
 

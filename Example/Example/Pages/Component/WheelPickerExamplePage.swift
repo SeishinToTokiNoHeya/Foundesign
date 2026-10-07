@@ -69,7 +69,7 @@ struct WheelPickerExamplePage: View {
           Text("\(value)개")
         }
       }
-      .foundesignWheelPickerSize(.small)
+      .wheelPickerSize(.small)
       .disabled(!isEnabled)
     }
   }

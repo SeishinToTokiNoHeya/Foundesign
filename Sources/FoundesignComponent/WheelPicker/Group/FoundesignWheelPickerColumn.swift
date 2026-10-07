@@ -8,7 +8,7 @@ import SwiftUI
 /// 목록이 비어 있으면 선택할 수 없습니다. ``FoundesignWheelPickerContainer`` 안에서 사용합니다.
 public struct FoundesignWheelPickerColumn<Value, Label>: View where Value: Hashable, Label: View {
   @Environment(\.theme) private var theme
-  @Environment(\.foundesignWheelPickerSize) private var size
+  @Environment(\.wheelPickerSize) private var size
   @Environment(\.foundesignWheelPickerVisibleItemCount) private var visibleItemCount
   @Environment(\.foundesignWheelPickerItemHeight) private var itemHeight
   @Environment(\.isEnabled) private var isEnabled
