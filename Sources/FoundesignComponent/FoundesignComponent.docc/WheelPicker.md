@@ -4,6 +4,8 @@
 
 ## Overview
 
+수량처럼 앱이 정의한 값 목록을 스크롤로 선택할 때 사용합니다. 연·월·일 선택에는 <doc:DatePicker>를 참고하세요.
+
 ``FoundesignWheelPickerContainer``는 열의 높이와 선택 강조 영역을 맞추고,
 ``FoundesignWheelPickerColumn``은 값 목록과 선택 바인딩을 연결합니다.
 
@@ -32,4 +34,4 @@ struct QuantityExample: View {
 목록 밖 선택값은 첫 행으로 표시하지만 사용자가 선택하기 전에는 바인딩을 바꾸지 않습니다.
 빈 목록과 비활성 상태에서는 선택할 수 없습니다.
 
-실행 예제: `Example/Example/Pages/Component/WheelPickerExamplePage.swift`.
+실행 예제: [전체 화면 코드](https://github.com/SeishinToTokiNoHeya/Foundesign/blob/develop/Example/Example/Pages/Component/WheelPickerExamplePage.swift).

@@ -4,6 +4,8 @@
 
 ## Overview
 
+독립적인 동의 항목이나 여러 항목의 전체 선택에 사용합니다. 여러 항목 중 하나만 선택하도록 하려면 앱에서 선택 상태를 따로 관리해야 합니다.
+
 ``FoundesignCheckbox``는 라벨을 포함한 행에서 선택을 변경합니다.
 여러 바인딩을 `sources`로 전달하면 전체 선택과 부분 선택을 표현할 수 있습니다.
 
@@ -31,4 +33,4 @@ struct CheckboxExample: View {
 개별 항목에 명시한 `property`는 환경에서 상속한 속성보다 우선합니다.
 빈 `sources`는 미선택 상태로 비활성화됩니다.
 
-실행 예제: `Example/Example/Pages/Component/CheckboxExamplePage.swift`.
+실행 예제: [전체 화면 코드](https://github.com/SeishinToTokiNoHeya/Foundesign/blob/develop/Example/Example/Pages/Component/CheckboxExamplePage.swift).

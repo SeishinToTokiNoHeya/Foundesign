@@ -4,8 +4,10 @@
 
 ## Overview
 
-채운 배경은 ``FoundesignSolidButtonStyle``, 테두리는 ``FoundesignOutlineButtonStyle``,
-약한 배경 강조는 ``FoundesignWeakButtonStyle``을 사용합니다.
+버튼을 얼마나 강조할지에 따라 스타일을 선택합니다. 상태와 액션은 표준 SwiftUI `Button`이 관리합니다.
+
+배경을 채우려면 ``FoundesignSolidButtonStyle``, 테두리만 표시하려면 ``FoundesignOutlineButtonStyle``,
+배경을 은은하게 강조하려면 ``FoundesignWeakButtonStyle``을 사용합니다.
 
 ```swift
 import Foundesign
@@ -31,4 +33,4 @@ struct ButtonExample: View {
 그렇지 않으면 세로로 배치합니다. 가로는 secondary → primary, 세로는 primary → secondary 순서입니다.
 라벨을 `.frame(maxWidth: .infinity)`로 구성하면 버튼의 클릭 영역을 채우기 좋습니다.
 
-실행 예제: `Example/Example/Pages/Component/ButtonStyleExamplePage.swift`.
+실행 예제: [전체 화면 코드](https://github.com/SeishinToTokiNoHeya/Foundesign/blob/develop/Example/Example/Pages/Component/ButtonStyleExamplePage.swift).
