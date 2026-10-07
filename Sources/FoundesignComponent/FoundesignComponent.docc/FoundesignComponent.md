@@ -35,6 +35,11 @@ Foundesign의 테마를 사용하는 SwiftUI 컴포넌트입니다.
 - ``FoundesignCheckboxGroup``
 - ``FoundesignCheckboxProperty``
 - ``FoundesignCheckboxState``
+- <doc:Switch>
+- ``FoundesignSwitch``
+- ``FoundesignSwitchmark``
+- ``FoundesignSwitchLabel``
+- ``FoundesignSwitchProperty``
 
 ### 텍스트 입력
 
