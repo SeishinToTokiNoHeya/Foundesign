@@ -1,21 +1,19 @@
-#if os(iOS)
+#if os(macOS)
+import AppKit
 import FoundesignFoundation
 import SwiftUI
-import UIKit
 
-struct AlertDialogPresenter<Content: View>: UIViewControllerRepresentable {
+struct FoundesignAlertDialogPresenter<Content: View>: NSViewControllerRepresentable {
   @Binding var isPresented: Bool
   let onDismiss: (() -> Void)?
   let content: () -> Content
 
-  func makeCoordinator() -> AlertDialogUIKitCoordinator {
-    AlertDialogUIKitCoordinator()
+  func makeCoordinator() -> FoundesignAlertDialogAppKitCoordinator {
+    FoundesignAlertDialogAppKitCoordinator()
   }
 
-  func makeUIViewController(
-    context: Context
-  ) -> AlertDialogUIKitAnchor {
-    let anchor = AlertDialogUIKitAnchor()
+  func makeNSViewController(context: Context) -> FoundesignAlertDialogAppKitAnchor {
+    let anchor = FoundesignAlertDialogAppKitAnchor()
     context.coordinator.anchor = anchor
     anchor.attachmentChanged = { [weak coordinator = context.coordinator] in
       coordinator?.scheduleUpdate()
@@ -23,10 +21,7 @@ struct AlertDialogPresenter<Content: View>: UIViewControllerRepresentable {
     return anchor
   }
 
-  func updateUIViewController(
-    _ controller: AlertDialogUIKitAnchor,
-    context: Context
-  ) {
+  func updateNSViewController(_ controller: FoundesignAlertDialogAppKitAnchor, context: Context) {
     context.coordinator.update(
       binding: $isPresented,
       onDismiss: onDismiss,
@@ -35,9 +30,9 @@ struct AlertDialogPresenter<Content: View>: UIViewControllerRepresentable {
     )
   }
 
-  static func dismantleUIViewController(
-    _ controller: AlertDialogUIKitAnchor,
-    coordinator: AlertDialogUIKitCoordinator
+  static func dismantleNSViewController(
+    _ controller: FoundesignAlertDialogAppKitAnchor,
+    coordinator: FoundesignAlertDialogAppKitCoordinator
   ) {
     controller.attachmentChanged = nil
     DispatchQueue.main.async {

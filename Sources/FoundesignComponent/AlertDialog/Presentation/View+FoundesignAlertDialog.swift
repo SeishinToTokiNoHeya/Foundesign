@@ -3,7 +3,7 @@ import SwiftUI
 extension View {
   /// 다이얼로그를 표시합니다.
   ///
-  /// ``AlertDialogButtonItem``을 누르면 닫힘을 요청한 뒤 버튼 액션을 실행합니다.
+  /// ``FoundesignAlertDialogButtonItem``을 누르면 닫힘을 요청한 뒤 버튼 액션을 실행합니다.
   /// `onDismiss`는 닫힘 전환이 끝난 뒤 호출됩니다.
   /// 배경 클릭은 닫지 않고, Escape는 버튼 액션 없이 닫습니다.
   ///
@@ -18,7 +18,7 @@ extension View {
     @ViewBuilder content: @escaping () -> DialogContent
   ) -> some View {
     background {
-      AlertDialogPresenter(
+      FoundesignAlertDialogPresenter(
         isPresented: isPresented,
         onDismiss: onDismiss,
         content: content
@@ -30,7 +30,7 @@ extension View {
 
   /// 제목, 설명과 primary 하나 또는 primary, secondary 버튼으로 다이얼로그를 표시합니다.
   ///
-  /// ``AlertDialogButtonItem``을 누르면 닫힘을 요청한 뒤 버튼 액션을 실행합니다.
+  /// ``FoundesignAlertDialogButtonItem``을 누르면 닫힘을 요청한 뒤 버튼 액션을 실행합니다.
   /// 배경 클릭은 닫지 않고 Escape는 버튼 액션 없이 닫습니다. 사용 예제는 <doc:AlertDialog>를 참고하세요.
   ///
   /// - Parameters:
@@ -45,10 +45,10 @@ extension View {
     title: String,
     description: String,
     onDismiss: (() -> Void)? = nil,
-    @AlertDialogFooterBuilder actions: @escaping () -> Actions
+    @FoundesignAlertDialogFooterBuilder actions: @escaping () -> Actions
   ) -> some View {
     alertDialog(isPresented: isPresented, onDismiss: onDismiss) {
-      AlertDialogContainer(
+      FoundesignAlertDialogContainer(
         title: title,
         description: description,
         footer: actions

@@ -20,22 +20,22 @@ extension View {
   /// ```
   ///
   /// - Parameters:
-  ///   - variant: Fog 효과를 적용할 위치입니다. 기본값은 ``ContentFogVariant/bottom``입니다.
+  ///   - variant: Fog 효과를 적용할 위치입니다. 기본값은 ``FoundesignContentFogVariant/bottom``입니다.
   ///   - fraction: 선택된 각 가장자리에서 Fog 효과가 차지하는 영역의 비율입니다.
   ///     기본값은 `0.2`이며, 이는 각 가장자리 기준으로 전체 높이의 20%를 의미합니다.
   ///     일반적으로 `0...1` 범위의 유한한 값을 전달하며 구현은 범위를 자동 제한하지 않습니다.
   ///
   /// - Returns: 지정된 가장자리에 Fog 효과가 적용된 뷰입니다.
   public func contentFog(
-    _ variant: ContentFogVariant = .bottom,
+    _ variant: FoundesignContentFogVariant = .bottom,
     fraction: CGFloat = 0.2
   ) -> some View {
-    modifier(ContentFogModifier(variant: variant, fraction: fraction))
+    modifier(FoundesignContentFogModifier(variant: variant, fraction: fraction))
   }
 }
 
 /// 콘텐츠에 Fog를 배치할 가장자리입니다.
-public enum ContentFogVariant: CaseIterable, Hashable, Sendable {
+public enum FoundesignContentFogVariant: CaseIterable, Hashable, Sendable {
   /// 위쪽 가장자리에 적용합니다.
   case top
   /// 아래쪽 가장자리에 적용합니다.
@@ -44,13 +44,13 @@ public enum ContentFogVariant: CaseIterable, Hashable, Sendable {
   case both
 }
 
-private struct ContentFogModifier: ViewModifier {
+private struct FoundesignContentFogModifier: ViewModifier {
   @Environment(\.theme) private var theme
 
-  private let variant: ContentFogVariant
+  private let variant: FoundesignContentFogVariant
   private let fraction: CGFloat
 
-  public init(variant: ContentFogVariant, fraction: CGFloat) {
+  public init(variant: FoundesignContentFogVariant, fraction: CGFloat) {
     self.variant = variant
     self.fraction = fraction
   }
@@ -61,14 +61,14 @@ private struct ContentFogModifier: ViewModifier {
         GeometryReader { proxy in
           VStack(spacing: theme.spacing.zero) {
             if variant != .bottom {
-              ContentFog(direction: .down)
+              FoundesignContentFog(direction: .down)
                 .frame(height: proxy.size.height * fraction)
             }
 
             Spacer()
 
             if variant != .top {
-              ContentFog(direction: .up)
+              FoundesignContentFog(direction: .up)
                 .frame(height: proxy.size.height * fraction)
             }
           }

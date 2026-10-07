@@ -2,7 +2,7 @@ import FoundesignFoundation
 import SwiftUI
 
 /// 선택 상태를 표시하는 Item입니다. 선택 동작은 감싸는 컨트롤에서 처리합니다.
-public struct FoundedCheckmark: View {
+public struct FoundesignCheckmark: View {
   @Environment(\.theme) private var theme
   @Environment(\.checkboxProperty) private var inheritedProperty
   @Environment(\.checkboxIsPressed) private var isPressed

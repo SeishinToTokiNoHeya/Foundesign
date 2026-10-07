@@ -1,7 +1,7 @@
 import FoundesignFoundation
 import SwiftUI
 
-public struct AlertDialogDescriptionItem: View {
+public struct FoundesignAlertDialogDescriptionItem: View {
   @Environment(\.theme) private var theme
   private let description: String
 

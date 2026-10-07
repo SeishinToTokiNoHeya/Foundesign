@@ -4,7 +4,7 @@
 
 ## Overview
 
-``ContentFog``는 배경색에서 투명해지는 그라디언트이며 실제 blur 필터가 아닙니다.
+``FoundesignContentFog``는 배경색에서 투명해지는 그라디언트이며 실제 blur 필터가 아닙니다.
 `contentFog` modifier로 위·아래 가장자리에 배치할 수 있습니다.
 
 ```swift
@@ -31,5 +31,5 @@ struct FogExample: View {
 일반적으로 `0...1` 범위의 유한한 값을 전달합니다. 현재 구현은 범위를 자동으로 제한하지 않습니다.
 겹치는 영역과 배경색이 의도대로 보이는지 확인합니다.
 
-현재 별도 Example 페이지는 없으며 WheelPicker 구현 안에서 ``ContentFog``를 사용합니다.
+현재 별도 Example 페이지는 없으며 WheelPicker 구현 안에서 ``FoundesignContentFog``를 사용합니다.
 직접 사용 예제는 향후 Fog 기능 변경 시 Example에 추가합니다.

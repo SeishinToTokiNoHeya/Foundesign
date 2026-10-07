@@ -44,7 +44,7 @@
     {
       "id": "component.button",
       "module": "FoundesignComponent",
-      "source_paths": ["Sources/FoundesignComponent/Button/Style/ButtonStyle+Component.swift", "Sources/FoundesignComponent/Button/Property/FoundesignButtonProperty.swift", "Sources/FoundesignComponent/Button/Group/AdaptiveButtonGroup.swift"],
+      "source_paths": ["Sources/FoundesignComponent/Button/Style/ButtonStyle+Component.swift", "Sources/FoundesignComponent/Button/Property/FoundesignButtonProperty.swift", "Sources/FoundesignComponent/Button/Group/FoundesignAdaptiveButtonGroup.swift"],
       "documentation_paths": ["Sources/FoundesignComponent/FoundesignComponent.docc/Buttons.md"],
       "example_paths": ["Example/Example/Pages/Component/ButtonStyleExamplePage.swift"],
       "example_status": "available"
@@ -68,7 +68,7 @@
     {
       "id": "component.alert-dialog",
       "module": "FoundesignComponent",
-      "source_paths": ["Sources/FoundesignComponent/AlertDialog/Presentation/View+AlertDialog.swift", "Sources/FoundesignComponent/AlertDialog/Group/AlertDialogContainer.swift", "Sources/FoundesignComponent/AlertDialog/Item/AlertDialogButtonItem.swift"],
+      "source_paths": ["Sources/FoundesignComponent/AlertDialog/Presentation/View+FoundesignAlertDialog.swift", "Sources/FoundesignComponent/AlertDialog/Group/FoundesignAlertDialogContainer.swift", "Sources/FoundesignComponent/AlertDialog/Item/FoundesignAlertDialogButtonItem.swift"],
       "documentation_paths": ["Sources/FoundesignComponent/FoundesignComponent.docc/AlertDialog.md"],
       "example_paths": ["Example/Example/Pages/Component/AlertDialogExamplePage.swift"],
       "example_status": "available"
@@ -92,7 +92,7 @@
     {
       "id": "component.fog",
       "module": "FoundesignComponent",
-      "source_paths": ["Sources/FoundesignComponent/Fog/ContentFog.swift", "Sources/FoundesignComponent/Fog/View+ContentFog.swift"],
+      "source_paths": ["Sources/FoundesignComponent/Fog/FoundesignContentFog.swift", "Sources/FoundesignComponent/Fog/View+FoundesignContentFog.swift"],
       "documentation_paths": ["Sources/FoundesignComponent/FoundesignComponent.docc/Fog.md"],
       "example_paths": [],
       "example_status": "missing"

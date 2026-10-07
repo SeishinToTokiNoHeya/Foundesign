@@ -54,7 +54,7 @@ struct AlertDialogExamplePage: View {
         dismissCount += 1
       }
     ) {
-      AlertDialogContainer(
+      FoundesignAlertDialogContainer(
         title: "긴 내용 · 버튼 하나",
         description: longDescription
       ) {
@@ -67,12 +67,12 @@ struct AlertDialogExamplePage: View {
         dismissCount += 1
       }
     ) {
-      AlertDialogContainer(
+      FoundesignAlertDialogContainer(
         header: {
           Label("커스텀 헤더", systemImage: "info.circle")
         },
         content: {
-          Text("기존 AlertDialogContainer를 직접 전달할 수도 있습니다.")
+          Text("기존 FoundesignAlertDialogContainer를 직접 전달할 수도 있습니다.")
         }
       ) {
         primaryButton()
@@ -141,19 +141,19 @@ struct AlertDialogExamplePage: View {
   }
 
   private func primaryButton(
-    _ variant: AlertDialogButtonVariant = .neutral,
+    _ variant: FoundesignAlertDialogButtonVariant = .neutral,
     label: String = "확인"
-  ) -> AlertDialogButtonItem<FoundesignSolidButtonStyle> {
-    AlertDialogButtonItem(primary: variant, label: label) {
+  ) -> FoundesignAlertDialogButtonItem<FoundesignSolidButtonStyle> {
+    FoundesignAlertDialogButtonItem(primary: variant, label: label) {
       actionCount += 1
     }
   }
 
   private func secondaryButton(
-    _ variant: AlertDialogButtonVariant = .neutral,
+    _ variant: FoundesignAlertDialogButtonVariant = .neutral,
     label: String = "닫기"
-  ) -> AlertDialogButtonItem<FoundesignWeakButtonStyle> {
-    AlertDialogButtonItem(secondary: variant, label: label) {
+  ) -> FoundesignAlertDialogButtonItem<FoundesignWeakButtonStyle> {
+    FoundesignAlertDialogButtonItem(secondary: variant, label: label) {
       actionCount += 1
     }
   }
@@ -219,7 +219,7 @@ private struct AlertDialogSheetExample: View {
       title: "Sheet에서 표시",
       description: "현재 프레젠테이션의 위에 다이얼로그를 표시합니다."
     ) {
-      AlertDialogButtonItem(
+      FoundesignAlertDialogButtonItem(
         primary: .brand,
         label: "확인"
       ) {}

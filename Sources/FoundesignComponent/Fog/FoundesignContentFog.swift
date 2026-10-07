@@ -15,15 +15,15 @@ import SwiftUI
 ///   .frame(height: 100)
 ///   .frame(maxWidth: .infinity)
 ///   .overlay(alignment: .top) {
-///     ContentFog(direction: .down)
+///     FoundesignContentFog(direction: .down)
 ///       .frame(height: 40)
 ///   }
 ///   .overlay(alignment: .bottom) {
-///     ContentFog(direction: .up)
+///     FoundesignContentFog(direction: .up)
 ///       .frame(height: 40)
 ///   }
 /// ```
-public struct ContentFog: View {
+public struct FoundesignContentFog: View {
   /// 그라디언트가 투명해지는 방향입니다.
   public enum Direction: Hashable, Sendable {
     /// 아래쪽 배경색에서 위쪽으로 갈수록 투명해집니다.

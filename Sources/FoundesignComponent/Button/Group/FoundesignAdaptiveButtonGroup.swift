@@ -9,7 +9,7 @@ import SwiftUI
 /// 버튼을 추가할 때는 내부 영역을 infinite로 설정하여 컨텐츠를 꽉 채우는 것을 권장합니다.
 ///
 /// ```swift
-/// AdaptiveButtonGroup {
+/// FoundesignAdaptiveButtonGroup {
 ///   Button {
 ///
 ///   } label: {
@@ -27,7 +27,7 @@ import SwiftUI
 ///   .buttonStyle(.outline)
 /// }
 /// ```
-public struct AdaptiveButtonGroup<Primary, Secondary>: View where Primary: View, Secondary: View {
+public struct FoundesignAdaptiveButtonGroup<Primary, Secondary>: View where Primary: View, Secondary: View {
   @Environment(\.theme) private var theme
   private let primary: Primary
   private let secondary: Secondary
@@ -45,7 +45,7 @@ public struct AdaptiveButtonGroup<Primary, Secondary>: View where Primary: View,
   }
 
   public var body: some View {
-    AdaptiveButtonLayout(spacing: theme.spacing.medium) {
+    FoundesignAdaptiveButtonLayout(spacing: theme.spacing.medium) {
       primary
         .frame(maxWidth: .infinity)
 

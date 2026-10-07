@@ -2,7 +2,7 @@ import FoundesignFoundation
 import SwiftUI
 
 /// 체크박스의 크기·강조·비활성 상태에 맞춰 표시하는 문자열 라벨입니다.
-public struct FoundedCheckLabel: View {
+public struct FoundesignCheckLabel: View {
   @Environment(\.theme) private var theme
   @Environment(\.checkboxProperty) private var inheritedProperty
   @Environment(\.isEnabled) private var isEnabled

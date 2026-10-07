@@ -11,7 +11,7 @@ struct FoundesignCheckboxToggleStyle: ToggleStyle {
       configuration.isOn = configuration.isMixed || !configuration.isOn
     } label: {
       HStack(spacing: theme.spacing.small) {
-        FoundedCheckmark(
+        FoundesignCheckmark(
           state: configuration.isMixed ? .indeterminate : (configuration.isOn ? .selected : .unselected)
         )
 

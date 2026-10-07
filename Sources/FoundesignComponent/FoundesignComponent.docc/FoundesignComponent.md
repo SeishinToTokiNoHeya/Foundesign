@@ -17,7 +17,7 @@ Foundesign의 테마를 사용하는 SwiftUI 컴포넌트입니다.
 - ``FoundesignOutlineButtonStyle``
 - ``FoundesignWeakButtonStyle``
 - ``FoundesignButtonProperty``
-- ``AdaptiveButtonGroup``
+- ``FoundesignAdaptiveButtonGroup``
 
 ### 펼침과 선택
 
@@ -33,9 +33,9 @@ Foundesign의 테마를 사용하는 SwiftUI 컴포넌트입니다.
 ### 다이얼로그
 
 - <doc:AlertDialog>
-- ``AlertDialogContainer``
-- ``AlertDialogButtonItem``
-- ``AlertDialogFooterBuilder``
+- ``FoundesignAlertDialogContainer``
+- ``FoundesignAlertDialogButtonItem``
+- ``FoundesignAlertDialogFooterBuilder``
 
 ### 피커
 
@@ -48,5 +48,5 @@ Foundesign의 테마를 사용하는 SwiftUI 컴포넌트입니다.
 ### 가장자리 효과
 
 - <doc:Fog>
-- ``ContentFog``
-- ``ContentFogVariant``
+- ``FoundesignContentFog``
+- ``FoundesignContentFogVariant``

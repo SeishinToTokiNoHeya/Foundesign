@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AdaptiveButtonLayout: Layout {
+struct FoundesignAdaptiveButtonLayout: Layout {
   let spacing: CGFloat
 
   func sizeThatFits(
@@ -72,7 +72,7 @@ struct AdaptiveButtonLayout: Layout {
   }
 }
 
-extension AdaptiveButtonLayout {
+extension FoundesignAdaptiveButtonLayout {
   private func fitsHorizontally(
     width: CGFloat,
     primary: LayoutSubview,
@@ -129,7 +129,7 @@ extension AdaptiveButtonLayout {
   }
 }
 
-extension AdaptiveButtonLayout {
+extension FoundesignAdaptiveButtonLayout {
   private func verticalSize(
     width: CGFloat,
     primary: LayoutSubview,
@@ -174,7 +174,7 @@ extension AdaptiveButtonLayout {
   }
 }
 
-extension AdaptiveButtonLayout {
+extension FoundesignAdaptiveButtonLayout {
   private func idealSize(
     primary: LayoutSubview,
     secondary: LayoutSubview

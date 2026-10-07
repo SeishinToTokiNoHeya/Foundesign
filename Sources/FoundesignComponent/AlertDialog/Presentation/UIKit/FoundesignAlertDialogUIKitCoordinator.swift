@@ -3,19 +3,19 @@ import FoundesignFoundation
 import SwiftUI
 import UIKit
 
-final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioningDelegate {
-  weak var anchor: AlertDialogUIKitAnchor?
+final class FoundesignAlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioningDelegate {
+  weak var anchor: FoundesignAlertDialogUIKitAnchor?
 
   private var binding: Binding<Bool> = .constant(false)
   private var onDismiss: (() -> Void)?
   private var content = AnyView(EmptyView())
   private var environment = EnvironmentValues()
-  private var dialog: AlertDialogUIKitController?
+  private var dialog: FoundesignAlertDialogUIKitController?
   private var presenter: UIViewController?
   private var updateScheduled = false
   private var previousFocus: Any?
 
-  lazy var presentation = AlertDialogPresentation(
+  lazy var presentation = FoundesignAlertDialogPresentation(
     present: { [weak self] in
       self?.present() ?? false
     },
@@ -39,7 +39,7 @@ final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioning
     if let dialog {
       dialog.rootView = hostedContent
       dialog.overrideUserInterfaceStyle = environment.colorScheme == .dark ? .dark : .light
-      if let controller = dialog.presentationController as? AlertDialogUIKitPresentationController {
+      if let controller = dialog.presentationController as? FoundesignAlertDialogUIKitPresentationController {
         controller.update(environment: environment)
       }
     }
@@ -68,7 +68,7 @@ final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioning
 
   private var hostedContent: AnyView {
     AnyView(
-      AlertDialogHostedContent(
+      FoundesignAlertDialogHostedContent(
         content: content,
         environment: environment,
         presentation: presentation
@@ -94,7 +94,7 @@ final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioning
       return false
     }
     previousFocus = UIAccessibility.focusedElement(using: .notificationVoiceOver)
-    let dialog = AlertDialogUIKitController(rootView: hostedContent)
+    let dialog = FoundesignAlertDialogUIKitController(rootView: hostedContent)
     dialog.owner = self
     dialog.modalPresentationStyle = .custom
     dialog.transitioningDelegate = self
@@ -138,7 +138,7 @@ final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioning
     presenting: UIViewController?,
     source: UIViewController
   ) -> UIPresentationController? {
-    AlertDialogUIKitPresentationController(
+    FoundesignAlertDialogUIKitPresentationController(
       presentedViewController: presented,
       presenting: presenting,
       environment: environment
@@ -150,7 +150,7 @@ final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioning
     presenting: UIViewController,
     source: UIViewController
   ) -> (any UIViewControllerAnimatedTransitioning)? {
-    AlertDialogUIKitAnimator(
+    FoundesignAlertDialogUIKitAnimator(
       isPresenting: true,
       reduceMotion: environment.accessibilityReduceMotion
     )
@@ -159,15 +159,15 @@ final class AlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioning
   func animationController(
     forDismissed dismissed: UIViewController
   ) -> (any UIViewControllerAnimatedTransitioning)? {
-    AlertDialogUIKitAnimator(
+    FoundesignAlertDialogUIKitAnimator(
       isPresenting: false,
       reduceMotion: environment.accessibilityReduceMotion
     )
   }
 }
 
-private final class AlertDialogUIKitController: UIHostingController<AnyView> {
-  var owner: AlertDialogUIKitCoordinator?
+private final class FoundesignAlertDialogUIKitController: UIHostingController<AnyView> {
+  var owner: FoundesignAlertDialogUIKitCoordinator?
 
   override var canBecomeFirstResponder: Bool { true }
   override var keyCommands: [UIKeyCommand]? {
@@ -204,7 +204,7 @@ private final class AlertDialogUIKitController: UIHostingController<AnyView> {
   }
 }
 
-private final class AlertDialogUIKitPresentationController: UIPresentationController {
+private final class FoundesignAlertDialogUIKitPresentationController: UIPresentationController {
   private let dimmer = UIView()
   private var environment: EnvironmentValues
 
@@ -229,10 +229,10 @@ private final class AlertDialogUIKitPresentationController: UIPresentationContro
   override var frameOfPresentedViewInContainerView: CGRect {
     guard
       let containerView,
-      let host = presentedViewController as? AlertDialogUIKitController else {
+      let host = presentedViewController as? FoundesignAlertDialogUIKitController else {
       return .zero
     }
-    return AlertDialogGeometry.cardFrame(in: containerView.safeAreaLayoutGuide.layoutFrame) {
+    return FoundesignAlertDialogGeometry.cardFrame(in: containerView.safeAreaLayoutGuide.layoutFrame) {
       host.sizeThatFits(in: $0)
     }
   }
@@ -284,7 +284,7 @@ private final class AlertDialogUIKitPresentationController: UIPresentationContro
   }
 }
 
-private final class AlertDialogUIKitAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+private final class FoundesignAlertDialogUIKitAnimator: NSObject, UIViewControllerAnimatedTransitioning {
   let isPresenting: Bool
   let reduceMotion: Bool
 
@@ -309,7 +309,7 @@ private final class AlertDialogUIKitAnimator: NSObject, UIViewControllerAnimated
       context.completeTransition(false)
       return
     }
-    let offset = CGAffineTransform(translationX: 0, y: reduceMotion ? 0 : AlertDialogGeometry.travel)
+    let offset = CGAffineTransform(translationX: 0, y: reduceMotion ? 0 : FoundesignAlertDialogGeometry.travel)
     if isPresenting {
       view.frame = context.finalFrame(for: controller)
       context.containerView.addSubview(view)

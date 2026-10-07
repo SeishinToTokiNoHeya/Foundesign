@@ -55,7 +55,7 @@ public struct FoundesignCheckbox<Label>: View where Label: View {
   }
 }
 
-extension FoundesignCheckbox where Label == FoundedCheckLabel {
+extension FoundesignCheckbox where Label == FoundesignCheckLabel {
   /// 문자열 라벨을 사용하는 단일 선택 체크박스를 만듭니다.
   /// - Parameters:
   ///   - title: 표시할 라벨입니다.
@@ -67,7 +67,7 @@ extension FoundesignCheckbox where Label == FoundedCheckLabel {
     property: FoundesignCheckboxProperty? = nil
   ) {
     self.init(isOn: isOn, property: property) {
-      FoundedCheckLabel(title: title)
+      FoundesignCheckLabel(title: title)
     }
   }
 
@@ -82,7 +82,7 @@ extension FoundesignCheckbox where Label == FoundedCheckLabel {
     property: FoundesignCheckboxProperty? = nil
   ) {
     self.init(sources: sources, property: property) {
-      FoundedCheckLabel(title: title)
+      FoundesignCheckLabel(title: title)
     }
   }
 }

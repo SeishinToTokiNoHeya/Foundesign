@@ -1,10 +1,10 @@
 import FoundesignFoundation
 import SwiftUI
 
-struct AlertDialogHostedContent<Content: View>: View {
+struct FoundesignAlertDialogHostedContent<Content: View>: View {
   let content: Content
   let environment: EnvironmentValues
-  let presentation: AlertDialogPresentation
+  let presentation: FoundesignAlertDialogPresentation
 
   var body: some View {
     content
@@ -23,7 +23,7 @@ struct AlertDialogHostedContent<Content: View>: View {
   }
 }
 
-enum AlertDialogGeometry {
+enum FoundesignAlertDialogGeometry {
   static let margin: CGFloat = 24
   static let maximumWidth: CGFloat = 360
   static let travel: CGFloat = 24

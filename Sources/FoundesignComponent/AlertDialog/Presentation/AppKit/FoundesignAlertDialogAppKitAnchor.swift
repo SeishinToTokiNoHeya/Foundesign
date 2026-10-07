@@ -4,14 +4,14 @@ import FoundesignFoundation
 import SwiftUI
 
 @MainActor
-final class AlertDialogAppKitAnchor: NSViewController {
+final class FoundesignAlertDialogAppKitAnchor: NSViewController {
   var attachmentChanged: (() -> Void)?
   var attachedWindow: NSWindow? {
     isViewLoaded ? view.window : nil
   }
 
   override func loadView() {
-    let view = AlertDialogAppKitAnchorView()
+    let view = FoundesignAlertDialogAppKitAnchorView()
     view.attachmentChanged = { [weak self] in
       self?.attachmentChanged?()
     }
@@ -20,7 +20,7 @@ final class AlertDialogAppKitAnchor: NSViewController {
 }
 
 @MainActor
-private final class AlertDialogAppKitAnchorView: NSView {
+private final class FoundesignAlertDialogAppKitAnchorView: NSView {
   var attachmentChanged: (() -> Void)?
 
   override func viewDidMoveToWindow() {

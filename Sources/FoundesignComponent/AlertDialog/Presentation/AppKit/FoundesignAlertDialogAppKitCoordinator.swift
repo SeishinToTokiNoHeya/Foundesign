@@ -4,19 +4,19 @@ import FoundesignFoundation
 import SwiftUI
 
 @MainActor
-final class AlertDialogAppKitCoordinator {
-  weak var anchor: AlertDialogAppKitAnchor?
+final class FoundesignAlertDialogAppKitCoordinator {
+  weak var anchor: FoundesignAlertDialogAppKitAnchor?
   
   private var binding: Binding<Bool> = .constant(false)
   private var onDismiss: (() -> Void)?
   private var content = AnyView(EmptyView())
   private var environment = EnvironmentValues()
-  private var dialog: AlertDialogAppKitController?
+  private var dialog: FoundesignAlertDialogAppKitController?
   private var presenter: NSViewController?
-  private var animator: AlertDialogAppKitAnimator?
+  private var animator: FoundesignAlertDialogAppKitAnimator?
   private var updateScheduled = false
 
-  lazy var presentation = AlertDialogPresentation(
+  lazy var presentation = FoundesignAlertDialogPresentation(
     present: { [weak self] in
       self?.present() ?? false
     },
@@ -63,7 +63,7 @@ final class AlertDialogAppKitCoordinator {
   }
 
   private var hostedContent: AnyView {
-    AnyView(AlertDialogHostedContent(
+    AnyView(FoundesignAlertDialogHostedContent(
       content: content,
       environment: environment,
       presentation: presentation
@@ -74,9 +74,9 @@ final class AlertDialogAppKitCoordinator {
     guard let anchor, let window = anchor.attachedWindow else {
       return false
     }
-    let dialog = AlertDialogAppKitController(content: hostedContent, environment: environment)
+    let dialog = FoundesignAlertDialogAppKitController(content: hostedContent, environment: environment)
     dialog.owner = self
-    let animator = AlertDialogAppKitAnimator(
+    let animator = FoundesignAlertDialogAppKitAnimator(
       parentWindow: window,
       environment: environment,
       presentationFinished: { [weak self, weak dialog] in
@@ -118,8 +118,8 @@ final class AlertDialogAppKitCoordinator {
 }
 
 @MainActor
-private final class AlertDialogAppKitController: NSViewController {
-  var owner: AlertDialogAppKitCoordinator?
+private final class FoundesignAlertDialogAppKitController: NSViewController {
+  var owner: FoundesignAlertDialogAppKitCoordinator?
   let host: NSHostingController<AnyView>
   let dimmer = NSView()
 
@@ -134,7 +134,7 @@ private final class AlertDialogAppKitController: NSViewController {
   required init?(coder: NSCoder) { nil }
 
   override func loadView() {
-    let stage = AlertDialogAppKitStage()
+    let stage = FoundesignAlertDialogAppKitStage()
     stage.layoutContent = { [weak self] in
       self?.layoutContent()
     }
@@ -147,7 +147,7 @@ private final class AlertDialogAppKitController: NSViewController {
   }
 
   var cardFrame: CGRect {
-    AlertDialogGeometry.cardFrame(in: view.bounds) {
+    FoundesignAlertDialogGeometry.cardFrame(in: view.bounds) {
       host.sizeThatFits(in: $0)
     }
   }
@@ -176,7 +176,7 @@ private final class AlertDialogAppKitController: NSViewController {
 }
 
 @MainActor
-private final class AlertDialogAppKitStage: NSView {
+private final class FoundesignAlertDialogAppKitStage: NSView {
   var layoutContent: (() -> Void)?
   override var isFlipped: Bool { true }
 
@@ -187,7 +187,7 @@ private final class AlertDialogAppKitStage: NSView {
 }
 
 @MainActor
-private final class AlertDialogAppKitPanel: NSPanel {
+private final class FoundesignAlertDialogAppKitPanel: NSPanel {
   var dismissRequested: (() -> Void)?
   override var canBecomeKey: Bool { true }
   override var canBecomeMain: Bool { false }
@@ -206,11 +206,11 @@ private final class AlertDialogAppKitPanel: NSPanel {
 }
 
 @MainActor
-private final class AlertDialogAppKitAnimator: NSObject, NSViewControllerPresentationAnimator {
+private final class FoundesignAlertDialogAppKitAnimator: NSObject, NSViewControllerPresentationAnimator {
   private weak var parentWindow: NSWindow?
   private weak var previousResponder: NSResponder?
   private var environment: EnvironmentValues
-  private var panel: AlertDialogAppKitPanel?
+  private var panel: FoundesignAlertDialogAppKitPanel?
   private var eventMonitor: Any?
   private var observers: [NSObjectProtocol] = []
   private let presentationFinished: () -> Void
@@ -240,12 +240,12 @@ private final class AlertDialogAppKitAnimator: NSObject, NSViewControllerPresent
   }
 
   func animatePresentation(of controller: NSViewController, from presenter: NSViewController) {
-    guard let parentWindow, let dialog = controller as? AlertDialogAppKitController else {
+    guard let parentWindow, let dialog = controller as? FoundesignAlertDialogAppKitController else {
       return
     }
     previousResponder = parentWindow.firstResponder
     let frame = parentContentFrame
-    let panel = AlertDialogAppKitPanel(
+    let panel = FoundesignAlertDialogAppKitPanel(
       contentRect: frame,
       styleMask: [.borderless],
       backing: .buffered,
@@ -278,7 +278,7 @@ private final class AlertDialogAppKitAnimator: NSObject, NSViewControllerPresent
     let finalFrame = dialog.cardFrame
     dialog.host.view.frame = finalFrame.offsetBy(
       dx: 0,
-      dy: environment.accessibilityReduceMotion ? 0 : AlertDialogGeometry.travel
+      dy: environment.accessibilityReduceMotion ? 0 : FoundesignAlertDialogGeometry.travel
     )
     panel.makeKeyAndOrderFront(nil)
     panel.makeFirstResponder(dialog.host.view)
@@ -297,7 +297,7 @@ private final class AlertDialogAppKitAnimator: NSObject, NSViewControllerPresent
   }
 
   func animateDismissal(of controller: NSViewController, from presenter: NSViewController) {
-    guard let dialog = controller as? AlertDialogAppKitController else {
+    guard let dialog = controller as? FoundesignAlertDialogAppKitController else {
       return
     }
     animateDimmer(dialog.dimmer, showing: false)
@@ -306,7 +306,7 @@ private final class AlertDialogAppKitAnimator: NSObject, NSViewControllerPresent
       context.timingFunction = CAMediaTimingFunction(name: .easeIn)
       dialog.host.view.animator().frame = dialog.cardFrame.offsetBy(
         dx: 0,
-        dy: environment.accessibilityReduceMotion ? 0 : AlertDialogGeometry.travel
+        dy: environment.accessibilityReduceMotion ? 0 : FoundesignAlertDialogGeometry.travel
       )
       dialog.host.view.animator().alphaValue = 0
     } completionHandler: { [self] in

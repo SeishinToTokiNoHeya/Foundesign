@@ -5,35 +5,35 @@ import SwiftUI
 ///
 /// Footer에는 primary, secondary 순서로 버튼을 선언합니다.
 /// Secondary 버튼을 생략하면 primary 버튼만 표시하고,
-/// 두 버튼을 선언하면 `AdaptiveButtonGroup`으로 배치합니다.
+/// 두 버튼을 선언하면 `FoundesignAdaptiveButtonGroup`으로 배치합니다.
 /// 주어진 높이보다 내용이 길면 제목과 본문만 스크롤되고, footer는 하단에 고정됩니다.
 /// 컨테이너는 레이아웃만 제공합니다. 표시·닫힘 전환은 `alertDialog` modifier로 연결합니다.
 ///
 /// ```swift
-/// AlertDialogContainer(
+/// FoundesignAlertDialogContainer(
 ///   title: "삭제할까요?",
 ///   description: "삭제한 항목은 복구할 수 없습니다."
 /// ) {
-///   AlertDialogButtonItem(primary: .critical, label: "삭제") {
+///   FoundesignAlertDialogButtonItem(primary: .critical, label: "삭제") {
 ///     deleteItem()
 ///   }
-///   AlertDialogButtonItem(secondary: .neutral, label: "취소") {
+///   FoundesignAlertDialogButtonItem(secondary: .neutral, label: "취소") {
 ///     dismiss()
 ///   }
 /// }
 /// ```
 ///
 /// ```swift
-/// AlertDialogContainer(
+/// FoundesignAlertDialogContainer(
 ///   title: "버튼 하나도 가능",
 ///   description: "Primary 버튼 하나도 가능합니다."
 /// ) {
-///   AlertDialogButtonItem(primary: .neutral, label: "확인") {
+///   FoundesignAlertDialogButtonItem(primary: .neutral, label: "확인") {
 ///     confirm()
 ///   }
 /// }
 /// ```
-public struct AlertDialogContainer<Header, Content, Footer>: View where Header: View, Content: View, Footer: View {
+public struct FoundesignAlertDialogContainer<Header, Content, Footer>: View where Header: View, Content: View, Footer: View {
   @Environment(\.theme) private var theme
 
   private let header: Header
@@ -48,7 +48,7 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
   public init(
     header: () -> Header,
     content: () -> Content,
-    @AlertDialogFooterBuilder footer: () -> Footer
+    @FoundesignAlertDialogFooterBuilder footer: () -> Footer
   ) {
     self.header = header()
     self.content = content()
@@ -63,9 +63,9 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
   public init(
     title: String,
     content: () -> Content,
-    @AlertDialogFooterBuilder footer: () -> Footer
-  ) where Header == AlertDialogTitleItem {
-    self.header = AlertDialogTitleItem(title: title)
+    @FoundesignAlertDialogFooterBuilder footer: () -> Footer
+  ) where Header == FoundesignAlertDialogTitleItem {
+    self.header = FoundesignAlertDialogTitleItem(title: title)
     self.content = content()
     self.footer = footer()
   }
@@ -78,10 +78,10 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
   public init(
     description: String,
     header: () -> Header,
-    @AlertDialogFooterBuilder footer: () -> Footer
-  ) where Content == AlertDialogDescriptionItem {
+    @FoundesignAlertDialogFooterBuilder footer: () -> Footer
+  ) where Content == FoundesignAlertDialogDescriptionItem {
     self.header = header()
-    self.content = AlertDialogDescriptionItem(description: description)
+    self.content = FoundesignAlertDialogDescriptionItem(description: description)
     self.footer = footer()
   }
 
@@ -93,10 +93,10 @@ public struct AlertDialogContainer<Header, Content, Footer>: View where Header: 
   public init(
     title: String,
     description: String,
-    @AlertDialogFooterBuilder footer: () -> Footer
-  ) where Header == AlertDialogTitleItem, Content == AlertDialogDescriptionItem {
-    self.header = AlertDialogTitleItem(title: title)
-    self.content = AlertDialogDescriptionItem(description: description)
+    @FoundesignAlertDialogFooterBuilder footer: () -> Footer
+  ) where Header == FoundesignAlertDialogTitleItem, Content == FoundesignAlertDialogDescriptionItem {
+    self.header = FoundesignAlertDialogTitleItem(title: title)
+    self.content = FoundesignAlertDialogDescriptionItem(description: description)
     self.footer = footer()
   }
 

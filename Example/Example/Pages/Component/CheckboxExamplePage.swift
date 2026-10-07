@@ -51,7 +51,7 @@ struct CheckboxExamplePage: View {
       Section("Custom Label") {
         FoundesignCheckbox(isOn: $isSelected) {
           VStack(alignment: .leading, spacing: theme.spacing.xSmall) {
-            FoundedCheckLabel(title: "알림 받기")
+            FoundesignCheckLabel(title: "알림 받기")
               .checkboxWeight(.bold)
 
             Text("여러 줄로 표시되는 설명과 함께 사용해도 행 전체를 눌러 선택할 수 있습니다.")
@@ -65,8 +65,8 @@ struct CheckboxExamplePage: View {
       Section("Items") {
         ForEach(FoundesignCheckboxState.allCases, id: \.self) { state in
           HStack(spacing: theme.spacing.small) {
-            FoundedCheckmark(state: state)
-            FoundedCheckLabel(title: state.description)
+            FoundesignCheckmark(state: state)
+            FoundesignCheckLabel(title: state.description)
           }
         }
       }

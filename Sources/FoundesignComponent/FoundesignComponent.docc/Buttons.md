@@ -27,7 +27,7 @@ struct ButtonExample: View {
 
 ## 두 버튼을 배치하기
 
-``AdaptiveButtonGroup``은 두 버튼의 이상적인 너비가 주어진 폭에 들어가면 가로로,
+``FoundesignAdaptiveButtonGroup``은 두 버튼의 이상적인 너비가 주어진 폭에 들어가면 가로로,
 그렇지 않으면 세로로 배치합니다. 가로는 secondary → primary, 세로는 primary → secondary 순서입니다.
 라벨을 `.frame(maxWidth: .infinity)`로 구성하면 버튼의 클릭 영역을 채우기 좋습니다.
 

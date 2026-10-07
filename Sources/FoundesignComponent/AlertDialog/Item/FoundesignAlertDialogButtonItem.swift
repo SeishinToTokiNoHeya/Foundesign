@@ -6,7 +6,7 @@ import SwiftUI
 /// `alertDialog`로 표시한 안에서는 닫힘 요청이 수락되면 액션을 실행합니다.
 /// 닫힘 전환이 진행 중일 때의 중복 요청은 실행하지 않습니다.
 /// 표시 컨텍스트 밖에서는 자동 닫기 없이 액션만 실행합니다.
-public struct AlertDialogButtonItem<Style>: View where Style: ButtonStyle {
+public struct FoundesignAlertDialogButtonItem<Style>: View where Style: ButtonStyle {
   @Environment(\.alertDialogPresentation) private var presentation
   private var isDisabled = false
   private let style: Style
@@ -30,7 +30,7 @@ public struct AlertDialogButtonItem<Style>: View where Style: ButtonStyle {
   ///   - label: 버튼 라벨입니다.
   ///   - action: 닫힘 요청 수락 직후 실행할 액션입니다.
   public init(
-    primary variant: AlertDialogButtonVariant,
+    primary variant: FoundesignAlertDialogButtonVariant,
     label: String,
     action: @escaping () -> Void
   ) where Style == FoundesignSolidButtonStyle {
@@ -45,7 +45,7 @@ public struct AlertDialogButtonItem<Style>: View where Style: ButtonStyle {
   ///   - label: 버튼 라벨입니다.
   ///   - action: 닫힘 요청 수락 직후 실행할 액션입니다.
   public init(
-    secondary variant: AlertDialogButtonVariant,
+    secondary variant: FoundesignAlertDialogButtonVariant,
     label: String,
     action: @escaping () -> Void
   ) where Style == FoundesignWeakButtonStyle {

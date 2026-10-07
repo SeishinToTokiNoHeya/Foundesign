@@ -62,11 +62,11 @@ public struct FoundesignWheelPickerContainer<Content>: View where Content: View 
         .padding(.horizontal, theme.spacing.large)
     }
     .overlay(alignment: .top) {
-      ContentFog(direction: .down)
+      FoundesignContentFog(direction: .down)
         .frame(height: metrics.fogHeight)
     }
     .overlay(alignment: .bottom) {
-      ContentFog(direction: .up)
+      FoundesignContentFog(direction: .up)
         .frame(height: metrics.fogHeight)
     }
     .background(theme.color.background.base)

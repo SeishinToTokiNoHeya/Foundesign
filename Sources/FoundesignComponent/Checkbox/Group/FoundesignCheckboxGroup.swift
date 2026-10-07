@@ -45,7 +45,7 @@ public struct FoundesignCheckboxGroup<Content, Header>: View where Content: View
           .checkboxWeight(.bold)
 
         HStack(alignment: .top, spacing: theme.spacing.small) {
-          FoundedCheckmark()
+          FoundesignCheckmark()
             .checkboxWeight(.bold)
             .hidden()
             .frame(height: theme.spacing.zero)
