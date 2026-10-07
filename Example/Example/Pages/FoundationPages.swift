@@ -11,6 +11,7 @@ enum ComponentPages: CaseIterable, Hashable, Identifiable, Sendable {
   case badge
   case buttonStyle
   case checkbox
+  case menu
   case `switch`
   case textField
   case wheelPicker
@@ -37,6 +38,7 @@ extension ComponentPages {
     case .badge: "Badge"
     case .buttonStyle: "Button Style"
     case .checkbox: "Checkbox"
+    case .menu: "Menu"
     case .switch: "Switch"
     case .textField: "Text Field"
     case .wheelPicker: "Wheel Picker"
@@ -62,6 +64,7 @@ extension View {
       case .badge: BadgeExamplePage()
       case .buttonStyle: ButtonStyleExamplePage()
       case .checkbox: CheckboxExamplePage()
+      case .menu: MenuExamplePage()
       case .switch: SwitchExamplePage()
       case .textField: TextFieldExamplePage()
       case .wheelPicker: WheelPickerExamplePage()
