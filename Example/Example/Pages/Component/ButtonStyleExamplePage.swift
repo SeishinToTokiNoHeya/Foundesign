@@ -3,9 +3,26 @@ import SwiftUI
 
 struct ButtonStyleExamplePage: View {
   @Environment(\.theme) private var theme
+  @State private var usesBrandTone = true
+  @State private var actionCount = 0
 
   var body: some View {
     List {
+      Section("Environment Overrides") {
+        Toggle("브랜드 톤", isOn: $usesBrandTone)
+        VStack(alignment: .leading, spacing: theme.spacing.medium) {
+          Button("상속한 크기와 톤") { actionCount += 1 }
+          Button("크기만 Small로 변경") { actionCount += 1 }
+            .buttonSize(.small)
+            .buttonStyle(.outline)
+          Button("전체 속성 교체") { actionCount += 1 }
+            .buttonProperty(.init(tone: .critical, size: .medium))
+        }
+        .buttonStyle(.solid)
+        .buttonProperty(.init(tone: usesBrandTone ? .brand : .neutral, size: .large))
+        Text("실행 횟수: \(actionCount)")
+      }
+
       Section("Outline") {
         outline
       }
@@ -18,6 +35,7 @@ struct ButtonStyleExamplePage: View {
         weak
       }
     }
+    .navigationTitle("Button Style")
   }
 
   private var outline: some View {
@@ -30,10 +48,14 @@ struct ButtonStyleExamplePage: View {
         ForEach(FoundesignButtonProperty.Size.allCases, id: \.hashValue) { size in
           HStack {
             button(size.description)
-              .buttonStyle(.outline(tone: tone, size: size))
+              .buttonStyle(.outline)
+              .buttonTone(tone)
+              .buttonSize(size)
 
             button(size.description + ".disabled")
-              .buttonStyle(.outline(tone: tone, size: size))
+              .buttonStyle(.outline)
+              .buttonTone(tone)
+              .buttonSize(size)
               .disabled(true)
           }
         }
@@ -51,10 +73,14 @@ struct ButtonStyleExamplePage: View {
         ForEach(FoundesignButtonProperty.Size.allCases, id: \.hashValue) { size in
           HStack {
             button(size.description)
-              .buttonStyle(.solid(tone: tone, size: size))
+              .buttonStyle(.solid)
+              .buttonTone(tone)
+              .buttonSize(size)
 
             button(size.description + ".disabled")
-              .buttonStyle(.solid(tone: tone, size: size))
+              .buttonStyle(.solid)
+              .buttonTone(tone)
+              .buttonSize(size)
               .disabled(true)
           }
         }
@@ -72,10 +98,14 @@ struct ButtonStyleExamplePage: View {
         ForEach(FoundesignButtonProperty.Size.allCases, id: \.hashValue) { size in
           HStack {
             button(size.description)
-              .buttonStyle(.weak(tone: tone, size: size))
+              .buttonStyle(.weak)
+              .buttonTone(tone)
+              .buttonSize(size)
 
             button(size.description + ".disabled")
-              .buttonStyle(.weak(tone: tone, size: size))
+              .buttonStyle(.weak)
+              .buttonTone(tone)
+              .buttonSize(size)
               .disabled(true)
           }
         }

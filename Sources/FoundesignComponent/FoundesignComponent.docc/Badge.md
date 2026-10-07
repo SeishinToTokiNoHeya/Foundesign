@@ -4,7 +4,7 @@
 
 ## Overview
 
-``FoundesignBadge``에 문자열과 ``FoundesignBadgeProperty``를 전달합니다.
+``FoundesignBadge``에 문자열을 전달하고, 외형은 `.badgeProperty` 또는 개별 modifier로 설정합니다.
 완료 상태처럼 의미가 있는 정보에는 톤을 선택하고, 필요한 경우 SF Symbol을 함께 표시합니다.
 
 ```swift
@@ -17,9 +17,9 @@ struct OrderStatus: View {
       Text("주문 내역")
       FoundesignBadge(
         title: "배송 완료",
-        systemImage: "checkmark",
-        property: .init(tone: .positive)
+        systemImage: "checkmark"
       )
+      .badgeTone(.positive)
     }
   }
 }
@@ -27,6 +27,8 @@ struct OrderStatus: View {
 
 반복되는 목록의 보조 정보에는 `.weak`, 강한 강조에는 `.solid`, 테두리 표현에는 `.outline`을
 선택합니다. 화면의 정보 밀도에 맞춰 `.medium` 또는 `.large` 크기를 사용합니다.
+상위 컨테이너에 `.badgeProperty`를 적용하고 항목에서 `.badgeTone`·`.badgeSize`·`.badgeVariant`로
+일부 속성만 바꿀 수 있습니다. 전체 속성을 교체하려면 ``FoundesignBadgeProperty``를 사용합니다.
 상호작용이 필요한 경우에는 <doc:Buttons>의 버튼을 사용합니다.
 
 라벨은 짧게 작성하고, 제한된 영역에서는 부모의 폭을 지정해 말줄임을 적용할 수 있습니다.

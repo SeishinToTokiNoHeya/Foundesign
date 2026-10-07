@@ -2,6 +2,7 @@ import Foundesign
 import SwiftUI
 
 struct AccordionExamplePage: View {
+  @Environment(\.theme) private var theme
   @State private var inlineFirstExpanded = true
   @State private var inlineSecondExpanded = false
   @State private var separatedFirstExpanded = false
@@ -9,6 +10,28 @@ struct AccordionExamplePage: View {
 
   var body: some View {
     List {
+      Section("Environment Overrides") {
+        FoundesignAccordion {
+          FoundesignAccordionItem(
+            isExpanded: $inlineFirstExpanded,
+            title: "상위 Large 크기 상속",
+            description: "크기와 스타일을 컨테이너에서 상속합니다.",
+            action: { inlineFirstExpanded.toggle() }
+          )
+
+          FoundesignAccordionItem(
+            isExpanded: $inlineSecondExpanded,
+            title: "이 항목만 Medium 크기",
+            description: "항목의 modifier로 크기를 바꾸고 다른 속성은 상속합니다.",
+            action: { inlineSecondExpanded.toggle() }
+          )
+          .accordionSize(.medium)
+          .padding(.vertical, theme.spacing.xSmall)
+        }
+        .accordionSize(.large)
+        .accordionStyle(.separated)
+      }
+
       Section("Inline Multiple") {
         FoundesignAccordion {
           FoundesignAccordionItem(
@@ -75,5 +98,6 @@ struct AccordionExamplePage: View {
         .accordionStyle(.separated)
       }
     }
+    .navigationTitle("Accordion")
   }
 }

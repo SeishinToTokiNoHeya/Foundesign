@@ -24,10 +24,10 @@ struct AlertExample: View {
         title: "계속할까요?",
         description: "확인하면 다음 단계로 진행합니다."
       ) {
-        FoundesignAlertDialogButtonItem(primary: .neutral, label: "확인") {
+        FoundesignAlertDialogButtonItem(label: "확인") {
           confirmed = true
         }
-        FoundesignAlertDialogButtonItem(secondary: .neutral, label: "취소") {}
+        FoundesignAlertDialogButtonItem(label: "취소") {}
       }
   }
 }
@@ -36,6 +36,9 @@ struct AlertExample: View {
 ## 버튼과 전환
 
 ``FoundesignAlertDialogFooterBuilder``는 primary 하나 또는 primary·secondary 순서의 두 버튼을 받습니다.
+첫 번째 버튼에는 `.solid`, 두 번째에는 `.weak` 스타일을 제공하며, 톤·크기를 지정하지 않으면
+Neutral·Large를 사용합니다. 각 버튼에 `.buttonTone`·`.buttonSize`·`.buttonStyle`을 적용할 수 있습니다.
+컨테이너에 지정하거나 상위에서 상속한 톤·크기도 그대로 반영합니다.
 표시 중 ``FoundesignAlertDialogButtonItem``을 누르면 닫힘을 요청한 뒤 액션을 실행하며,
 `onDismiss`는 닫힘 전환 완료 후 호출됩니다. 배경을 클릭해도 닫히지 않으며, Escape를 누르면 버튼 액션을 실행하지 않고 닫힙니다.
 컨테이너를 단독 배치하면 버튼 액션에서 필요한 표시 상태를 직접 처리해야 합니다.

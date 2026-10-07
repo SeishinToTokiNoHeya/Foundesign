@@ -16,6 +16,18 @@ struct AlertDialogExamplePage: View {
 
   var body: some View {
     List {
+      Section("Environment Overrides") {
+        FoundesignAlertDialogContainer(
+          title: "상속과 개별 설정",
+          description: "첫 버튼은 Small · Brand를 상속하고, 두 번째는 Neutral · Outline으로 바꿉니다."
+        ) {
+          FoundesignAlertDialogButtonItem(label: "상위 속성 상속") { actionCount += 1 }
+          FoundesignAlertDialogButtonItem(label: "Neutral · Outline으로 변경") { actionCount += 1 }
+            .buttonTone(.neutral)
+            .buttonStyle(.outline)
+        }
+        .buttonProperty(.init(tone: .brand, size: .small))
+      }
       alertDialogSection
       descriptionSection
     }
@@ -141,21 +153,23 @@ struct AlertDialogExamplePage: View {
   }
 
   private func primaryButton(
-    _ variant: FoundesignAlertDialogButtonVariant = .neutral,
+    _ tone: FoundesignButtonProperty.Tone = .neutral,
     label: String = "확인"
-  ) -> FoundesignAlertDialogButtonItem<FoundesignSolidButtonStyle> {
-    FoundesignAlertDialogButtonItem(primary: variant, label: label) {
+  ) -> some View {
+    FoundesignAlertDialogButtonItem(label: label) {
       actionCount += 1
     }
+    .buttonTone(tone)
   }
 
   private func secondaryButton(
-    _ variant: FoundesignAlertDialogButtonVariant = .neutral,
+    _ tone: FoundesignButtonProperty.Tone = .neutral,
     label: String = "닫기"
-  ) -> FoundesignAlertDialogButtonItem<FoundesignWeakButtonStyle> {
-    FoundesignAlertDialogButtonItem(secondary: variant, label: label) {
+  ) -> some View {
+    FoundesignAlertDialogButtonItem(label: label) {
       actionCount += 1
     }
+    .buttonTone(tone)
   }
 
   private func dismissDuringEntranceTapped() {
@@ -220,9 +234,9 @@ private struct AlertDialogSheetExample: View {
       description: "현재 프레젠테이션의 위에 다이얼로그를 표시합니다."
     ) {
       FoundesignAlertDialogButtonItem(
-        primary: .brand,
         label: "확인"
       ) {}
+      .buttonTone(.brand)
     }
   }
 }

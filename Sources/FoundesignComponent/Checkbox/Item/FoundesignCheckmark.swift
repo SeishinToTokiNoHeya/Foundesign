@@ -4,37 +4,31 @@ import SwiftUI
 /// 선택 상태를 표시하는 Item입니다. 선택 동작은 감싸는 컨트롤에서 처리합니다.
 public struct FoundesignCheckmark: View {
   @Environment(\.theme) private var theme
-  @Environment(\.checkboxProperty) private var inheritedProperty
+  @Environment(\.checkboxProperty) private var property
   @Environment(\.checkboxIsPressed) private var isPressed
   @Environment(\.isEnabled) private var isEnabled
 
   private let state: FoundesignCheckboxState
-  private let property: FoundesignCheckboxProperty?
 
   /// 선택 상태를 시각적으로 표시하는 체크마크를 만듭니다.
   /// - Parameters:
   ///   - state: 표시할 상태입니다. 기본값은 `.unselected`입니다.
-  ///   - property: 명시적 속성입니다. `nil`이면 환경 속성을 상속합니다.
-  public init(
-    state: FoundesignCheckboxState = .unselected,
-    property: FoundesignCheckboxProperty? = nil
-  ) {
+  public init(state: FoundesignCheckboxState = .unselected) {
     self.state = state
-    self.property = property
   }
 
   public var body: some View {
     FoundesignCheckmarkLayout {
       Text(" ")
         .typography(typography)
-        .fontWeight(resolvedProperty.weight.fontWeight)
+        .fontWeight(property.weight.fontWeight)
         .hidden()
     }
     .overlay {
       Image(systemName: state == .indeterminate ? "minus" : "checkmark")
         .typography(typography)
         .fontWeight(.bold)
-        .imageScale(resolvedProperty.shape == .outlined ? .small : .medium)
+        .imageScale(property.shape == .outlined ? .small : .medium)
         .foregroundStyle(foregroundColor)
         .opacity(showsIcon ? 1 : 0)
     }
@@ -47,12 +41,8 @@ public struct FoundesignCheckmark: View {
     .animation(pressAnimation, value: isPressed)
   }
 
-  private var resolvedProperty: FoundesignCheckboxProperty {
-    property ?? inheritedProperty
-  }
-
   private var typography: Typography {
-    resolvedProperty.size.typography(theme.typography)
+    property.size.typography(theme.typography)
   }
 
   private var shape: RoundedRectangle {
@@ -60,7 +50,7 @@ public struct FoundesignCheckmark: View {
   }
 
   private var showsIcon: Bool {
-    state != .unselected || resolvedProperty.shape == .ghost
+    state != .unselected || property.shape == .ghost
   }
 
   private var foregroundColor: Color {
@@ -68,9 +58,9 @@ public struct FoundesignCheckmark: View {
       return theme.color.foreground.disabled
     }
 
-    switch resolvedProperty.shape {
+    switch property.shape {
     case .outlined:
-      switch resolvedProperty.tone {
+      switch property.tone {
       case .neutral: return theme.color.foreground.inverse
       case .brand: return theme.color.foreground.brand.solid
       }
@@ -79,7 +69,7 @@ public struct FoundesignCheckmark: View {
       guard state != .unselected else {
         return theme.color.foreground.placeholder
       }
-      switch resolvedProperty.tone {
+      switch property.tone {
       case .neutral: return theme.color.foreground.primary
       case .brand: return theme.color.foreground.brand.normal
       }
@@ -87,7 +77,7 @@ public struct FoundesignCheckmark: View {
   }
 
   private var backgroundColor: Color {
-    switch resolvedProperty.shape {
+    switch property.shape {
     case .outlined:
       guard isEnabled else {
         return theme.color.background.disabled
@@ -104,14 +94,14 @@ public struct FoundesignCheckmark: View {
   }
 
   private var backgroundRole: ColorToken.Background.Role {
-    switch resolvedProperty.tone {
+    switch property.tone {
     case .neutral: theme.color.background.neutral
     case .brand: theme.color.background.brand
     }
   }
 
   private var borderColor: Color {
-    guard resolvedProperty.shape == .outlined else {
+    guard property.shape == .outlined else {
       return .clear
     }
     guard isEnabled else {

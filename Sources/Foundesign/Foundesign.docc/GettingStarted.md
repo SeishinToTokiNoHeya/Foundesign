@@ -29,7 +29,9 @@ struct CounterExample: View {
     VStack(spacing: 16) {
       Text("선택 횟수: \(count)")
       Button("추가") { count += 1 }
-        .buttonStyle(.solid(tone: .brand, size: .medium))
+        .buttonStyle(.solid)
+        .buttonTone(.brand)
+        .buttonSize(.medium)
     }
     .padding()
   }

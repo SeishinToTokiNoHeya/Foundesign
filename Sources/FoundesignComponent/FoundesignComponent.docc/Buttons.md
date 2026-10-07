@@ -18,13 +18,17 @@ struct ButtonExample: View {
 
   var body: some View {
     Button(saved ? "저장됨" : "저장") { saved = true }
-      .buttonStyle(.solid(tone: .brand, size: .medium))
+      .buttonStyle(.solid)
+      .buttonTone(.brand)
+      .buttonSize(.medium)
       .disabled(saved)
   }
 }
 ```
 
-톤과 크기는 ``FoundesignButtonProperty``로 묶어서 전달할 수도 있습니다.
+톤과 크기는 `.buttonProperty`에 ``FoundesignButtonProperty``로 묶어서 전달할 수도 있습니다.
+상위 컨테이너의 `.buttonStyle`·`.buttonTone`·`.buttonSize`를 상속하며, 항목에 가까운 설정이 우선합니다.
+개별 톤·크기 modifier는 다른 상속 속성을 유지합니다. Foundesign의 톤·크기 설정은 시스템 버튼 스타일에 적용하지 않습니다.
 비활성 상태는 표준 `.disabled`로 설정합니다.
 
 ## 두 버튼을 배치하기

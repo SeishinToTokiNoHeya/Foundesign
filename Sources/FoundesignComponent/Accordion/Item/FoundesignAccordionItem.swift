@@ -16,7 +16,6 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
   private let description: String
   private let action: () -> Void
   private let icon: Icon?
-  private var isDisabled = false
 
   /// 선택적인 아이콘과 펼침 상태를 사용하는 항목을 만듭니다.
   /// - Parameters:
@@ -79,7 +78,7 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
           Image(systemName: "chevron.down")
             .renderingMode(.template)
             .foregroundStyle(
-              isItemEnabled ? theme.color.foreground.secondary : theme.color.foreground.disabled
+              isEnabled ? theme.color.foreground.secondary : theme.color.foreground.disabled
             )
             .scaleEffect(0.8)
             .rotationEffect(isExpanded ? .radians(.pi) : .zero)
@@ -91,7 +90,7 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
         Text(description)
           .typography(size.description(theme.typography))
           .foregroundStyle(
-            isItemEnabled ? theme.color.foreground.secondary : theme.color.foreground.disabled
+            isEnabled ? theme.color.foreground.secondary : theme.color.foreground.disabled
           )
           .frame(maxWidth: .infinity, alignment: .leading)
           .multilineTextAlignment(.leading)
@@ -108,24 +107,10 @@ public struct FoundesignAccordionItem<Icon>: View where Icon: View {
       }
     }
     .animation(expansionAnimation, value: isExpanded)
-    .disabled(isDisabled)
-  }
-
-  /// 항목의 상호작용을 비활성화합니다.
-  /// - Parameter disabled: `true`이면 액션을 실행하지 않습니다. 상위 비활성 상태도 적용됩니다.
-  /// - Returns: 설정이 반영된 항목입니다.
-  public func disabled(_ disabled: Bool) -> Self {
-    var item = self
-    item.isDisabled = disabled
-    return item
-  }
-
-  private var isItemEnabled: Bool {
-    isEnabled && !isDisabled
   }
 
   private var borderColor: Color {
-    isItemEnabled ? theme.color.border.base : theme.color.border.disabled
+    isEnabled ? theme.color.border.base : theme.color.border.disabled
   }
 
   private var expansionAnimation: Animation {

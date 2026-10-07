@@ -7,7 +7,7 @@ import SwiftUI
 /// 열의 전체 너비가 화면보다 크면 가로로 스크롤할 수 있습니다. 사용 예제는 <doc:WheelPicker>를 참고하세요.
 public struct FoundesignWheelPickerContainer<Content>: View where Content: View {
   @Environment(\.theme) private var theme
-  @Environment(\.foundesignWheelPickerSize) private var size
+  @Environment(\.wheelPickerSize) private var size
 
   @State private var labelHeight: CGFloat = 0
 

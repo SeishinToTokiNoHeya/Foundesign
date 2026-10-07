@@ -30,7 +30,9 @@ import SwiftUI
 struct SaveButton: View {
   var body: some View {
     Button("저장") {}
-      .buttonStyle(.solid(tone: .brand, size: .medium))
+      .buttonStyle(.solid)
+      .buttonTone(.brand)
+      .buttonSize(.medium)
   }
 }
 ```

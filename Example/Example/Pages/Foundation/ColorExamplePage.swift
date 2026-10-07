@@ -135,11 +135,14 @@ struct ColorExamplePage: View {
   @ViewBuilder
   private var themeButtons: some View {
     Button("외곽선") {}
-      .buttonStyle(.outline(size: .small))
+      .buttonStyle(.outline)
+      .buttonSize(.small)
     Button("옅은 배경") {}
-      .buttonStyle(.weak(size: .small))
+      .buttonStyle(.weak)
+      .buttonSize(.small)
     Button("진한 배경") {}
-      .buttonStyle(.solid(size: .small))
+      .buttonStyle(.solid)
+      .buttonSize(.small)
   }
 
   private func paletteRow(_ title: String, _ scale: ColorPalette.Scale) -> some View {
