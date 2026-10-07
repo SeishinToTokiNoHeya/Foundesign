@@ -33,6 +33,11 @@ Button은 표준 `.buttonStyle`로 표현 방식을 선택하고 `.buttonTone`·
 
 ### 펼침과 선택
 
+- <doc:Menu>
+- ``FoundesignMenuItem``
+- ``FoundesignMenuGroup``
+- ``FoundesignMenuDivider``
+- ``FoundesignMenuProperty``
 - <doc:Accordion>
 - ``FoundesignAccordion``
 - ``FoundesignAccordionItem``
