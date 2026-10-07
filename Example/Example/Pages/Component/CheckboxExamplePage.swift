@@ -14,6 +14,23 @@ struct CheckboxExamplePage: View {
 
   var body: some View {
     List {
+      Section("Environment Overrides") {
+        FoundesignCheckboxGroup {
+          FoundesignCheckbox(title: "하위 항목", isOn: $terms)
+        } header: {
+          FoundesignCheckbox(title: "상위 Regular를 상속하는 헤더", isOn: $terms)
+        }
+        .checkboxWeight(.regular)
+        FoundesignCheckboxGroup {
+          FoundesignCheckbox(title: "상속: Large · Brand · Bold", isOn: $isSelected)
+          FoundesignCheckbox(title: "크기만 Medium으로 변경", isOn: $isSelected)
+            .checkboxSize(.medium)
+          FoundesignCheckbox(title: "전체 속성을 기본값으로 교체", isOn: $isSelected)
+            .checkboxProperty(.init())
+        }
+        .checkboxProperty(.init(size: .large, weight: .bold, tone: .brand))
+      }
+
       ForEach(FoundesignCheckboxProperty.Shape.allCases, id: \.self) { shape in
         Section(shape.description) {
           ForEach(FoundesignCheckboxProperty.Tone.allCases, id: \.self) { tone in

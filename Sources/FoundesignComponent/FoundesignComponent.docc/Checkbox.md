@@ -30,7 +30,9 @@ struct CheckboxExample: View {
 ```
 
 ``FoundesignCheckboxGroup``은 배치와 공통 속성을 제공합니다. 그룹 자체가 선택값을 저장하지 않습니다.
-개별 항목에 명시한 `property`는 환경에서 상속한 속성보다 우선합니다.
+항목의 `.checkboxSize`·`.checkboxTone` 등은 해당 속성만 바꾸고 나머지는 상속합니다.
+전체 속성을 교체하려면 `.checkboxProperty`를 사용합니다.
+그룹 헤더는 굵기를 지정하지 않았을 때만 Bold로 표시하며, 상위 `.checkboxWeight`도 그대로 상속합니다.
 빈 `sources`는 미선택 상태로 비활성화됩니다.
 
 실행 예제: [전체 화면 코드](https://github.com/SeishinToTokiNoHeya/Foundesign/blob/develop/Example/Example/Pages/Component/CheckboxExamplePage.swift).
