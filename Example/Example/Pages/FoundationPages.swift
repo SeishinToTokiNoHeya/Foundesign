@@ -8,6 +8,7 @@ enum FoundationPages: CaseIterable, Hashable, Identifiable, Sendable {
 enum ComponentPages: CaseIterable, Hashable, Identifiable, Sendable {
   case accordion
   case alertDialog
+  case badge
   case buttonStyle
   case checkbox
   case textField
@@ -32,6 +33,7 @@ extension ComponentPages {
     switch self {
     case .accordion: "Accordion"
     case .alertDialog: "Alert Dialog"
+    case .badge: "Badge"
     case .buttonStyle: "Button Style"
     case .checkbox: "Checkbox"
     case .textField: "Text Field"
@@ -55,6 +57,7 @@ extension View {
       switch page {
       case .accordion: AccordionExamplePage()
       case .alertDialog: AlertDialogExamplePage()
+      case .badge: BadgeExamplePage()
       case .buttonStyle: ButtonStyleExamplePage()
       case .checkbox: CheckboxExamplePage()
       case .textField: TextFieldExamplePage()
