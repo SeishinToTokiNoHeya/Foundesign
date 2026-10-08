@@ -9,6 +9,7 @@ enum ComponentPages: CaseIterable, Hashable, Identifiable, Sendable {
   case accordion
   case alertDialog
   case badge
+  case bottomSheet
   case buttonStyle
   case checkbox
   case menu
@@ -36,6 +37,7 @@ extension ComponentPages {
     case .accordion: "Accordion"
     case .alertDialog: "Alert Dialog"
     case .badge: "Badge"
+    case .bottomSheet: "Bottom Sheet"
     case .buttonStyle: "Button Style"
     case .checkbox: "Checkbox"
     case .menu: "Menu"
@@ -62,6 +64,7 @@ extension View {
       case .accordion: AccordionExamplePage()
       case .alertDialog: AlertDialogExamplePage()
       case .badge: BadgeExamplePage()
+      case .bottomSheet: BottomSheetExamplePage()
       case .buttonStyle: ButtonStyleExamplePage()
       case .checkbox: CheckboxExamplePage()
       case .menu: MenuExamplePage()

@@ -4,7 +4,7 @@ import SwiftUI
 import UIKit
 
 final class FoundesignAlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioningDelegate {
-  weak var anchor: FoundesignAlertDialogUIKitAnchor?
+  weak var anchor: FoundesignModalUIKitAnchor?
 
   private var binding: Binding<Bool> = .constant(false)
   private var onDismiss: (() -> Void)?
@@ -15,7 +15,7 @@ final class FoundesignAlertDialogUIKitCoordinator: NSObject, UIViewControllerTra
   private var updateScheduled = false
   private var previousFocus: Any?
 
-  lazy var presentation = FoundesignAlertDialogPresentation(
+  lazy var presentation = FoundesignModalPresentation(
     present: { [weak self] in
       self?.present() ?? false
     },

@@ -1,11 +1,7 @@
 import SwiftUI
 
-extension EnvironmentValues {
-  @Entry var alertDialogPresentation: FoundesignAlertDialogPresentation? = nil
-}
-
 @MainActor
-final class FoundesignAlertDialogPresentation {
+final class FoundesignModalPresentation {
   enum Phase: Hashable, Sendable {
     case idle
     case presenting

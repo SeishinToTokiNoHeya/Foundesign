@@ -61,6 +61,10 @@ Button은 표준 `.buttonStyle`로 표현 방식을 선택하고 `.buttonTone`·
 
 ### 다이얼로그
 
+- <doc:BottomSheet>
+- ``FoundesignBottomSheetContainer``
+- ``FoundesignBottomSheetSnapPoint``
+
 - <doc:AlertDialog>
 - ``FoundesignAlertDialogContainer``
 - ``FoundesignAlertDialogButtonItem``
