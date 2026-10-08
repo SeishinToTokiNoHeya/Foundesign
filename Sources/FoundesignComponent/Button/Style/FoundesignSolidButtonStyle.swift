@@ -57,11 +57,12 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
   }
 
   private func backgroundColor(isPressed: Bool) -> Color {
-    let state: ColorToken.State = switch property.tone {
-    case .brand: theme.color.background.brand.solid
-    case .neutral: theme.color.background.neutral.solid
-    case .critical: theme.color.background.critical.solid
-    }
+    let state: ColorToken.State =
+      switch property.tone {
+      case .brand: theme.color.background.brand.solid
+      case .neutral: theme.color.background.neutral.solid
+      case .critical: theme.color.background.critical.solid
+      }
     guard isEnabled else { return state.disabled }
     return isPressed ? state.pressed : state.normal
   }

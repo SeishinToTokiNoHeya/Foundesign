@@ -57,11 +57,12 @@ public struct FoundesignWeakButtonStyle: ButtonStyle {
   }
 
   private func backgroundColor(isPressed: Bool) -> Color {
-    let state: ColorToken.State = switch property.tone {
-    case .brand: theme.color.background.brand.weak
-    case .neutral: theme.color.background.neutral.weak
-    case .critical: theme.color.background.critical.weak
-    }
+    let state: ColorToken.State =
+      switch property.tone {
+      case .brand: theme.color.background.brand.weak
+      case .neutral: theme.color.background.neutral.weak
+      case .critical: theme.color.background.critical.weak
+      }
     guard isEnabled else { return state.disabled }
     return isPressed ? state.pressed : state.normal
   }

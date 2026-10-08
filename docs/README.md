@@ -15,6 +15,7 @@
 
 - [현재 개발 단계와 리뷰 정책](guides/development-policy.md)
 - [모듈 구조](architecture.md)
+- [Swift 코드 컨벤션](guides/coding-conventions.md)
 - [디자인 컴포넌트 개발](guides/components.md)
 - [Foundation·토큰 개발](guides/foundation.md)
 - [코드 주석과 DocC 작성](guides/documentation.md)

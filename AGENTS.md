@@ -12,6 +12,7 @@ SwiftUI 디자인 시스템 패키지입니다. 이 파일은 공통 규칙과 �
 | 작업 대상 | 읽을 안내 |
 | --- | --- |
 | 모듈 구조, `Package.swift` | [아키텍처](docs/architecture.md) |
+| Swift 코드 작성·포맷·네이밍 | [코드 컨벤션](docs/guides/coding-conventions.md) |
 | `Sources/FoundesignFoundation/` | [Foundation 안내](Sources/FoundesignFoundation/AGENTS.md) |
 | `Sources/FoundesignComponent/` | [Component 안내](Sources/FoundesignComponent/AGENTS.md) |
 | `Sources/Foundesign/` | [진입 모듈 안내](Sources/Foundesign/AGENTS.md) |

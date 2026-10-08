@@ -168,8 +168,10 @@ struct CheckboxExamplePage: View {
         .disabled(true)
       FoundesignCheckbox(title: "Selected · Disabled", isOn: .constant(true))
         .disabled(true)
-      FoundesignCheckbox(title: "Indeterminate · Disabled", sources: [.constant(true), .constant(false)])
-        .disabled(true)
+      FoundesignCheckbox(
+        title: "Indeterminate · Disabled", sources: [.constant(true), .constant(false)]
+      )
+      .disabled(true)
     }
     .checkboxShape(shape)
     .checkboxTone(tone)

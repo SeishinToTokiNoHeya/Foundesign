@@ -71,7 +71,7 @@ struct AccordionExamplePage: View {
             isExpanded: .constant(true),
             title: "첫 번째 항목",
             description: "이 항목은 변경 할 수 없습니다.",
-            action: { }
+            action: {}
           )
           .disabled(true)
 

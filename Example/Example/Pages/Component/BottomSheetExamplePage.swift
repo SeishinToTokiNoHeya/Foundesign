@@ -78,7 +78,9 @@ private struct BottomSheetExampleStage: View {
           .buttonStyle(.solid)
           .buttonTone(.brand)
         } secondary: {
-          Button { isPresented = false } label: {
+          Button {
+            isPresented = false
+          } label: {
             Text("취소").frame(maxWidth: .infinity)
           }
           .buttonStyle(.outline)

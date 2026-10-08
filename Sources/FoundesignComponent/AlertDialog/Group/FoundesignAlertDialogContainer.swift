@@ -35,7 +35,8 @@ import SwiftUI
 ///   }
 /// }
 /// ```
-public struct FoundesignAlertDialogContainer<Header, Content, Footer>: View where Header: View, Content: View, Footer: View {
+public struct FoundesignAlertDialogContainer<Header, Content, Footer>: View
+where Header: View, Content: View, Footer: View {
   @Environment(\.theme) private var theme
 
   private let header: Header
@@ -96,7 +97,8 @@ public struct FoundesignAlertDialogContainer<Header, Content, Footer>: View wher
     title: String,
     description: String,
     @FoundesignAlertDialogFooterBuilder footer: () -> Footer
-  ) where Header == FoundesignAlertDialogTitleItem, Content == FoundesignAlertDialogDescriptionItem {
+  )
+  where Header == FoundesignAlertDialogTitleItem, Content == FoundesignAlertDialogDescriptionItem {
     self.header = FoundesignAlertDialogTitleItem(title: title)
     self.content = FoundesignAlertDialogDescriptionItem(description: description)
     self.footer = footer()

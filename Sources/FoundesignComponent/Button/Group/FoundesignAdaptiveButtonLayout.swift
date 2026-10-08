@@ -165,8 +165,8 @@ extension FoundesignAdaptiveButtonLayout {
       at: .init(
         x: bounds.minX,
         y: bounds.minY
-        + primarySize.height
-        + spacing
+          + primarySize.height
+          + spacing
       ),
       anchor: .topLeading,
       proposal: proposal

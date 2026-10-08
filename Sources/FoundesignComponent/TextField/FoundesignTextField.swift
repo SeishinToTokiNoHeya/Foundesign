@@ -133,7 +133,9 @@ public struct FoundesignTextField<HeaderTrailing: View, Leading: View, Trailing:
             EmptyView()
           case .required:
             Text("*")
-              .foregroundStyle(isEnabled ? theme.color.foreground.critical.normal : theme.color.foreground.disabled)
+              .foregroundStyle(
+                isEnabled ? theme.color.foreground.critical.normal : theme.color.foreground.disabled
+              )
           case .optional(let text):
             Text(text)
               .typography(theme.typography.body.small)
@@ -212,12 +214,15 @@ public struct FoundesignTextField<HeaderTrailing: View, Leading: View, Trailing:
       if let maximumLength {
         HStack(spacing: theme.spacing.zero) {
           Text(text.count.formatted())
-            .foregroundStyle(isInvalid ? errorColor : text.isEmpty ? secondaryColor : foregroundColor)
+            .foregroundStyle(
+              isInvalid ? errorColor : text.isEmpty ? secondaryColor : foregroundColor)
           Text(" / \(maximumLength.formatted())")
             .foregroundStyle(isInvalid ? errorColor : secondaryColor)
         }
         .fixedSize()
-        .frame(maxWidth: displayedError == nil && nonempty(helperText) == nil ? .infinity : nil, alignment: .trailing)
+        .frame(
+          maxWidth: displayedError == nil && nonempty(helperText) == nil ? .infinity : nil,
+          alignment: .trailing)
       }
     }
     .typography(theme.typography.body.small)

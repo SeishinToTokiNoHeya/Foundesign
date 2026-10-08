@@ -16,7 +16,9 @@ struct FoundesignSwitchToggleStyle: ToggleStyle {
         configuration.label
           .typography(property.size.typography(theme.typography))
           .fontWeight(.medium)
-          .foregroundStyle(isEnabled ? theme.color.foreground.primary : theme.color.foreground.disabled)
+          .foregroundStyle(
+            isEnabled ? theme.color.foreground.primary : theme.color.foreground.disabled
+          )
           .multilineTextAlignment(.leading)
           .fixedSize(horizontal: false, vertical: true)
       }

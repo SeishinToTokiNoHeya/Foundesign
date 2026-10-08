@@ -27,7 +27,8 @@ enum FoundesignDatePickerDate {
     parts.hour = 12
     guard
       let firstDay = calendar.date(from: parts),
-      let days = calendar.range(of: .day, in: .month, for: firstDay) else {
+      let days = calendar.range(of: .day, in: .month, for: firstDay)
+    else {
       return date
     }
     parts.day = min(days.upperBound - 1, max(days.lowerBound, requestedDay))
