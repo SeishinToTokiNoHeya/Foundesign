@@ -267,14 +267,22 @@ public struct FoundesignTextField<HeaderTrailing: View, Leading: View, Trailing:
   }
 
   private var backgroundColor: Color {
-    guard property.style == .outline else { return theme.color.background.transparent.normal }
+    guard property.style == .outline else {
+      return theme.color.background.transparent.normal
+    }
     return canEdit ? theme.color.background.base : theme.color.background.disabled
   }
 
   private var borderColor: Color {
-    if !isEnabled { return theme.color.border.disabled }
-    if isInvalid { return theme.color.border.critical.solid }
-    if canEdit && inputFocus.wrappedValue { return theme.color.border.focus }
+    if !isEnabled {
+      return theme.color.border.disabled
+    }
+    if isInvalid {
+      return theme.color.border.critical.solid
+    }
+    if canEdit && inputFocus.wrappedValue {
+      return theme.color.border.focus
+    }
     return theme.color.border.base
   }
 

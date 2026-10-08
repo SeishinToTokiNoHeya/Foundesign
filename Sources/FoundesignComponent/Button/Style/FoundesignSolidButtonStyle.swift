@@ -62,7 +62,9 @@ public struct FoundesignSolidButtonStyle: ButtonStyle {
     case .neutral: theme.color.background.neutral.solid
     case .critical: theme.color.background.critical.solid
     }
-    guard isEnabled else { return state.disabled }
+    guard isEnabled else {
+      return state.disabled
+    }
     return isPressed ? state.pressed : state.normal
   }
 

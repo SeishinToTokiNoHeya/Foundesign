@@ -34,8 +34,8 @@ extension View {
     overlayPreferenceValue(FoundesignMenuPreference<ID>.self) { anchors in
       GeometryReader { proxy in
         if let id = selection.wrappedValue,
-          let anchor = anchors.last(where: { $0.id == id }),
-          anchor.isEnabled
+           let anchor = anchors.last(where: { $0.id == id }),
+           anchor.isEnabled
         {
           FoundesignMenuOverlay(
             anchor: proxy[anchor.bounds],
@@ -47,7 +47,9 @@ extension View {
           .id(id)
           .onDisappear {
             // 다른 앵커로 전환한 직후 이전 메뉴의 종료가 새 선택을 지우지 않도록 합니다.
-            if selection.wrappedValue == id { selection.wrappedValue = nil }
+            if selection.wrappedValue == id {
+              selection.wrappedValue = nil
+            }
           }
         }
       }

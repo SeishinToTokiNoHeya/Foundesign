@@ -8,6 +8,7 @@ Swift 소스와 Markdown·DocC의 Swift 예제에 같은 규칙을 적용합니�
 
 - 인접 코드의 네이밍과 구조를 따르되, 기존 공백 배치가 아래 규칙과 다르면 변경한 코드에는 아래 규칙을 적용합니다.
 - 들여쓰기는 공백 2칸을 사용합니다. `switch`와 `case`는 같은 깊이에 두고 case 본문은 한 단계 들여씁니다.
+- 범위 연산자 `...`, `..<` 양옆에는 공백을 넣지 않습니다. 예: `2000...2100`, `0..<count`.
 
 ## 뷰와 제어문 사이 빈 줄
 
@@ -30,6 +31,21 @@ VStack(alignment: .leading, spacing: theme.spacing.xSmall) {
   }
 }
 .frame(maxWidth: .infinity, alignment: .leading)
+```
+
+## 조건문 본문 줄바꿈
+
+`guard`, `guard let`, `if`, `if let`, `else`의 본문은 짧아도 중괄호 안에 한 줄로 압축하지 않습니다.
+SwiftFormat의 `wrapConditionalBodies` 규칙으로 본문과 닫는 중괄호를 각각 다음 줄에 배치합니다.
+
+```swift
+guard isTrue else {
+  return nil
+}
+
+if let description {
+  Text(description)
+}
 ```
 
 ## switch case 배치
@@ -63,6 +79,6 @@ var name: String {
 
 ## 자동 포맷과 수동 확인
 
-SwiftFormat은 들여쓰기·공백·줄 끝과 이미 구분한 case 간격을 정리합니다.
+SwiftFormat은 들여쓰기·공백·줄 끝과 이미 구분한 case 간격을 정리하고, 한 줄 조건문 본문을 펼칩니다.
 형제 뷰·제어문 앞의 빈 줄, case 본문 줄바꿈과 짧은 반환 표현식의 구분은 작성자가 직접 확인합니다.
 포맷 검사 통과만으로 이 수동 항목까지 검증되었다고 판단하지 않습니다.

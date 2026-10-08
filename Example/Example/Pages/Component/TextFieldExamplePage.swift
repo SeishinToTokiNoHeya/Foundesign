@@ -142,7 +142,9 @@ struct TextFieldExamplePage: View {
   }
 
   private var nameError: String? {
-    guard hasSubmitted else { return nil }
+    guard hasSubmitted else {
+      return nil
+    }
     if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
       return "닉네임을 입력해 주세요"
     }

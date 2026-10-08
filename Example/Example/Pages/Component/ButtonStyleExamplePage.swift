@@ -115,7 +115,6 @@ struct ButtonStyleExamplePage: View {
 
   private func button(_ title: String) -> some View {
     Button {
-
     } label: {
       Text(title)
     }

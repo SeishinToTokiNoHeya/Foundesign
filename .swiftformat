@@ -6,8 +6,10 @@
 
 # 문법·API를 바꾸는 기본 규칙 대신 공백과 배치 규칙만 적용합니다.
 --rules indent,linebreaks,linebreakAtEndOfFile,trailingSpace,consecutiveSpaces,consecutiveBlankLines,blankLinesAtStartOfScope,blankLinesAtEndOfScope,consistentSwitchCaseSpacing,spaceAroundBraces,spaceAroundBrackets,spaceAroundGenerics,spaceAroundOperators,spaceAroundParens,spaceInsideBraces,spaceInsideBrackets,spaceInsideGenerics,spaceInsideParens
+--enable wrapConditionalBodies
 --indent 2
 --tab-width 2
 --indent-case false
+--ranges no-space
 --linebreaks lf
 --trim-whitespace always

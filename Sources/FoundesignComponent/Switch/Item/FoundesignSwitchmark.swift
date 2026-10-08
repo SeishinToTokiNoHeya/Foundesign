@@ -66,12 +66,16 @@ public struct FoundesignSwitchmark: View {
     } else {
       colors = theme.color.background.neutral.weak
     }
-    guard isEnabled else { return colors.disabled }
+    guard isEnabled else {
+      return colors.disabled
+    }
     return isPressed ? colors.pressed : colors.normal
   }
 
   private var thumbColor: Color {
-    guard isEnabled else { return theme.color.foreground.disabled }
+    guard isEnabled else {
+      return theme.color.foreground.disabled
+    }
     switch property.tone {
     case .neutral: return theme.color.foreground.inverse
     case .brand: return theme.color.foreground.brand.solid
