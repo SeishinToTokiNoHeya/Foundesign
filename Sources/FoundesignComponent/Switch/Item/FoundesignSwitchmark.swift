@@ -35,7 +35,9 @@ public struct FoundesignSwitchmark: View {
       // 상태 전환은 0.2초, 눌림은 인접 선택 컴포넌트와 같은 스프링을 사용합니다.
       .animation(.easeInOut(duration: 0.2), value: isOn)
       .animation(.easeInOut(duration: 0.15), value: isEnabled)
-      .animation(.interactiveSpring(response: 0.22, dampingFraction: 0.75, blendDuration: 0.1), value: isPressed)
+      .animation(
+        .interactiveSpring(response: 0.22, dampingFraction: 0.75, blendDuration: 0.1),
+        value: isPressed)
   }
 
   private var size: FoundesignSwitchProperty.Size {
@@ -59,10 +61,11 @@ public struct FoundesignSwitchmark: View {
   private var trackColor: Color {
     let colors: ColorToken.State
     if isOn {
-      colors = switch property.tone {
-      case .neutral: theme.color.background.neutral.solid
-      case .brand: theme.color.background.brand.solid
-      }
+      colors =
+        switch property.tone {
+        case .neutral: theme.color.background.neutral.solid
+        case .brand: theme.color.background.brand.solid
+        }
     } else {
       colors = theme.color.background.neutral.weak
     }

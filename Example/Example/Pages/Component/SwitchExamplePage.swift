@@ -78,7 +78,9 @@ struct SwitchExamplePage: View {
       }
 
       Section("Switchmark Composition") {
-        Button { automaticUpdates.toggle() } label: {
+        Button {
+          automaticUpdates.toggle()
+        } label: {
           HStack(spacing: theme.spacing.small) {
             FoundesignSwitchLabel(title: "자동 업데이트")
             Spacer()

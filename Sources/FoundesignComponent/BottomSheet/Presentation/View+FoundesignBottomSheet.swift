@@ -61,9 +61,12 @@ private struct FoundesignBottomSheetStage<Content: View>: View {
     GeometryReader { proxy in
       let totalHeight = proxy.size.height + proxy.safeAreaInsets.bottom
       let maximum = max(0, min(totalHeight * 0.9, proxy.size.height))
-      let heights = Array(Set(snapPoints.compactMap {
-        $0.resolved(in: totalHeight, maximum: maximum)
-      })).sorted()
+      let heights = Array(
+        Set(
+          snapPoints.compactMap {
+            $0.resolved(in: totalHeight, maximum: maximum)
+          })
+      ).sorted()
       let height = heights.isEmpty ? nil : min(selectedHeight ?? heights[0], maximum)
 
       ZStack(alignment: .bottom) {
@@ -84,7 +87,10 @@ private struct FoundesignBottomSheetStage<Content: View>: View {
         .frame(maxWidth: 480)
         .frame(height: height.map { max(0, min(maximum, $0 - drag)) })
         .frame(maxHeight: maximum, alignment: .bottom)
-        .offset(y: presentation.isVisible ? (heights.isEmpty && isDismissible ? max(0, drag) : 0) : totalHeight)
+        .offset(
+          y: presentation.isVisible
+            ? (heights.isEmpty && isDismissible ? max(0, drag) : 0) : totalHeight
+        )
         .padding(.bottom, -proxy.safeAreaInsets.bottom)
         .onChange(of: heights) { _, newValue in
           selectedHeight = newValue.min(by: {

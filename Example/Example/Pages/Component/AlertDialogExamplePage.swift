@@ -101,7 +101,7 @@ struct AlertDialogExamplePage: View {
     ) {
       primaryButton(.brand)
         .disabled(true)
-      
+
       secondaryButton()
     }
     .sheet(isPresented: $showsSheet) {

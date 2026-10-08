@@ -101,7 +101,9 @@ public struct FoundesignBottomSheetContainer<Content: View, Footer: View>: View 
     .padding(.bottom, theme.spacing.large)
     .overlay(alignment: .topTrailing) {
       if showsCloseButton {
-        Button { isPresented?.wrappedValue = false } label: {
+        Button {
+          isPresented?.wrappedValue = false
+        } label: {
           Image(systemName: "xmark")
             .frame(width: 40, height: 40)
             .contentShape(.rect)

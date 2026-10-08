@@ -6,20 +6,20 @@ let package = Package(
   name: "Foundesign",
   platforms: [
     .iOS(.v17),
-    .macOS(.v14)
+    .macOS(.v14),
   ],
   products: [
     .library(
       name: "Foundesign",
       targets: ["Foundesign"]
-    ),
+    )
   ],
   targets: [
     .target(
       name: "Foundesign",
       dependencies: [
         "FoundesignComponent",
-        "FoundesignFoundation"
+        "FoundesignFoundation",
       ],
       exclude: ["AGENTS.md"]
     ),

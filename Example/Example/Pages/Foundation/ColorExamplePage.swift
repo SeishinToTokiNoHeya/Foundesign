@@ -19,9 +19,11 @@ struct ColorExamplePage: View {
       }
 
       Section("팔레트") {
-        swatches("회색", colors: ColorPalette.GrayScale.Step.allCases.map {
-          Swatch("\($0.rawValue)", palette.gray[$0])
-        })
+        swatches(
+          "회색",
+          colors: ColorPalette.GrayScale.Step.allCases.map {
+            Swatch("\($0.rawValue)", palette.gray[$0])
+          })
         paletteRow("주황색", palette.orange)
         paletteRow("파란색", palette.blue)
         paletteRow("초록색", palette.green)
@@ -39,37 +41,43 @@ struct ColorExamplePage: View {
       }
 
       Section("전경") {
-        swatches("공통", colors: [
-          Swatch("기본", theme.color.foreground.primary),
-          Swatch("보조", theme.color.foreground.secondary),
-          Swatch("부가", theme.color.foreground.tertiary),
-          Swatch("반전", theme.color.foreground.inverse),
-          Swatch("비활성", theme.color.foreground.disabled),
-          Swatch("입력 안내", theme.color.foreground.placeholder),
-          Swatch("링크", theme.color.foreground.link)
-        ])
+        swatches(
+          "공통",
+          colors: [
+            Swatch("기본", theme.color.foreground.primary),
+            Swatch("보조", theme.color.foreground.secondary),
+            Swatch("부가", theme.color.foreground.tertiary),
+            Swatch("반전", theme.color.foreground.inverse),
+            Swatch("비활성", theme.color.foreground.disabled),
+            Swatch("입력 안내", theme.color.foreground.placeholder),
+            Swatch("링크", theme.color.foreground.link),
+          ])
       }
 
       Section("배경") {
-        swatches("공통", colors: [
-          Swatch("기본", theme.color.background.base),
-          Swatch("은은한", theme.color.background.subtle),
-          Swatch("띄운 배경", theme.color.background.elevated),
-          Swatch("반전", theme.color.background.inverse),
-          Swatch("덮개", theme.color.background.overlay),
-          Swatch("비활성", theme.color.background.disabled)
-        ])
+        swatches(
+          "공통",
+          colors: [
+            Swatch("기본", theme.color.background.base),
+            Swatch("은은한", theme.color.background.subtle),
+            Swatch("띄운 배경", theme.color.background.elevated),
+            Swatch("반전", theme.color.background.inverse),
+            Swatch("덮개", theme.color.background.overlay),
+            Swatch("비활성", theme.color.background.disabled),
+          ])
         stateRow("투명 배경", theme.color.background.transparent)
       }
 
       Section("테두리") {
-        swatches("공통", colors: [
-          Swatch("기본", theme.color.border.base),
-          Swatch("은은한", theme.color.border.subtle),
-          Swatch("강조", theme.color.border.strong),
-          Swatch("포커스", theme.color.border.focus),
-          Swatch("비활성", theme.color.border.disabled)
-        ], borderOnly: true)
+        swatches(
+          "공통",
+          colors: [
+            Swatch("기본", theme.color.border.base),
+            Swatch("은은한", theme.color.border.subtle),
+            Swatch("강조", theme.color.border.strong),
+            Swatch("포커스", theme.color.border.focus),
+            Swatch("비활성", theme.color.border.disabled),
+          ], borderOnly: true)
       }
 
       Section("역할별 색상") {
@@ -146,9 +154,11 @@ struct ColorExamplePage: View {
   }
 
   private func paletteRow(_ title: String, _ scale: ColorPalette.Scale) -> some View {
-    swatches(title, colors: ColorPalette.Scale.Step.allCases.map {
-      Swatch("\($0.rawValue)", scale[$0])
-    })
+    swatches(
+      title,
+      colors: ColorPalette.Scale.Step.allCases.map {
+        Swatch("\($0.rawValue)", scale[$0])
+      })
   }
 
   private func rolePreview(
@@ -162,15 +172,19 @@ struct ColorExamplePage: View {
         .typography(theme.typography.title.small)
         .foregroundStyle(theme.color.foreground.primary)
 
-      swatches("전경", colors: [
-        Swatch("일반", foreground.normal),
-        Swatch("강조", foreground.strong),
-        Swatch("진한 배경 위", foreground.solid)
-      ])
-      swatches("테두리", colors: [
-        Swatch("옅은", border.weak),
-        Swatch("진한", border.solid)
-      ], borderOnly: true)
+      swatches(
+        "전경",
+        colors: [
+          Swatch("일반", foreground.normal),
+          Swatch("강조", foreground.strong),
+          Swatch("진한 배경 위", foreground.solid),
+        ])
+      swatches(
+        "테두리",
+        colors: [
+          Swatch("옅은", border.weak),
+          Swatch("진한", border.solid),
+        ], borderOnly: true)
       stateRow("진한 배경", background.solid)
       stateRow("옅은 배경", background.weak)
     }
@@ -178,12 +192,14 @@ struct ColorExamplePage: View {
   }
 
   private func stateRow(_ title: String, _ state: ColorToken.State) -> some View {
-    swatches(title, colors: [
-      Swatch("일반", state.normal),
-      Swatch("눌림", state.pressed),
-      Swatch("포커스", state.focused),
-      Swatch("비활성", state.disabled)
-    ])
+    swatches(
+      title,
+      colors: [
+        Swatch("일반", state.normal),
+        Swatch("눌림", state.pressed),
+        Swatch("포커스", state.focused),
+        Swatch("비활성", state.disabled),
+      ])
   }
 
   private func swatches(_ title: String, colors: [Swatch], borderOnly: Bool = false) -> some View {
