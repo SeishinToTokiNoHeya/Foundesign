@@ -1,10 +1,14 @@
 import FoundesignFoundation
 import SwiftUI
 
+extension EnvironmentValues {
+  @Entry var alertDialogPresentation: FoundesignModalPresentation? = nil
+}
+
 struct FoundesignAlertDialogHostedContent<Content: View>: View {
   let content: Content
   let environment: EnvironmentValues
-  let presentation: FoundesignAlertDialogPresentation
+  let presentation: FoundesignModalPresentation
 
   var body: some View {
     content

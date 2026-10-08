@@ -12,8 +12,8 @@ struct FoundesignAlertDialogPresenter<Content: View>: NSViewControllerRepresenta
     FoundesignAlertDialogAppKitCoordinator()
   }
 
-  func makeNSViewController(context: Context) -> FoundesignAlertDialogAppKitAnchor {
-    let anchor = FoundesignAlertDialogAppKitAnchor()
+  func makeNSViewController(context: Context) -> FoundesignModalAppKitAnchor {
+    let anchor = FoundesignModalAppKitAnchor()
     context.coordinator.anchor = anchor
     anchor.attachmentChanged = { [weak coordinator = context.coordinator] in
       coordinator?.scheduleUpdate()
@@ -21,7 +21,7 @@ struct FoundesignAlertDialogPresenter<Content: View>: NSViewControllerRepresenta
     return anchor
   }
 
-  func updateNSViewController(_ controller: FoundesignAlertDialogAppKitAnchor, context: Context) {
+  func updateNSViewController(_ controller: FoundesignModalAppKitAnchor, context: Context) {
     context.coordinator.update(
       binding: $isPresented,
       onDismiss: onDismiss,
@@ -31,7 +31,7 @@ struct FoundesignAlertDialogPresenter<Content: View>: NSViewControllerRepresenta
   }
 
   static func dismantleNSViewController(
-    _ controller: FoundesignAlertDialogAppKitAnchor,
+    _ controller: FoundesignModalAppKitAnchor,
     coordinator: FoundesignAlertDialogAppKitCoordinator
   ) {
     controller.attachmentChanged = nil

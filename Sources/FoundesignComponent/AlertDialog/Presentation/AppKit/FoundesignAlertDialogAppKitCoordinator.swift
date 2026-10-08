@@ -5,7 +5,7 @@ import SwiftUI
 
 @MainActor
 final class FoundesignAlertDialogAppKitCoordinator {
-  weak var anchor: FoundesignAlertDialogAppKitAnchor?
+  weak var anchor: FoundesignModalAppKitAnchor?
   
   private var binding: Binding<Bool> = .constant(false)
   private var onDismiss: (() -> Void)?
@@ -16,7 +16,7 @@ final class FoundesignAlertDialogAppKitCoordinator {
   private var animator: FoundesignAlertDialogAppKitAnimator?
   private var updateScheduled = false
 
-  lazy var presentation = FoundesignAlertDialogPresentation(
+  lazy var presentation = FoundesignModalPresentation(
     present: { [weak self] in
       self?.present() ?? false
     },
