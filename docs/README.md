@@ -14,6 +14,7 @@
 ## 개발 가이드
 
 - [현재 개발 단계와 리뷰 정책](guides/development-policy.md)
+- [코드 컨벤션](guides/code-conventions.md)
 - [모듈 구조](architecture.md)
 - [디자인 컴포넌트 개발](guides/components.md)
 - [Foundation·토큰 개발](guides/foundation.md)

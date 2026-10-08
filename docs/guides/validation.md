@@ -8,6 +8,7 @@
 | 변경 | 확인할 내용 |
 | --- | --- |
 | 개발 안내·Markdown 링크 | 변경한 링크의 대상과 삭제·이동한 경로를 여전히 가리키는 링크 |
+| Swift 코드·문서의 Swift 예제·포맷 설정 | SwiftFormat 적용·검사와 코드 컨벤션의 수동 확인 항목 |
 | 공개 API 주석·`.docc` | 해당 문서의 DocC 빌드와 진단 |
 | Swift 구현·`Package.swift` | 패키지 빌드, 영향받는 플랫폼의 Example 빌드 |
 | UI 동작·예제 화면 | Example 실행 후 변경 기능의 조작 결과 |
@@ -18,6 +19,31 @@
 문구·링크 수정에 앱 전체 빌드나 모든 플랫폼 검증을 추가하지 않습니다.
 일회성 확인이 필요하면 임시 위치에서 수행하고 테스트·검사 스크립트로 저장소에 남기지 않습니다.
 파일을 삭제·이동하면 `rg` 등으로 이전 경로를 검색하고, 변경한 상대 링크가 실제 파일을 가리키는지 확인합니다.
+
+## 코드 컨벤션 검증
+
+[SwiftFormat](https://github.com/nicklockwood/SwiftFormat)을 사용합니다.
+설정의 최소 버전은 0.58.1이며, 설치가 필요하면 `brew install swiftformat`으로 설치하고
+`swiftformat --version`으로 버전을 확인합니다. 별도 래퍼 스크립트나 패키지 의존성은 사용하지 않습니다.
+
+작업을 마치기 전에 변경한 파일 경로를 지정해 아래 순서로 실행합니다.
+다음 명령의 `<변경한 파일 경로...>`는 실제 Swift·Markdown 파일 경로로 바꿉니다.
+
+```sh
+swiftformat <변경한 파일 경로...> --config .swiftformat --cache ignore
+swiftformat <변경한 파일 경로...> --config .swiftformat --cache ignore --lint
+git diff --check
+```
+
+설정의 `--markdown-files lenient`는 Markdown·DocC의 Swift 코드 블록에도 포맷을 적용하며,
+생략된 코드가 있는 블록의 파싱 실패는 건너뛸 수 있습니다. 문서 예제는 직접 확인합니다.
+[코드 컨벤션](code-conventions.md#자동-포맷과-수동-확인)의 수동 확인 항목과 실제 diff를 검토하고,
+동작·공개 API·예제의 의미가 바뀌지 않았는지 확인합니다.
+
+기존 파일 전체를 일괄 포맷하지 않고 작업에서 변경한 파일부터 적용합니다.
+포맷 설정을 바꾸면 임시 Swift·Markdown 예제로 2칸 들여쓰기, 의도한 빈 줄 보존,
+여러 줄 case와 짧은 한 줄 반환 case의 공존을 확인합니다. 임시 예제는 저장소에 남기지 않습니다.
+도구를 실행할 수 없으면 수동 확인 결과와 실행하지 못한 이유를 기록합니다.
 
 ## 패키지 빌드
 
