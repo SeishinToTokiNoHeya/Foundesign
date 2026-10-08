@@ -42,6 +42,12 @@ struct SortMenu: View {
 선택할 수 없는 항목에는 표준 `.disabled(true)`를 사용합니다. 액션에서 선택값을 갱신하면
 다음에 열었을 때 `isSelected`가 체크 표시로 반영됩니다.
 
+메뉴 버튼을 비활성화할 때는 `.menuAnchor(id: Anchor.sort).disabled(isDisabled)` 순서로
+적용합니다. 공통 상위 컨테이너에 `.disabled(isDisabled)`를 적용해도 됩니다.
+열린 메뉴에서 이 값이 `true`로 바뀌면 메뉴가 닫히고 `selectedMenu`가 `nil`로 정리됩니다.
+반대 순서인 `.disabled(isDisabled).menuAnchor(id: Anchor.sort)`는 버튼만 비활성화하므로
+메뉴 닫힘에 사용하지 않습니다. 앵커의 환경 상속 조건은 `menuAnchor(id:)`의 주석을 참고하세요.
+
 ## 여러 버튼과 콘텐츠 구성
 
 하나의 표시 영역에서 여러 버튼을 사용하려면 같은 enum 타입의 서로 다른 식별자를 등록합니다.

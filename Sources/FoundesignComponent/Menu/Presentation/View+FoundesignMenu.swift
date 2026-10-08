@@ -5,6 +5,9 @@ extension View {
   ///
   /// 버튼 액션에서 `menuScope(selection:content:)`의 선택값을 이 식별자로 바꾸면 메뉴가 열립니다.
   /// 가장 가까운 동일 식별자 타입의 표시 영역으로 위치와 활성 상태만 전달합니다.
+  /// 앵커와 버튼을 함께 비활성화하려면 `.menuAnchor(id: id).disabled(flag)` 순서로 적용하거나
+  /// 공통 상위 뷰에 `.disabled(flag)`를 적용합니다. 이 modifier보다 먼저 적용한 `.disabled`나
+  /// 앵커 내부 뷰의 비활성 상태는 앵커에 전달되지 않습니다.
   /// - Parameter id: 표시 영역 안에서 고유한 식별자입니다. 중복되면 마지막 뷰의 위치를 사용합니다.
   public func menuAnchor<ID: Hashable>(id: ID) -> some View {
     modifier(FoundesignMenuAnchor(id: id))
@@ -18,7 +21,7 @@ extension View {
   ///
   /// 기본적으로 아래쪽에 열고 공간이 부족하면 반전합니다. 양쪽 모두 부족하면 더 넓은 쪽에서
   /// 스크롤하며 높이는 최대 480pt입니다. 버튼과 경계 여백은 테마의 `spacing.small`입니다.
-  /// `FoundesignMenuItem` 선택·바깥 영역 클릭·표시 중인 앵커 제거 또는 비활성화 시
+  /// `FoundesignMenuItem` 선택·바깥 영역 클릭·표시 중인 앵커 제거 또는 앵커 환경의 비활성화 시
   /// 선택값을 `nil`로 바꿉니다. 일반 `Button`은 액션에서 선택값을 직접 비워 닫습니다.
   /// 일치하는 활성 앵커가 없으면 메뉴를 만들지 않습니다. 사용 흐름은 <doc:Menu>를 참고하세요.
   /// - Parameters:

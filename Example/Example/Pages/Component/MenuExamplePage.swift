@@ -22,6 +22,7 @@ struct MenuExamplePage: View {
         Section("상태") {
           Text("선택: \(selection)")
           Text("마지막 액션: \(lastAction)")
+          Text("열린 메뉴: \(selectedMenu == nil ? "없음" : "있음")")
         }
         Section("설정") {
           Picker("크기", selection: $property.size) {
@@ -83,6 +84,9 @@ struct MenuExamplePage: View {
     }
     FoundesignMenuDivider()
     FoundesignMenuGroup(title: "작업") {
+      Button("메뉴 버튼 비활성화") {
+        isDisabled = true
+      }
       FoundesignMenuItem(title: "공유하기", systemImage: "square.and.arrow.up", badge: "NEW") {
         lastAction = "공유하기"
       }
