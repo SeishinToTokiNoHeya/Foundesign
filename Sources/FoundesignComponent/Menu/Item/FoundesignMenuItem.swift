@@ -82,7 +82,9 @@ public struct FoundesignMenuItem: View {
   }
 
   private var foregroundColor: Color {
-    guard isEnabled else { return theme.color.foreground.disabled }
+    guard isEnabled else {
+      return theme.color.foreground.disabled
+    }
     return role == .destructive
       ? theme.color.foreground.critical.strong : theme.color.foreground.primary
   }

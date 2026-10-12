@@ -97,7 +97,9 @@ public struct FoundesignBadge: View {
   }
 
   private var foregroundColor: Color {
-    guard isEnabled else { return theme.color.foreground.disabled }
+    guard isEnabled else {
+      return theme.color.foreground.disabled
+    }
     let foreground = theme.color.foreground
     let role: ColorToken.Foreground.Role
     switch property.tone {
@@ -113,7 +115,9 @@ public struct FoundesignBadge: View {
   }
 
   private var borderColor: Color {
-    guard isEnabled else { return theme.color.border.disabled }
+    guard isEnabled else {
+      return theme.color.border.disabled
+    }
     let border = theme.color.border
     switch property.tone {
     case .neutral: return border.base

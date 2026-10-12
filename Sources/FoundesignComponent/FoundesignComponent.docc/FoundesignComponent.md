@@ -22,6 +22,7 @@ Button은 표준 `.buttonStyle`로 표현 방식을 선택하고 `.buttonTone`·
 - ``FoundesignSolidButtonStyle``
 - ``FoundesignOutlineButtonStyle``
 - ``FoundesignWeakButtonStyle``
+- ``FoundesignGhostButtonStyle``
 - ``FoundesignButtonProperty``
 - ``FoundesignAdaptiveButtonGroup``
 

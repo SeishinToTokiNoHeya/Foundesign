@@ -70,7 +70,9 @@ public struct FoundesignOutlineButtonStyle: ButtonStyle {
 
   private func backgroundColor(isPressed: Bool) -> Color {
     let state = theme.color.background.transparent
-    guard isEnabled else { return state.disabled }
+    guard isEnabled else {
+      return state.disabled
+    }
     return isPressed ? state.pressed : state.normal
   }
 

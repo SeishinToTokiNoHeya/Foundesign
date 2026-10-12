@@ -78,12 +78,14 @@
     func update(_ newValue: FoundesignWheelPickerScroll<Content>) {
       let shouldAlign =
         configuration.values != newValue.values
-        || configuration.selectionIndex != newValue.selectionIndex
-        || configuration.metrics != newValue.metrics
-        || configuration.isEnabled != newValue.isEnabled
+          || configuration.selectionIndex != newValue.selectionIndex
+          || configuration.metrics != newValue.metrics
+          || configuration.isEnabled != newValue.isEnabled
       configuration = newValue
       host.rootView = newValue.content
-      guard isViewLoaded else { return }
+      guard isViewLoaded else {
+        return
+      }
       isUpdating = true
       scrollView.isPickerEnabled = newValue.isEnabled
       layoutContent()

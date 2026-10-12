@@ -22,13 +22,16 @@ struct AlertDialogExamplePage: View {
           description: "첫 버튼은 Small · Brand를 상속하고, 두 번째는 Neutral · Outline으로 바꿉니다."
         ) {
           FoundesignAlertDialogButtonItem(label: "상위 속성 상속") { actionCount += 1 }
+
           FoundesignAlertDialogButtonItem(label: "Neutral · Outline으로 변경") { actionCount += 1 }
             .buttonTone(.neutral)
             .buttonStyle(.outline)
         }
         .buttonProperty(.init(tone: .brand, size: .small))
       }
+
       alertDialogSection
+
       descriptionSection
     }
     .navigationTitle("AlertDialog")
@@ -49,6 +52,7 @@ struct AlertDialogExamplePage: View {
       onDismiss: { dismissCount += 1 }
     ) {
       primaryButton(.critical, label: "삭제")
+
       secondaryButton()
     }
     .alertDialog(
@@ -58,6 +62,7 @@ struct AlertDialogExamplePage: View {
       onDismiss: { dismissCount += 1 }
     ) {
       primaryButton(.brand, label: "이 내용을 확인했습니다")
+
       secondaryButton()
     }
     .alertDialog(
@@ -88,6 +93,7 @@ struct AlertDialogExamplePage: View {
         }
       ) {
         primaryButton()
+
         secondaryButton()
       }
     }
@@ -115,27 +121,35 @@ struct AlertDialogExamplePage: View {
       Button("Primary 하나") {
         showsSingle = true
       }
+
       Button("Primary · Secondary") {
         showsDouble = true
       }
+
       Button("긴 내용 · Footer 고정 · 두 버튼") {
         showsLong = true
       }
+
       Button("긴 내용 · Footer 고정 · 버튼 하나") {
         showsLongSingle = true
       }
+
       Button("Container 직접 전달 · 두 버튼") {
         showsCustom = true
       }
+
       Button("비활성 Primary") {
         showsDisabled = true
       }
+
       Button("Sheet 내부에서 표시") {
         showsSheet = true
       }
+
       Button("등장 중 해제") {
         dismissDuringEntranceTapped()
       }
+
       Button("해제 중 다시 표시") {
         reopenDuringDismissalTapped()
       }
@@ -145,7 +159,9 @@ struct AlertDialogExamplePage: View {
   private var descriptionSection: some View {
     Section("호출 횟수") {
       Text("액션: \(actionCount)")
+
       Text("닫힘 완료: \(dismissCount)")
+
       Button("횟수 초기화") {
         resetCountsTapped()
       }
@@ -220,9 +236,11 @@ private struct AlertDialogSheetExample: View {
   var body: some View {
     VStack(spacing: 24) {
       Text("Sheet 내부")
+
       Button("AlertDialog 표시") {
         showsDialog = true
       }
+
       Button("Sheet 닫기") {
         dismiss()
       }
@@ -236,7 +254,7 @@ private struct AlertDialogSheetExample: View {
       FoundesignAlertDialogButtonItem(
         label: "확인"
       ) {}
-      .buttonTone(.brand)
+        .buttonTone(.brand)
     }
   }
 }

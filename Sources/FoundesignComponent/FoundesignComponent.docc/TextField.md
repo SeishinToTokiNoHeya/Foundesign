@@ -38,7 +38,9 @@ struct NicknameForm: View {
   }
 
   private var errorMessage: String? {
-    guard hasSubmitted else { return nil }
+    guard hasSubmitted else {
+      return nil
+    }
     if nickname.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
       return "닉네임을 입력해 주세요"
     }

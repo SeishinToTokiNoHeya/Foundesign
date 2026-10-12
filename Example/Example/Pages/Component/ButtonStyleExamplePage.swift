@@ -10,17 +10,25 @@ struct ButtonStyleExamplePage: View {
     List {
       Section("Environment Overrides") {
         Toggle("브랜드 톤", isOn: $usesBrandTone)
+
         VStack(alignment: .leading, spacing: theme.spacing.medium) {
           Button("상속한 크기와 톤") { actionCount += 1 }
+
           Button("크기만 Small로 변경") { actionCount += 1 }
             .buttonSize(.small)
             .buttonStyle(.outline)
+
           Button("전체 속성 교체") { actionCount += 1 }
             .buttonProperty(.init(tone: .critical, size: .medium))
         }
         .buttonStyle(.solid)
         .buttonProperty(.init(tone: usesBrandTone ? .brand : .neutral, size: .large))
+
         Text("실행 횟수: \(actionCount)")
+      }
+
+      Section("Ghost") {
+        ghost
       }
 
       Section("Outline") {
@@ -36,6 +44,37 @@ struct ButtonStyleExamplePage: View {
       }
     }
     .navigationTitle("Button Style")
+  }
+
+  private var ghost: some View {
+    VStack(alignment: .leading, spacing: theme.spacing.medium) {
+      ForEach(FoundesignButtonProperty.Tone.allCases, id: \.self) { tone in
+        Button(tone.description) { actionCount += 1 }
+          .buttonTone(tone)
+      }
+
+      ForEach(FoundesignButtonProperty.Size.allCases, id: \.self) { size in
+        Button(size.description) { actionCount += 1 }
+          .buttonSize(size)
+      }
+
+      Button("비활성 버튼") { actionCount += 1 }
+        .disabled(true)
+
+      Button { actionCount += 1 } label: {
+        Label("아이콘과 함께 표시", systemImage: "plus")
+      }
+
+      Button { actionCount += 1 } label: {
+        Text("좁은 폭에서 여러 줄로 표시되는 긴 버튼 라벨")
+          .frame(maxWidth: .infinity)
+      }
+      .frame(width: 180)
+
+      Text("실행 횟수: \(actionCount)")
+    }
+    .buttonStyle(.ghost)
+    .buttonTone(usesBrandTone ? .brand : .neutral)
   }
 
   private var outline: some View {
@@ -115,7 +154,6 @@ struct ButtonStyleExamplePage: View {
 
   private func button(_ title: String) -> some View {
     Button {
-
     } label: {
       Text(title)
     }

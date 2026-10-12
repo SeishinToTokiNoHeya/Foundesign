@@ -55,7 +55,9 @@
       }
       updateScheduled = true
       DispatchQueue.main.async { [weak self] in
-        guard let self else { return }
+        guard let self else {
+          return
+        }
         self.updateScheduled = false
         let isReady = self.anchor?.viewIfLoaded?.window != nil
         self.presentation.update(
@@ -108,7 +110,9 @@
       self.dialog = dialog
       self.presenter = controller
       controller.present(dialog, animated: true) { [weak self, weak dialog] in
-        guard let self, let dialog, self.dialog === dialog else { return }
+        guard let self, let dialog, self.dialog === dialog else {
+          return
+        }
         self.presentation.presentationDidFinish()
       }
       return true
@@ -121,13 +125,17 @@
       }
       dialog.view.isUserInteractionEnabled = false
       dialog.dismiss(animated: true) { [self] in
-        guard self.dialog === dialog else { return }
+        guard self.dialog === dialog else {
+          return
+        }
         dismissalDidFinish()
       }
     }
 
     func dismissalDidFinish() {
-      guard dialog != nil else { return }
+      guard dialog != nil else {
+        return
+      }
       dialog?.owner = nil
       dialog = nil
       presenter = nil
@@ -337,7 +345,9 @@
         view.transform = self.isPresenting ? .identity : offset
       } completion: { _ in
         let completed = !context.transitionWasCancelled
-        if !self.isPresenting, completed { view.removeFromSuperview() }
+        if !self.isPresenting, completed {
+          view.removeFromSuperview()
+        }
         view.transform = .identity
         context.completeTransition(completed)
       }

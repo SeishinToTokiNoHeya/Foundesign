@@ -43,7 +43,9 @@
     }
 
     func scheduleUpdate() {
-      guard !updateScheduled else { return }
+      guard !updateScheduled else {
+        return
+      }
       updateScheduled = true
       DispatchQueue.main.async { [weak self] in
         guard let self else {
@@ -82,11 +84,15 @@
         parentWindow: window,
         environment: environment,
         presentationFinished: { [weak self, weak dialog] in
-          guard let self, let dialog, self.dialog === dialog else { return }
+          guard let self, let dialog, self.dialog === dialog else {
+            return
+          }
           self.presentation.presentationDidFinish()
         },
         dismissalFinished: { [weak self, weak dialog] in
-          guard let self, let dialog, self.dialog === dialog else { return }
+          guard let self, let dialog, self.dialog === dialog else {
+            return
+          }
           self.dismissalDidFinish()
         },
         dismissRequested: { [weak self] in
@@ -330,7 +336,9 @@
     }
 
     private var parentContentFrame: CGRect {
-      guard let parentWindow, let content = parentWindow.contentView else { return .zero }
+      guard let parentWindow, let content = parentWindow.contentView else {
+        return .zero
+      }
       return parentWindow.convertToScreen(content.convert(content.bounds, to: nil))
     }
 
@@ -342,7 +350,9 @@
         .scrollWheel, .keyDown, .keyUp, .flagsChanged,
       ]) { [weak self] event in
         let blocked = MainActor.assumeIsolated {
-          guard let self, let parentWindow = self.parentWindow else { return false }
+          guard let self, let parentWindow = self.parentWindow else {
+            return false
+          }
           return event.window === parentWindow
         }
         return blocked ? nil : event
@@ -358,7 +368,9 @@
             queue: .main
           ) { [weak self] _ in
             MainActor.assumeIsolated {
-              guard let self else { return }
+              guard let self else {
+                return
+              }
               self.panel?.setFrame(self.parentContentFrame, display: true)
             }
           })
@@ -374,7 +386,9 @@
     }
 
     private func tearDown() {
-      if let eventMonitor { NSEvent.removeMonitor(eventMonitor) }
+      if let eventMonitor {
+        NSEvent.removeMonitor(eventMonitor)
+      }
       eventMonitor = nil
       observers.forEach(NotificationCenter.default.removeObserver)
       observers.removeAll()
