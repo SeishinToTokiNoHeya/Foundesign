@@ -43,6 +43,67 @@ private struct ThemedMessage: View {
 팔레트로 테마를 생성할 때 브랜드 스케일을 생략하면 팔레트의 파란색 스케일을 사용합니다.
 색상 외 토큰까지 바꾸려면 테마의 프로퍼티를 수정하거나 토큰을 받는 initializer를 사용합니다.
 
+## 기준색으로 Brand 생성하기
+
+공통 HEX 하나로 두 모드의 Brand 테마를 생성할 수 있습니다.
+
+```swift
+import Foundesign
+import SwiftUI
+
+struct BrandThemeExample: View {
+  private let theme = FoundesignTheme(brandHex: 0xFF6600)
+
+  var body: some View {
+    Button("계속") {}
+      .buttonStyle(.solid)
+      .environment(\.theme, theme)
+  }
+}
+```
+
+모드별 기준색이 있으면 `FoundesignTheme(lightHex: 0xFF6600, darkHex: 0xA78DF0)`를 사용합니다.
+고정 `Color`나 Asset은 `FoundesignTheme(brandColor: Color("BrandSeed"))`로 전달합니다.
+`BrandSeed`는 호출하는 앱의 Asset에 등록한 색상 이름입니다.
+두 `Color`를 직접 지정하려면 `Color.adaptive(light:dark:)`로 조합해 전달합니다.
+
+현재 뷰의 환경 조건을 반영하려면 환경을 함께 전달합니다.
+
+```swift
+import Foundesign
+import SwiftUI
+
+struct AssetBrandThemeExample: View {
+  @Environment(\.self) private var environment
+
+  var body: some View {
+    Button("계속") {}
+      .buttonStyle(.solid)
+      .environment(
+        \.theme,
+        FoundesignTheme(brandColor: Color("BrandSeed"), environment: environment)
+      )
+  }
+}
+```
+
+생성한 단계 일부를 조정할 때는 스케일을 먼저 만든 뒤 기존 테마 initializer에 전달합니다.
+
+```swift
+import Foundesign
+import SwiftUI
+
+func customizedBrandTheme() -> FoundesignTheme {
+  var brand = ColorPalette.Scale(lightHex: 0xFF6600, darkHex: 0xA78DF0)
+  brand[.`700`] = .adaptive(light: 0xE14D00, dark: 0xA78DF0)
+  return FoundesignTheme(brand: brand)
+}
+```
+
+입력 해석과 생성 규칙은 ``ColorPalette/Scale/init(seedHex:)``,
+``ColorPalette/Scale/init(lightHex:darkHex:)``, ``ColorPalette/Scale/init(seed:environment:)``를 참고하세요.
+색상 예제의 **Brand 생성**에서 입력 방식과 기준색을 바꾸며 두 모드의 팔레트와 버튼을 비교할 수 있습니다.
+
 ## 값을 바꿀 때
 
 간격과 모서리 값은 포인트 단위입니다. 특정 컴포넌트의 픽셀 크기를 모든 토큰에 일괄 적용하기보다
