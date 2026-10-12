@@ -40,7 +40,12 @@ public struct FoundesignBottomSheetContainer<Content: View, Footer: View>: View 
     description: String? = nil,
     @ViewBuilder content: () -> Content
   ) where Footer == EmptyView {
-    self.init(title: title, description: description, content: content, footer: { EmptyView() })
+    self.init(
+      title: title,
+      description: description,
+      content: content,
+      footer: { EmptyView() }
+    )
   }
 
   public var body: some View {
@@ -50,18 +55,25 @@ public struct FoundesignBottomSheetContainer<Content: View, Footer: View>: View 
           .fixedSize(horizontal: false, vertical: true)
           .layoutPriority(1)
       }
+
       ViewThatFits(in: .vertical) {
-        paddedContent.fixedSize(horizontal: false, vertical: true)
+        paddedContent
+          .fixedSize(horizontal: false, vertical: true)
+
         ScrollView {
           paddedContent
         }
-        // 짧은 스크롤 영역에서도 본문 대부분을 가리지 않는 하단 페이드입니다.
         .contentFog(.bottom, fraction: 0.08)
       }
+
       if Footer.self != EmptyView.self {
         footer
-          .transformEnvironment(\.buttonTone) { $0 = $0 ?? .neutral }
-          .transformEnvironment(\.buttonSize) { $0 = $0 ?? .large }
+          .transformEnvironment(\.buttonTone) {
+            $0 = $0 ?? .neutral
+          }
+          .transformEnvironment(\.buttonSize) {
+            $0 = $0 ?? .large
+          }
           .padding(.horizontal, theme.spacing.xLarge)
           .padding(.top, theme.spacing.medium)
           .padding(.bottom, theme.spacing.large)
@@ -79,13 +91,17 @@ public struct FoundesignBottomSheetContainer<Content: View, Footer: View>: View 
   }
 
   private var header: some View {
-    VStack(alignment: alignment == .center ? .center : .leading, spacing: theme.spacing.small) {
+    VStack(
+      alignment: alignment == .center ? .center : .leading,
+      spacing: theme.spacing.small
+    ) {
       if let title {
         Text(title)
           .typography(theme.typography.title.medium)
           .foregroundStyle(theme.color.foreground.primary)
           .padding(.trailing, showsCloseButton ? 40 : 0)
           .padding(.leading, showsCloseButton && alignment == .center ? 40 : 0)
+
         if let description {
           Text(description)
             .typography(theme.typography.body.large)
@@ -96,23 +112,29 @@ public struct FoundesignBottomSheetContainer<Content: View, Footer: View>: View 
     .multilineTextAlignment(alignment == .center ? .center : .leading)
     .frame(maxWidth: .infinity, alignment: alignment == .center ? .center : .leading)
     .frame(minHeight: showsCloseButton ? 40 : 0)
+    .padding(.top, theme.spacing.small)
     .padding(.horizontal, theme.spacing.xLarge)
-    .padding(.top, theme.spacing.large)
-    .padding(.bottom, theme.spacing.large)
+    .padding(.bottom, theme.spacing.small)
     .overlay(alignment: .topTrailing) {
       if showsCloseButton {
-        Button {
-          isPresented?.wrappedValue = false
-        } label: {
-          Image(systemName: "xmark")
-            .frame(width: 40, height: 40)
-            .contentShape(.rect)
-        }
-        .buttonStyle(.plain)
-        .foregroundStyle(theme.color.foreground.primary)
-        .padding(.trailing, theme.spacing.large)
-        .padding(.top, theme.spacing.large)
+        closeButton
+          .foregroundStyle(theme.color.foreground.primary)
+          .padding(.trailing, theme.spacing.large)
       }
     }
+  }
+
+  private var closeButton: some View {
+    Button {
+      isPresented?.wrappedValue = false
+    } label: {
+      Image(systemName: "xmark")
+        .renderingMode(.template)
+        .foregroundStyle(theme.color.foreground.primary)
+        .frame(width: 20, height: 20)
+        .padding(10)
+        .background(theme.color.background.neutral.weak.normal, in: .circle)
+    }
+    .buttonStyle(.plain)
   }
 }

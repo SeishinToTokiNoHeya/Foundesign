@@ -37,7 +37,9 @@ extension View {
           isDismissible: isDismissible,
           content: content()
         )
-        .onAppear { presentation.didAppear() }
+        .onAppear {
+          presentation.didAppear()
+        }
       }
       .frame(width: 0, height: 0)
     }
@@ -65,7 +67,8 @@ private struct FoundesignBottomSheetStage<Content: View>: View {
         Set(
           snapPoints.compactMap {
             $0.resolved(in: totalHeight, maximum: maximum)
-          })
+          }
+        )
       ).sorted()
       let height = heights.isEmpty ? nil : min(selectedHeight ?? heights[0], maximum)
 
@@ -75,13 +78,17 @@ private struct FoundesignBottomSheetStage<Content: View>: View {
           .ignoresSafeArea()
           .contentShape(.rect)
           .onTapGesture {
-            if isDismissible { isPresented = false }
+            if isDismissible {
+              isPresented = false
+            }
           }
+
         ViewThatFits(in: .vertical) {
           if heights.isEmpty {
             card(heights: heights, height: height, bottomInset: proxy.safeAreaInsets.bottom)
               .fixedSize(horizontal: false, vertical: true)
           }
+
           card(heights: heights, height: height, bottomInset: proxy.safeAreaInsets.bottom)
         }
         .frame(maxWidth: 480)
@@ -89,7 +96,7 @@ private struct FoundesignBottomSheetStage<Content: View>: View {
         .frame(maxHeight: maximum, alignment: .bottom)
         .offset(
           y: presentation.isVisible
-            ? (heights.isEmpty && isDismissible ? max(0, drag) : 0) : totalHeight
+          ? (heights.isEmpty && isDismissible ? max(0, drag) : 0) : totalHeight
         )
         .padding(.bottom, -proxy.safeAreaInsets.bottom)
         .onChange(of: heights) { _, newValue in
@@ -105,15 +112,9 @@ private struct FoundesignBottomSheetStage<Content: View>: View {
   private func card(heights: [CGFloat], height: CGFloat?, bottomInset: CGFloat) -> some View {
     VStack(spacing: theme.spacing.zero) {
       if showsHandle || !heights.isEmpty {
-        // 44pt의 드래그 영역에 36×4pt 핸들을 배치합니다.
-        Capsule()
-          .fill(drag == 0 ? theme.color.foreground.tertiary : theme.color.foreground.secondary)
-          .frame(width: 36, height: 4)
-          .frame(maxWidth: .infinity)
-          .frame(height: 44)
-          .contentShape(.rect)
-          .gesture(handleDrag(heights: heights, height: height))
+        handle(heights: heights, height: height)
       }
+      
       content
         .environment(\.bottomSheetIsPresented, $isPresented)
     }
@@ -121,7 +122,23 @@ private struct FoundesignBottomSheetStage<Content: View>: View {
     .frame(maxWidth: .infinity)
     .frame(height: height.map { max(0, $0 - drag) }, alignment: .top)
     .background(theme.color.background.base)
-    .clipShape(.rect(topLeadingRadius: theme.radius.xLarge, topTrailingRadius: theme.radius.xLarge))
+    .clipShape(
+      .rect(
+        topLeadingRadius: theme.radius.xLarge,
+        topTrailingRadius: theme.radius.xLarge
+      )
+    )
+  }
+
+  /// 25pt의 드래그 영역에 36×4pt 핸들
+  private func handle(heights: [CGFloat], height: CGFloat?) -> some View {
+    Capsule()
+      .fill(theme.color.foreground.tertiary)
+      .frame(width: 36, height: 4)
+      .frame(maxWidth: .infinity)
+      .frame(height: 25)
+      .contentShape(.rect)
+      .gesture(handleDrag(heights: heights, height: height))
   }
 
   private func handleDrag(heights: [CGFloat], height: CGFloat?) -> some Gesture {
