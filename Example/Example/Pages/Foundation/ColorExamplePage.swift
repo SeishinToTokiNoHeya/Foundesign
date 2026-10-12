@@ -13,6 +13,10 @@ struct ColorExamplePage: View {
 
   var body: some View {
     List {
+      Section("Brand 생성") {
+        BrandGenerationExample()
+      }
+
       Section("테마") {
         themePreview("기본 테마 · 파란색", theme: .default)
         themePreview("사용자 정의 테마 · 보라색", theme: customTheme)
