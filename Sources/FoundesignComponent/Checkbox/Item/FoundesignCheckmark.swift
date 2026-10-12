@@ -89,7 +89,8 @@ public struct FoundesignCheckmark: View {
       guard isEnabled && isPressed else {
         return .clear
       }
-      return state == .unselected ? theme.color.background.transparent.pressed : backgroundRole.weak.pressed
+      return state == .unselected
+        ? theme.color.background.transparent.pressed : backgroundRole.weak.pressed
     }
   }
 
@@ -122,7 +123,9 @@ private struct FoundesignCheckmarkLayout: Layout {
     return CGSize(width: height, height: height)
   }
 
-  func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+  func placeSubviews(
+    in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()
+  ) {
     subviews.first?.place(
       at: CGPoint(x: bounds.midX, y: bounds.midY),
       anchor: .center,

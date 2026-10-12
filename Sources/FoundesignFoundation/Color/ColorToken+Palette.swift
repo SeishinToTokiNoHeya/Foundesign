@@ -42,7 +42,8 @@ extension ColorToken {
           disabled: .clear
         ),
         neutral: .init(
-          solid: ColorToken.state(normal: inverse, pressed: palette.gray[.`800`], disabled: disabled),
+          solid: ColorToken.state(
+            normal: inverse, pressed: palette.gray[.`800`], disabled: disabled),
           weak: ColorToken.state(
             normal: .adaptive(light: palette.gray[.`200`], dark: palette.gray[.`300`]),
             pressed: .adaptive(light: palette.gray[.`300`], dark: palette.gray[.`400`]),

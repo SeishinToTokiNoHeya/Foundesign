@@ -19,11 +19,13 @@ public enum FoundesignAccordionBuilder {
     accumulated: _FoundesignAccordionContent<Accumulated>,
     next: Next
   ) -> _FoundesignAccordionContent<
-    TupleView<(
-      _FoundesignAccordionContent<Accumulated>,
-      FoundesignAccordionSeparator,
-      Next
-    )>
+    TupleView<
+      (
+        _FoundesignAccordionContent<Accumulated>,
+        FoundesignAccordionSeparator,
+        Next
+      )
+    >
   > {
     .init(
       content: TupleView(

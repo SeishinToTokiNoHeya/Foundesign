@@ -5,7 +5,7 @@
 
   @MainActor
   final class FoundesignAlertDialogAppKitCoordinator {
-    weak var anchor: FoundesignAlertDialogAppKitAnchor?
+    weak var anchor: FoundesignModalAppKitAnchor?
 
     private var binding: Binding<Bool> = .constant(false)
     private var onDismiss: (() -> Void)?
@@ -16,7 +16,7 @@
     private var animator: FoundesignAlertDialogAppKitAnimator?
     private var updateScheduled = false
 
-    lazy var presentation = FoundesignAlertDialogPresentation(
+    lazy var presentation = FoundesignModalPresentation(
       present: { [weak self] in
         self?.present() ?? false
       },
@@ -65,18 +65,20 @@
     }
 
     private var hostedContent: AnyView {
-      AnyView(FoundesignAlertDialogHostedContent(
-        content: content,
-        environment: environment,
-        presentation: presentation
-      ))
+      AnyView(
+        FoundesignAlertDialogHostedContent(
+          content: content,
+          environment: environment,
+          presentation: presentation
+        ))
     }
 
     private func present() -> Bool {
       guard let anchor, let window = anchor.attachedWindow else {
         return false
       }
-      let dialog = FoundesignAlertDialogAppKitController(content: hostedContent, environment: environment)
+      let dialog = FoundesignAlertDialogAppKitController(
+        content: hostedContent, environment: environment)
       dialog.owner = self
       let animator = FoundesignAlertDialogAppKitAnimator(
         parentWindow: window,
@@ -212,7 +214,9 @@
   }
 
   @MainActor
-  private final class FoundesignAlertDialogAppKitAnimator: NSObject, NSViewControllerPresentationAnimator {
+  private final class FoundesignAlertDialogAppKitAnimator: NSObject,
+    NSViewControllerPresentationAnimator
+  {
     private weak var parentWindow: NSWindow?
     private weak var previousResponder: NSResponder?
     private var environment: EnvironmentValues
@@ -246,7 +250,8 @@
     }
 
     func animatePresentation(of controller: NSViewController, from presenter: NSViewController) {
-      guard let parentWindow, let dialog = controller as? FoundesignAlertDialogAppKitController else {
+      guard let parentWindow, let dialog = controller as? FoundesignAlertDialogAppKitController
+      else {
         return
       }
       previousResponder = parentWindow.firstResponder
@@ -342,7 +347,7 @@
         .leftMouseDown, .leftMouseUp, .leftMouseDragged,
         .rightMouseDown, .rightMouseUp, .rightMouseDragged,
         .otherMouseDown, .otherMouseUp, .otherMouseDragged,
-        .scrollWheel, .keyDown, .keyUp, .flagsChanged
+        .scrollWheel, .keyDown, .keyUp, .flagsChanged,
       ]) { [weak self] event in
         let blocked = MainActor.assumeIsolated {
           guard let self, let parentWindow = self.parentWindow else {
@@ -356,26 +361,28 @@
 
     private func observeParentWindow() {
       for name in [NSWindow.didResizeNotification, NSWindow.didMoveNotification] {
-        observers.append(NotificationCenter.default.addObserver(
-          forName: name,
+        observers.append(
+          NotificationCenter.default.addObserver(
+            forName: name,
+            object: parentWindow,
+            queue: .main
+          ) { [weak self] _ in
+            MainActor.assumeIsolated {
+              guard let self else {
+                return
+              }
+              self.panel?.setFrame(self.parentContentFrame, display: true)
+            }
+          })
+      }
+      observers.append(
+        NotificationCenter.default.addObserver(
+          forName: NSWindow.willCloseNotification,
           object: parentWindow,
           queue: .main
         ) { [weak self] _ in
-          MainActor.assumeIsolated {
-            guard let self else {
-              return
-            }
-            self.panel?.setFrame(self.parentContentFrame, display: true)
-          }
+          MainActor.assumeIsolated { self?.parentClosed() }
         })
-      }
-      observers.append(NotificationCenter.default.addObserver(
-        forName: NSWindow.willCloseNotification,
-        object: parentWindow,
-        queue: .main
-      ) { [weak self] _ in
-        MainActor.assumeIsolated { self?.parentClosed() }
-      })
     }
 
     private func tearDown() {

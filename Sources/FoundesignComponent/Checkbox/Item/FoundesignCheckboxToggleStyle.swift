@@ -12,13 +12,16 @@ struct FoundesignCheckboxToggleStyle: ToggleStyle {
     } label: {
       HStack(spacing: theme.spacing.small) {
         FoundesignCheckmark(
-          state: configuration.isMixed ? .indeterminate : (configuration.isOn ? .selected : .unselected)
+          state: configuration.isMixed
+            ? .indeterminate : (configuration.isOn ? .selected : .unselected)
         )
 
         configuration.label
           .typography(property.size.typography(theme.typography))
           .fontWeight(property.weight.fontWeight)
-          .foregroundStyle(isEnabled ? theme.color.foreground.primary : theme.color.foreground.disabled)
+          .foregroundStyle(
+            isEnabled ? theme.color.foreground.primary : theme.color.foreground.disabled
+          )
           .multilineTextAlignment(.leading)
           .fixedSize(horizontal: false, vertical: true)
       }

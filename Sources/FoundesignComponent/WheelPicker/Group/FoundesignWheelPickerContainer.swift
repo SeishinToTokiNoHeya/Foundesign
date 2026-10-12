@@ -30,7 +30,8 @@ public struct FoundesignWheelPickerContainer<Content>: View where Content: View 
   }
 
   public var body: some View {
-    let itemHeight = max(size.minimumItemHeight, labelHeight + size.verticalPadding(theme.spacing) * 2)
+    let itemHeight = max(
+      size.minimumItemHeight, labelHeight + size.verticalPadding(theme.spacing) * 2)
     let height = itemHeight * CGFloat(visibleItemCount)
     let metrics = FoundesignWheelPickerMetrics(
       count: 0,

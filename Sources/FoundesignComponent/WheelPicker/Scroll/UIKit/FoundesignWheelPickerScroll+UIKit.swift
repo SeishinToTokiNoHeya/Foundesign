@@ -7,12 +7,16 @@
       FoundesignWheelPickerUIKitController(configuration: self)
     }
 
-    func updateUIViewController(_ controller: FoundesignWheelPickerUIKitController<Content>, context: Context) {
+    func updateUIViewController(
+      _ controller: FoundesignWheelPickerUIKitController<Content>, context: Context
+    ) {
       controller.update(self)
     }
   }
 
-  final class FoundesignWheelPickerUIKitController<Content: View>: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+  final class FoundesignWheelPickerUIKitController<Content: View>: UIViewController,
+    UIScrollViewDelegate, UIGestureRecognizerDelegate
+  {
     private var configuration: FoundesignWheelPickerScroll<Content>
     private let scrollView = UIScrollView()
     private let host: UIHostingController<Content>
@@ -71,10 +75,11 @@
     }
 
     func update(_ newValue: FoundesignWheelPickerScroll<Content>) {
-      let shouldAlign = configuration.values != newValue.values
-        || configuration.selectionIndex != newValue.selectionIndex
-        || configuration.metrics != newValue.metrics
-        || configuration.isEnabled != newValue.isEnabled
+      let shouldAlign =
+        configuration.values != newValue.values
+          || configuration.selectionIndex != newValue.selectionIndex
+          || configuration.metrics != newValue.metrics
+          || configuration.isEnabled != newValue.isEnabled
       configuration = newValue
       host.rootView = newValue.content
       guard isViewLoaded else {
@@ -117,7 +122,8 @@
         isInteracting,
         configuration.isEnabled,
         let index = configuration.metrics.index(at: scrollView.contentOffset.y),
-        index != lastCenteredIndex else {
+        index != lastCenteredIndex
+      else {
         return
       }
       lastCenteredIndex = index
@@ -158,7 +164,8 @@
 
     @objc private func itemTapped(_ recognizer: UITapGestureRecognizer) {
       let y = recognizer.location(in: host.view).y - configuration.metrics.inset
-      guard y >= 0, y < CGFloat(configuration.metrics.count) * configuration.metrics.itemHeight else {
+      guard y >= 0, y < CGFloat(configuration.metrics.count) * configuration.metrics.itemHeight
+      else {
         return
       }
       move(to: Int(y / configuration.metrics.itemHeight))
@@ -184,7 +191,8 @@
         !isUpdating,
         isInteracting,
         configuration.isEnabled,
-        let index = configuration.metrics.index(at: scrollView.contentOffset.y) else {
+        let index = configuration.metrics.index(at: scrollView.contentOffset.y)
+      else {
         return
       }
 

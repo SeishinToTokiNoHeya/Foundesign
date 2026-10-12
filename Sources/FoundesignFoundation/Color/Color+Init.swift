@@ -1,4 +1,5 @@
 import SwiftUI
+
 #if canImport(UIKit)
   import UIKit
 #elseif canImport(AppKit)
@@ -15,17 +16,19 @@ extension Color {
     let resolvedDarkOpacity = darkOpacity ?? lightOpacity
 
     #if canImport(UIKit)
-      return Color(uiColor: UIColor { traitCollection in
-        traitCollection.userInterfaceStyle == .dark
-          ? .color(hex: dark, opacity: resolvedDarkOpacity)
-          : .color(hex: light, opacity: lightOpacity)
-      })
+      return Color(
+        uiColor: UIColor { traitCollection in
+          traitCollection.userInterfaceStyle == .dark
+            ? .color(hex: dark, opacity: resolvedDarkOpacity)
+            : .color(hex: light, opacity: lightOpacity)
+        })
     #elseif canImport(AppKit)
-      return Color(nsColor: NSColor(name: nil) { appearance in
-        appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
-          ? .color(hex: dark, opacity: resolvedDarkOpacity)
-          : .color(hex: light, opacity: lightOpacity)
-      })
+      return Color(
+        nsColor: NSColor(name: nil) { appearance in
+          appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+            ? .color(hex: dark, opacity: resolvedDarkOpacity)
+            : .color(hex: light, opacity: lightOpacity)
+        })
     #else
       return Color(
         red: Double((light >> 16) & 0xFF) / 255,
@@ -38,21 +41,23 @@ extension Color {
 
   public static func adaptive(light: Color, dark: Color) -> Color {
     #if canImport(UIKit)
-      return Color(uiColor: UIColor { traitCollection in
-        let color = traitCollection.userInterfaceStyle == .dark ? dark : light
-        return UIColor(color).resolvedColor(with: traitCollection)
-      })
+      return Color(
+        uiColor: UIColor { traitCollection in
+          let color = traitCollection.userInterfaceStyle == .dark ? dark : light
+          return UIColor(color).resolvedColor(with: traitCollection)
+        })
     #elseif canImport(AppKit)
-      return Color(nsColor: NSColor(name: nil) { appearance in
-        let color = NSColor(
-          appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua ? dark : light
-        )
-        var resolved = color
-        appearance.performAsCurrentDrawingAppearance {
-          resolved = color.usingColorSpace(.sRGB) ?? color
-        }
-        return resolved
-      })
+      return Color(
+        nsColor: NSColor(name: nil) { appearance in
+          let color = NSColor(
+            appearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua ? dark : light
+          )
+          var resolved = color
+          appearance.performAsCurrentDrawingAppearance {
+            resolved = color.usingColorSpace(.sRGB) ?? color
+          }
+          return resolved
+        })
     #else
       return light
     #endif

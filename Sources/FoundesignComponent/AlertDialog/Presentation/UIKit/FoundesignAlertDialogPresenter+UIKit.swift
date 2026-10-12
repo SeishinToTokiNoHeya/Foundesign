@@ -14,8 +14,8 @@
 
     func makeUIViewController(
       context: Context
-    ) -> FoundesignAlertDialogUIKitAnchor {
-      let anchor = FoundesignAlertDialogUIKitAnchor()
+    ) -> FoundesignModalUIKitAnchor {
+      let anchor = FoundesignModalUIKitAnchor()
       context.coordinator.anchor = anchor
       anchor.attachmentChanged = { [weak coordinator = context.coordinator] in
         coordinator?.scheduleUpdate()
@@ -24,7 +24,7 @@
     }
 
     func updateUIViewController(
-      _ controller: FoundesignAlertDialogUIKitAnchor,
+      _ controller: FoundesignModalUIKitAnchor,
       context: Context
     ) {
       context.coordinator.update(
@@ -36,7 +36,7 @@
     }
 
     static func dismantleUIViewController(
-      _ controller: FoundesignAlertDialogUIKitAnchor,
+      _ controller: FoundesignModalUIKitAnchor,
       coordinator: FoundesignAlertDialogUIKitCoordinator
     ) {
       controller.attachmentChanged = nil

@@ -3,8 +3,9 @@
   import SwiftUI
   import UIKit
 
-  final class FoundesignAlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioningDelegate {
-    weak var anchor: FoundesignAlertDialogUIKitAnchor?
+  final class FoundesignAlertDialogUIKitCoordinator: NSObject, UIViewControllerTransitioningDelegate
+  {
+    weak var anchor: FoundesignModalUIKitAnchor?
 
     private var binding: Binding<Bool> = .constant(false)
     private var onDismiss: (() -> Void)?
@@ -15,7 +16,7 @@
     private var updateScheduled = false
     private var previousFocus: Any?
 
-    lazy var presentation = FoundesignAlertDialogPresentation(
+    lazy var presentation = FoundesignModalPresentation(
       present: { [weak self] in
         self?.present() ?? false
       },
@@ -39,7 +40,9 @@
       if let dialog {
         dialog.rootView = hostedContent
         dialog.overrideUserInterfaceStyle = environment.colorScheme == .dark ? .dark : .light
-        if let controller = dialog.presentationController as? FoundesignAlertDialogUIKitPresentationController {
+        if let controller = dialog.presentationController
+          as? FoundesignAlertDialogUIKitPresentationController
+        {
           controller.update(environment: environment)
         }
       }
@@ -179,11 +182,13 @@
 
     override var canBecomeFirstResponder: Bool { true }
     override var keyCommands: [UIKeyCommand]? {
-      [UIKeyCommand(
-        input: UIKeyCommand.inputEscape,
-        modifierFlags: [],
-        action: #selector(escapePressed)
-      )]
+      [
+        UIKeyCommand(
+          input: UIKeyCommand.inputEscape,
+          modifierFlags: [],
+          action: #selector(escapePressed)
+        )
+      ]
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -237,10 +242,13 @@
     override var frameOfPresentedViewInContainerView: CGRect {
       guard
         let containerView,
-        let host = presentedViewController as? FoundesignAlertDialogUIKitController else {
+        let host = presentedViewController as? FoundesignAlertDialogUIKitController
+      else {
         return .zero
       }
-      return FoundesignAlertDialogGeometry.cardFrame(in: containerView.safeAreaLayoutGuide.layoutFrame) {
+      return FoundesignAlertDialogGeometry.cardFrame(
+        in: containerView.safeAreaLayoutGuide.layoutFrame
+      ) {
         host.sizeThatFits(in: $0)
       }
     }
@@ -292,7 +300,9 @@
     }
   }
 
-  private final class FoundesignAlertDialogUIKitAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+  private final class FoundesignAlertDialogUIKitAnimator: NSObject,
+    UIViewControllerAnimatedTransitioning
+  {
     let isPresenting: Bool
     let reduceMotion: Bool
 
@@ -313,11 +323,13 @@
       let key: UITransitionContextViewControllerKey = isPresenting ? .to : .from
       guard
         let controller = context.viewController(forKey: key),
-        let view = context.view(forKey: isPresenting ? .to : .from) else {
+        let view = context.view(forKey: isPresenting ? .to : .from)
+      else {
         context.completeTransition(false)
         return
       }
-      let offset = CGAffineTransform(translationX: 0, y: reduceMotion ? 0 : FoundesignAlertDialogGeometry.travel)
+      let offset = CGAffineTransform(
+        translationX: 0, y: reduceMotion ? 0 : FoundesignAlertDialogGeometry.travel)
       if isPresenting {
         view.frame = context.finalFrame(for: controller)
         context.containerView.addSubview(view)

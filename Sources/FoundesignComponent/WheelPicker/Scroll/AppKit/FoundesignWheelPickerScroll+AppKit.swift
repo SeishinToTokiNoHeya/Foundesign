@@ -7,7 +7,9 @@
       FoundesignWheelPickerAppKitController(configuration: self)
     }
 
-    func updateNSViewController(_ controller: FoundesignWheelPickerAppKitController<Content>, context: Context) {
+    func updateNSViewController(
+      _ controller: FoundesignWheelPickerAppKitController<Content>, context: Context
+    ) {
       controller.update(self)
     }
   }
@@ -74,10 +76,11 @@
     }
 
     func update(_ newValue: FoundesignWheelPickerScroll<Content>) {
-      let shouldAlign = configuration.values != newValue.values
-        || configuration.selectionIndex != newValue.selectionIndex
-        || configuration.metrics != newValue.metrics
-        || configuration.isEnabled != newValue.isEnabled
+      let shouldAlign =
+        configuration.values != newValue.values
+          || configuration.selectionIndex != newValue.selectionIndex
+          || configuration.metrics != newValue.metrics
+          || configuration.isEnabled != newValue.isEnabled
       configuration = newValue
       host.rootView = newValue.content
       guard isViewLoaded else {
@@ -119,7 +122,8 @@
         isInteracting,
         configuration.isEnabled,
         let index = configuration.metrics.index(at: scrollView.contentView.bounds.minY),
-        index != lastCenteredIndex else {
+        index != lastCenteredIndex
+      else {
         return
       }
       lastCenteredIndex = index
@@ -131,7 +135,8 @@
         !isUpdating,
         isInteracting,
         configuration.isEnabled,
-        let index = configuration.metrics.index(at: scrollView.contentView.bounds.minY) else {
+        let index = configuration.metrics.index(at: scrollView.contentView.bounds.minY)
+      else {
         return
       }
       select(index)
@@ -142,7 +147,8 @@
         return
       }
       let y = recognizer.location(in: host).y - configuration.metrics.inset
-      guard y >= 0, y < CGFloat(configuration.metrics.count) * configuration.metrics.itemHeight else {
+      guard y >= 0, y < CGFloat(configuration.metrics.count) * configuration.metrics.itemHeight
+      else {
         return
       }
       select(Int(y / configuration.metrics.itemHeight))
@@ -151,7 +157,8 @@
     private func wheelStepped(_ delta: CGFloat) {
       guard
         configuration.isEnabled, delta != 0,
-        let index = configuration.metrics.index(at: scrollView.contentView.bounds.minY) else {
+        let index = configuration.metrics.index(at: scrollView.contentView.bounds.minY)
+      else {
         return
       }
       select(min(configuration.metrics.count - 1, max(0, index + (delta < 0 ? 1 : -1))))

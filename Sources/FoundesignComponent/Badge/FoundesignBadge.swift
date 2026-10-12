@@ -67,10 +67,11 @@ public struct FoundesignBadge: View {
   }
 
   private var shape: RoundedRectangle {
-    let radius = switch property.size {
-    case .medium: theme.radius.small
-    case .large: theme.radius.medium
-    }
+    let radius =
+      switch property.size {
+      case .medium: theme.radius.small
+      case .large: theme.radius.medium
+      }
     return .rect(cornerRadius: radius)
   }
 
@@ -86,11 +87,12 @@ public struct FoundesignBadge: View {
   }
 
   private var backgroundColor: Color {
-    let state: ColorToken.State = switch property.variant {
-    case .weak: backgroundRole.weak
-    case .solid: backgroundRole.solid
-    case .outline: theme.color.background.transparent
-    }
+    let state: ColorToken.State =
+      switch property.variant {
+      case .weak: backgroundRole.weak
+      case .solid: backgroundRole.solid
+      case .outline: theme.color.background.transparent
+      }
     return isEnabled ? state.normal : state.disabled
   }
 

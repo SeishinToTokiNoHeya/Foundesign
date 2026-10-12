@@ -56,13 +56,13 @@ public struct FoundesignContentFog: View {
     case .up:
       return [
         theme.color.background.base.opacity(0),
-        theme.color.background.base
+        theme.color.background.base,
       ]
 
     case .down:
       return [
         theme.color.background.base,
-        theme.color.background.base.opacity(0)
+        theme.color.background.base.opacity(0),
       ]
     }
   }

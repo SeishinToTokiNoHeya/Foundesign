@@ -27,7 +27,8 @@ import SwiftUI
 ///   .buttonStyle(.outline)
 /// }
 /// ```
-public struct FoundesignAdaptiveButtonGroup<Primary, Secondary>: View where Primary: View, Secondary: View {
+public struct FoundesignAdaptiveButtonGroup<Primary, Secondary>: View
+where Primary: View, Secondary: View {
   @Environment(\.theme) private var theme
   private let primary: Primary
   private let secondary: Secondary
