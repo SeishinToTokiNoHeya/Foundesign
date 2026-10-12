@@ -7,7 +7,8 @@
 버튼을 얼마나 강조할지에 따라 스타일을 선택합니다. 상태와 액션은 표준 SwiftUI `Button`이 관리합니다.
 
 배경을 채우려면 ``FoundesignSolidButtonStyle``, 테두리만 표시하려면 ``FoundesignOutlineButtonStyle``,
-배경을 은은하게 강조하려면 ``FoundesignWeakButtonStyle``을 사용합니다.
+배경을 은은하게 강조하려면 ``FoundesignWeakButtonStyle``,
+테두리와 기본 배경 없이 보조 동작을 표시하려면 ``FoundesignGhostButtonStyle``을 사용합니다.
 
 ```swift
 import Foundesign
@@ -30,6 +31,27 @@ struct ButtonExample: View {
 상위 컨테이너의 `.buttonStyle`·`.buttonTone`·`.buttonSize`를 상속하며, 항목에 가까운 설정이 우선합니다.
 개별 톤·크기 modifier는 다른 상속 속성을 유지합니다. Foundesign의 톤·크기 설정은 시스템 버튼 스타일에 적용하지 않습니다.
 비활성 상태는 표준 `.disabled`로 설정합니다.
+
+## Ghost 스타일 사용하기
+
+보조 동작에는 `.buttonStyle(.ghost)`를 적용합니다. 기존 버튼과 같은 톤·크기 설정을 사용하므로
+다른 스타일과 나란히 배치할 수 있습니다.
+
+```swift
+import Foundesign
+import SwiftUI
+
+struct GhostButtonExample: View {
+  @State private var saved = false
+
+  var body: some View {
+    Button(saved ? "저장 취소" : "저장") { saved.toggle() }
+      .buttonStyle(.ghost)
+      .buttonTone(.neutral)
+      .buttonSize(.small)
+  }
+}
+```
 
 ## 두 버튼을 배치하기
 

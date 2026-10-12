@@ -20,3 +20,10 @@ extension ButtonStyle where Self == FoundesignWeakButtonStyle {
     .init()
   }
 }
+
+extension ButtonStyle where Self == FoundesignGhostButtonStyle {
+  /// 환경의 톤과 크기를 사용하는 테두리 없는 투명 배경 버튼 스타일입니다.
+  public static var ghost: FoundesignGhostButtonStyle {
+    .init()
+  }
+}
